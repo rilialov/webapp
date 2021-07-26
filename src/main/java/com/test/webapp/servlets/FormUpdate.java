@@ -19,24 +19,24 @@ import java.util.Map;
 @WebServlet(name = "update", value = "/update")
 public class FormUpdate extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
 
-        String login = req.getParameter("login");
+        String login = request.getParameter("login");
         FormBuilder fb = UsersSessions.getFormBuilder(login);
         Form form = fb.getForm();
         String[] array = new String[4];
-        array[0] = req.getParameter("firstname");
-        array[1] = req.getParameter("lastname");
-        array[2] = req.getParameter("phone");
-        array[3] = req.getParameter("email");
+        array[0] = request.getParameter("firstname");
+        array[1] = request.getParameter("lastname");
+        array[2] = request.getParameter("phone");
+        array[3] = request.getParameter("email");
         DBController db = UsersSessions.getDbController(login);
         db.updateForm(array, form);
 
         Map<Integer, Student> students = db.getStudentsData();
 
         List<Student> list = new ArrayList(students.values());
-        req.setAttribute("studentsList", list);
-        getServletContext().getRequestDispatcher("/view/lists/studentsList.jsp").forward(req, resp);
+        request.setAttribute("studentsList", list);
+        getServletContext().getRequestDispatcher("/view/lists/studentsList.jsp").forward(request, response);
     }
 }

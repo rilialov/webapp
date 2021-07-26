@@ -16,6 +16,20 @@ public class DBController {
         dbConnector.setStatement();
     }
 
+    public boolean isManager(String login) {
+        boolean manager = false;
+        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM users WHERE login = '" + login + "';");
+        if (resultSet != null) {
+            try {
+                resultSet.next();
+                manager = resultSet.getBoolean(5);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return manager;
+    }
+
     public int getFormID(String login) {
         int id = 0;
         ResultSet resultSet = dbConnector.getQuery("SELECT * FROM users WHERE login = '" + login + "';");

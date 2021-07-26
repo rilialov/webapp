@@ -11,7 +11,7 @@
         <a href="/"><img src="/view/styles/logo.png" alt="logo"></a>
     </header>
     <main>
-        <form action="form" method="post">
+        <form action="mainPage" method="post">
             <ul>
                 <li>
                     <label for="name">Login:</label>
