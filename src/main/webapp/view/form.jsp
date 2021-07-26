@@ -10,7 +10,7 @@
     <header>
         <a href="/"><img src="/view/styles/logo.png" alt="logo"></a>
     </header>
-    <div class="main">
+    <main>
         <h1>Form</h1>
         <form action="update" method="post">
             <ul>
@@ -46,7 +46,7 @@
             </ul>
             <input type="hidden" value="${login}" name="login" />
         </form>
-    </div>
+    </main>
     <footer>
         <div>Copyright © 2021</div>
     </footer>

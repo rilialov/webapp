@@ -5,7 +5,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="view/styles/main.css" >
-    <title>Main</title>
+    <title>Students List</title>
 </head>
 <body>
 <div class="all">

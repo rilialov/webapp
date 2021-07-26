@@ -15,9 +15,20 @@ header {
     position: relative;
 }
 
-.main {
+main {
     padding: 0 20px;
     min-height: 500px;
+}
+
+.left_side {
+    width: 20%;
+    float: left;
+}
+
+.center {
+    margin: 0px 0px 10px 20px;
+    float: left;
+    width: 70%;
 }
 
 form {

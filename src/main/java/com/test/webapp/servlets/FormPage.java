@@ -11,7 +11,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
 @WebServlet(name = "form", value = "/form")
-public class MainForm extends HttpServlet {
+public class FormPage extends HttpServlet {
     private FormBuilder fb;
     private DBController db;
 
@@ -22,8 +22,8 @@ public class MainForm extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String login = req.getParameter("name");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String login = request.getParameter("name");
 
         db = new DBController();
         int id = db.getFormID(login);
@@ -33,15 +33,15 @@ public class MainForm extends HttpServlet {
             fb = new FormBuilder(id, db);
             UsersSessions.setFormBuilder(login, fb);
             String[] array = fb.getData();
-            req.setAttribute("course", array[0]);
-            req.setAttribute("trainer", array[1]);
-            req.setAttribute("firstname", array[2]);
-            req.setAttribute("lastname", array[3]);
-            req.setAttribute("date", array[4]);
-            req.setAttribute("login", login);
-            getServletContext().getRequestDispatcher("/view/form.jsp").forward(req, resp);
+            request.setAttribute("course", array[0]);
+            request.setAttribute("trainer", array[1]);
+            request.setAttribute("firstname", array[2]);
+            request.setAttribute("lastname", array[3]);
+            request.setAttribute("date", array[4]);
+            request.setAttribute("login", login);
+            getServletContext().getRequestDispatcher("/view/form.jsp").forward(request, response);
         } else {
-            PrintWriter printWriter = resp.getWriter();
+            PrintWriter printWriter = response.getWriter();
             printWriter.write("login not found");
             printWriter.close();
         }

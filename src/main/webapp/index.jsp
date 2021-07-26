@@ -10,7 +10,7 @@
     <header>
         <a href="/"><img src="/view/styles/logo.png" alt="logo"></a>
     </header>
-    <div class="main">
+    <main>
         <form action="form" method="post">
             <ul>
                 <li>
@@ -24,7 +24,7 @@
                 <li class="button"><input type="submit" value="OK"></li>
             </ul>
         </form>
-    </div>
+    </main>
     <footer>
         <div>Copyright © 2021</div>
     </footer>
