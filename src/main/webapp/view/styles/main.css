@@ -26,7 +26,7 @@ main {
 }
 
 .center {
-    margin: 0px 0px 10px 20px;
+    margin: 0 0 10px 20px;
     float: left;
     width: 70%;
 }
@@ -73,6 +73,12 @@ textarea {
 
 table {
     margin: 0 auto;
+    border: solid 1px #2EB845;
+}
+
+td, th {
+    padding: 5px;
+    background: #EFE7B6;
 }
 
 footer {

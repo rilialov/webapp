@@ -20,7 +20,7 @@ import java.util.Map;
 @WebServlet(name = "update", value = "/update")
 public class FormUpdate extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
 
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
@@ -34,11 +34,5 @@ public class FormUpdate extends HttpServlet {
         array[3] = request.getParameter("email");
         DBController db = UsersSessions.getDbController(userAccount);
         db.updateForm(array, form);
-
-        Map<Integer, Student> students = db.getStudentsData();
-
-        List<Student> list = new ArrayList(students.values());
-        request.setAttribute("studentsList", list);
-        getServletContext().getRequestDispatcher("/view/lists/studentsList.jsp").forward(request, response);
     }
 }

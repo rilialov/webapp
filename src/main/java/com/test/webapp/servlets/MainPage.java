@@ -27,8 +27,8 @@ public class MainPage extends HttpServlet {
 
         if (userAccount != null) {
             UsersSessions.setUser(request.getSession(),userAccount);
+            UsersSessions.setDbControllerMap(userAccount,db);
             if (!userAccount.isManager()) {
-                UsersSessions.setDbControllerMap(userAccount,db);
                 fb = new FormBuilder(userAccount.getForm_id(), db);
                 UsersSessions.setFormBuilder(userAccount, fb);
                 String[] array = fb.getData();

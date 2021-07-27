@@ -3,7 +3,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="view/styles/main.css" >
-    <title>Main</title>
+    <title>Manager Page</title>
 </head>
 <body>
 <div class="all">
@@ -14,7 +14,7 @@
         <h1>Manager Page</h1>
         <div class="left_side">
             <ul>
-                <li><a href="/">Students List</a></li>
+                <li><a href="/studentsList">Students List</a></li>
                 <li><a href="/">Trainers List</a></li>
                 <li><a href="/">Courses List</a></li>
             </ul>
