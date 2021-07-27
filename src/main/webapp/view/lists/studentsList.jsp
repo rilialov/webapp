@@ -18,7 +18,7 @@
             <ul>
                 <li><a href="/studentsList">Students List</a></li>
                 <li><a href="/trainersList">Trainers List</a></li>
-                <li><a href="/">Courses List</a></li>
+                <li><a href="/coursesList">Courses List</a></li>
             </ul>
         </div>
         <div class="center">

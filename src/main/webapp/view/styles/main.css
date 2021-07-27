@@ -48,6 +48,17 @@ form li + li {
     margin-top: 1em;
 }
 
+.left_side li {
+    padding: 5px;
+    border-bottom: solid 1px #2EB845;
+}
+
+.left_side a {
+    color: #636363;
+    font-weight: bold;
+    text-decoration: none;
+}
+
 label {
     display: inline-block;
     width: 90px;

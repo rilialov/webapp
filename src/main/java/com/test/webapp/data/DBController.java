@@ -1,5 +1,6 @@
 package com.test.webapp.data;
 
+import com.test.webapp.model.Course;
 import com.test.webapp.model.Form;
 import com.test.webapp.model.Student;
 import com.test.webapp.model.Trainer;
@@ -79,6 +80,27 @@ public class DBController {
             }
         }
         return courseData;
+    }
+
+    public Map<Integer, Course> getCoursesData() {
+        Map<Integer, Course> coursesList = new HashMap<>();
+        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM courses;");
+        if (resultSet != null) {
+            try {
+                resultSet.next();
+                while (!resultSet.isAfterLast()) {
+                    int id = resultSet.getInt(1);
+                    String courseCode = resultSet.getString(3);
+                    String courseName = resultSet.getString(4);
+                    Course course = new Course(courseCode, courseName);
+                    coursesList.put(id, course);
+                    resultSet.next();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return coursesList;
     }
 
     String[] getTrainerData(int trainer_id) {

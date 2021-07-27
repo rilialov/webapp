@@ -5,7 +5,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="view/styles/main.css" >
-    <title>Trainers List</title>
+    <title>Courses List</title>
 </head>
 <body>
 <div class="all">
@@ -13,7 +13,7 @@
         <a href="/"><img src="/view/styles/logo.png" alt="logo"></a>
     </header>
     <main>
-        <h1>Trainers List</h1>
+        <h1>Courses List</h1>
         <div class="left_side">
             <ul>
                 <li><a href="/studentsList">Students List</a></li>
@@ -24,13 +24,13 @@
         <div class="center">
             <table>
                 <tr>
-                    <th>First name</th>
-                    <th>Last name</th>
+                    <th>Course code</th>
+                    <th>Course name</th>
                 </tr>
-                <c:forEach items="${trainersList}" var="trainer" >
+                <c:forEach items="${coursesList}" var="course" >
                     <tr>
-                        <td>${trainer.firstName}</td>
-                        <td>${trainer.lastName}</td>
+                        <td>${course.courseCode}</td>
+                        <td>${course.courseName}</td>
                     </tr>
                 </c:forEach>
             </table>
