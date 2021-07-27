@@ -2,6 +2,7 @@ package com.test.webapp.data;
 
 import com.test.webapp.model.Form;
 import com.test.webapp.model.Student;
+import com.test.webapp.model.Trainer;
 import com.test.webapp.sessions.UserAccount;
 
 import java.sql.ResultSet;
@@ -94,6 +95,27 @@ public class DBController {
             }
         }
         return trainerData;
+    }
+
+    public Map<Integer, Trainer> getTrainersData() {
+        Map<Integer, Trainer> trainersList = new HashMap<>();
+        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM trainers;");
+        if (resultSet != null) {
+            try {
+                resultSet.next();
+                while (!resultSet.isAfterLast()) {
+                    int id = resultSet.getInt(1);
+                    String firstName = resultSet.getString(2);
+                    String lastName = resultSet.getString(3);
+                    Trainer trainer = new Trainer(firstName, lastName);
+                    trainersList.put(id, trainer);
+                    resultSet.next();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return trainersList;
     }
 
     String[] getStudentData(int student_id) {

@@ -2,6 +2,7 @@ package com.test.webapp.servlets.lists;
 
 import com.test.webapp.data.DBController;
 import com.test.webapp.model.Student;
+import com.test.webapp.model.Trainer;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
 
@@ -15,18 +16,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet(name = "studentsList", value = "/studentsList")
-public class StudentsList extends HttpServlet {
+@WebServlet(name = "trainersList", value = "/trainersList")
+public class TrainersList extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
 
-        Map<Integer, Student> students = db.getStudentsData();
-        List<Student> list = new ArrayList(students.values());
-        request.setAttribute("studentsList", list);
-        getServletContext().getRequestDispatcher("/view/lists/studentsList.jsp").forward(request, response);
+        Map<Integer, Trainer> trainers = db.getTrainersData();
+        List<Student> list = new ArrayList(trainers.values());
+        request.setAttribute("trainersList", list);
+        getServletContext().getRequestDispatcher("/view/lists/trainersList.jsp").forward(request, response);
     }
 
 }
