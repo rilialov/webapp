@@ -44,7 +44,6 @@
                 </li>
                 <li class="button"><input type="submit" value="OK"></li>
             </ul>
-            <input type="hidden" value="${login}" name="login" />
         </form>
     </main>
     <footer>

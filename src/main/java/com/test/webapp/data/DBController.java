@@ -2,6 +2,7 @@ package com.test.webapp.data;
 
 import com.test.webapp.model.Form;
 import com.test.webapp.model.Student;
+import com.test.webapp.sessions.UserAccount;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,32 +17,21 @@ public class DBController {
         dbConnector.setStatement();
     }
 
-    public boolean isManager(String login) {
-        boolean manager = false;
+    public UserAccount loadUser(String login) {
+        UserAccount userAccount = null;
         ResultSet resultSet = dbConnector.getQuery("SELECT * FROM users WHERE login = '" + login + "';");
         if (resultSet != null) {
             try {
                 resultSet.next();
-                manager = resultSet.getBoolean(5);
+                userAccount = new UserAccount(resultSet.getString(2),resultSet.getString(3),resultSet.getBoolean(5));
+                if (!userAccount.isManager()) {
+                    userAccount.setForm_id(resultSet.getInt(4));
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        return manager;
-    }
-
-    public int getFormID(String login) {
-        int id = 0;
-        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM users WHERE login = '" + login + "';");
-        if (resultSet != null) {
-            try {
-                resultSet.next();
-                id = resultSet.getInt(4);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return id;
+        return userAccount;
     }
 
     int[] getFormData(int form_id) {
