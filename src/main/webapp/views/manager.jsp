@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,23 +8,19 @@
 <body>
 <div class="all">
     <header>
-        <a href="/"><img src="/view/styles/logo.png" alt="logo"></a>
+        <jsp:include page="_header.jsp"></jsp:include>
     </header>
     <main>
         <h1>Manager Page</h1>
         <div class="left_side">
-            <ul>
-                <li><a href="/studentsList">Students List</a></li>
-                <li><a href="/trainersList">Trainers List</a></li>
-                <li><a href="/coursesList">Courses List</a></li>
-            </ul>
+            <jsp:include page="_left_menu.jsp"></jsp:include>
         </div>
         <div class="center">
             <p>This page for managers..</p>
         </div>
     </main>
     <footer>
-        <div>Copyright © 2021</div>
+        <jsp:include page="_footer.jsp"></jsp:include>
     </footer>
 </div>
 </body>

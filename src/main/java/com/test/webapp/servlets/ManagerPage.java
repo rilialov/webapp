@@ -12,6 +12,6 @@ public class ManagerPage extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        getServletContext().getRequestDispatcher("/view/manager.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/views/manager.jsp").forward(request, response);
     }
 }

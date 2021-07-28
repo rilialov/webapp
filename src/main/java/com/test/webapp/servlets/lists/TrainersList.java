@@ -27,7 +27,7 @@ public class TrainersList extends HttpServlet {
         Map<Integer, Trainer> trainers = db.getTrainersData();
         List<Student> list = new ArrayList(trainers.values());
         request.setAttribute("trainersList", list);
-        getServletContext().getRequestDispatcher("/view/lists/trainersList.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/views/lists/trainersList.jsp").forward(request, response);
     }
 
 }

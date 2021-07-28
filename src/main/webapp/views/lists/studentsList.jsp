@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -10,16 +9,12 @@
 <body>
 <div class="all">
     <header>
-        <a href="/"><img src="/view/styles/logo.png" alt="logo"></a>
+        <jsp:include page="../_header.jsp"></jsp:include>
     </header>
     <main>
         <h1>Students List</h1>
         <div class="left_side">
-            <ul>
-                <li><a href="/studentsList">Students List</a></li>
-                <li><a href="/trainersList">Trainers List</a></li>
-                <li><a href="/coursesList">Courses List</a></li>
-            </ul>
+            <jsp:include page="../_left_menu.jsp"></jsp:include>
         </div>
         <div class="center">
             <table>
@@ -49,7 +44,7 @@
         </div>
     </main>
     <footer>
-        <div>Copyright © 2021</div>
+        <jsp:include page="../_footer.jsp"></jsp:include>
     </footer>
 </div>
 </body>
