@@ -167,6 +167,8 @@ public class DBController {
                     String firstName = resultSet.getString(2);
                     String lastName = resultSet.getString(3);
                     Student student = new Student(firstName, lastName);
+                    student.setPhone(resultSet.getLong(4));
+                    student.setEmail(resultSet.getString(5));
                     student.setFirstName_ed(resultSet.getString(6));
                     student.setLastName_ed(resultSet.getString(7));
                     student.setPhone_ed(resultSet.getLong(8));
@@ -187,6 +189,11 @@ public class DBController {
                 "', phone_ed = '" + array[2] +
                 "', email_ed = '" + array[3] +
                 "' WHERE student_id = " + form.getStudent_id() + ";");
+    }
+
+    public void createStudent(String[] array) {
+        dbConnector.execute("INSERT INTO students(first_name, last_name, phone, email) VALUES ('" + array[0] +
+                "', '" + array[1] + "', '" + array[2] + "', '" + array[3] + "')");
     }
 
     public void close() {

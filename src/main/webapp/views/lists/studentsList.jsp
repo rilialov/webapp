@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="view/styles/main.css" >
+    <link rel="stylesheet" type="text/css" href="views/styles/main.css" >
     <title>Students List</title>
 </head>
 <body>
@@ -41,6 +41,7 @@
                     </tr>
                 </c:forEach>
             </table>
+            <a href="/createStudent">Create a new student..</a>
         </div>
     </main>
     <footer>

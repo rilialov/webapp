@@ -3,29 +3,17 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="views/styles/main.css">
-    <title>Form</title>
+    <title>Create Student</title>
 </head>
 <body>
 <div class="all">
     <header>
-        <jsp:include page="_header.jsp"></jsp:include>
+        <jsp:include page="../_header.jsp"></jsp:include>
     </header>
     <main>
-        <h1>Form</h1>
-        <form action="update" method="post">
+        <h1>Create Student</h1>
+        <form action="createStudent" method="post">
             <ul>
-                <li>
-                    <label for="course">Course:</label>
-                    <textarea id="course" readonly>${course}</textarea>
-                </li>
-                <li>
-                    <label for="trainer">Trainer:</label>
-                    <input class="txtinput" type="text" id="trainer" value="${trainer}" readonly>
-                </li>
-                <li>
-                    <label for="date">Date:</label>
-                    <input class="txtinput" type="text" id="date" value="${date}" readonly>
-                </li>
                 <li>
                     <label for="firstname">First Name:</label>
                     <input class="txtinput" type="text" id="firstname" name="firstname" value="${firstname}">
@@ -47,7 +35,7 @@
         </form>
     </main>
     <footer>
-        <jsp:include page="_footer.jsp"></jsp:include>
+        <jsp:include page="../_footer.jsp"></jsp:include>
     </footer>
 </div>
 </body>

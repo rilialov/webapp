@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="view/styles/main.css" >
+    <link rel="stylesheet" type="text/css" href="views/styles/main.css" >
     <title>Courses List</title>
 </head>
 <body>
