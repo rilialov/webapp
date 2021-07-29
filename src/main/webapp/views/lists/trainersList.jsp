@@ -29,6 +29,7 @@
                     </tr>
                 </c:forEach>
             </table>
+            <a href="/createTrainer">Create a new trainer..</a>
         </div>
     </main>
     <footer>

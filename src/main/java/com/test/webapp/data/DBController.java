@@ -196,6 +196,11 @@ public class DBController {
                 "', '" + array[1] + "', '" + array[2] + "', '" + array[3] + "')");
     }
 
+    public void createTrainer(String[] array) {
+        dbConnector.execute("INSERT INTO trainers(first_name, last_name) VALUES ('" + array[0] +
+                "', '" + array[1] + "')");
+    }
+
     public void close() {
         dbConnector.close();
     }
