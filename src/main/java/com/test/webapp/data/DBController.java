@@ -93,6 +93,7 @@ public class DBController {
                     String courseCode = resultSet.getString(3);
                     String courseName = resultSet.getString(4);
                     Course course = new Course(courseCode, courseName);
+                    course.setVendor_id(resultSet.getInt(2));
                     coursesList.put(id, course);
                     resultSet.next();
                 }
@@ -199,6 +200,12 @@ public class DBController {
     public void createTrainer(String[] array) {
         dbConnector.execute("INSERT INTO trainers(first_name, last_name) VALUES ('" + array[0] +
                 "', '" + array[1] + "')");
+    }
+
+    public void createCourse(String[] array) {
+        int vendor_id = Integer.parseInt(array[0]);
+        dbConnector.execute("INSERT INTO courses(vendor_id, course_code, course_name) VALUES ('" + vendor_id +
+                "', '" + array[1] + "', '" + array[2] + "')");
     }
 
     public void close() {

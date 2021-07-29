@@ -19,16 +19,19 @@
         <div class="center">
             <table>
                 <tr>
+                    <th>Vendor</th>
                     <th>Course code</th>
                     <th>Course name</th>
                 </tr>
                 <c:forEach items="${coursesList}" var="course" >
                     <tr>
+                        <td>${course.vendor_id}</td>
                         <td>${course.courseCode}</td>
                         <td>${course.courseName}</td>
                     </tr>
                 </c:forEach>
             </table>
+            <a href="/createCourse">Create a new course..</a>
         </div>
     </main>
     <footer>
