@@ -27,6 +27,7 @@
                     <th>Last name (edited)</th>
                     <th>Phone (edited)</th>
                     <th>Email (edited)</th>
+                    <th>Edit</th>
                 </tr>
                 <c:forEach items="${studentsList}" var="student" >
                     <tr>
@@ -38,6 +39,9 @@
                         <td>${student.lastName_ed}</td>
                         <td>${student.phone_ed}</td>
                         <td>${student.email_ed}</td>
+                        <td>
+                            <a href="http://localhost:8080/updateStudent?student_id=${student.id}">Edit</a>
+                        </td>
                     </tr>
                 </c:forEach>
             </table>

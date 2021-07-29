@@ -1,6 +1,7 @@
 package com.test.webapp.model;
 
 public class Student extends Man {
+    private int id;
     private long phone;
     private String email;
     private String firstName_ed;
@@ -11,6 +12,14 @@ public class Student extends Man {
     public Student(String firstName, String lastName) {
         super.firstName = firstName;
         super.lastName = lastName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public long getPhone() {
@@ -59,19 +68,5 @@ public class Student extends Man {
 
     public void setEmail_ed(String email_ed) {
         this.email_ed = email_ed;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", phone=" + phone +
-                ", email='" + email + '\'' +
-                ", firstName_ed='" + firstName_ed + '\'' +
-                ", lastName_ed='" + lastName_ed + '\'' +
-                ", phone_ed=" + phone_ed +
-                ", email_ed='" + email_ed + '\'' +
-                '}';
     }
 }

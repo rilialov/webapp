@@ -38,8 +38,8 @@ public class FormBuilder {
     }
 
     private void setStudent(int id) {
-        String[] data = db.getStudentData(id);
-        student = new Student(data[0], data[1]);
+        StudentsData sd = new StudentsData();
+        student = sd.getStudent(id);
     }
 
     public String[] getData () {

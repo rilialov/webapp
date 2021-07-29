@@ -1,6 +1,7 @@
 package com.test.webapp.servlets.lists;
 
 import com.test.webapp.data.DBController;
+import com.test.webapp.data.StudentsData;
 import com.test.webapp.model.Student;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
@@ -11,9 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet(name = "studentsList", value = "/studentsList")
 public class StudentsList extends HttpServlet {
@@ -23,8 +22,8 @@ public class StudentsList extends HttpServlet {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
 
-        Map<Integer, Student> students = db.getStudentsData();
-        List<Student> list = new ArrayList(students.values());
+        StudentsData sd = new StudentsData();
+        List<Student> list = sd.getStudentsData();
         request.setAttribute("studentsList", list);
         getServletContext().getRequestDispatcher("/views/lists/studentsList.jsp").forward(request, response);
     }

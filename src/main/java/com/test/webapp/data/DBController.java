@@ -8,7 +8,9 @@ import com.test.webapp.sessions.UserAccount;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DBController {
@@ -141,49 +143,6 @@ public class DBController {
         return trainersList;
     }
 
-    String[] getStudentData(int student_id) {
-        String[] studentData = new String[2];
-        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM students WHERE student_id = " + student_id + ";");
-
-        if (resultSet != null) {
-            try {
-                resultSet.next();
-                studentData[0] = resultSet.getString(2);
-                studentData[1] = resultSet.getString(3);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return studentData;
-    }
-
-    public Map<Integer, Student> getStudentsData() {
-        Map<Integer, Student> studentsList = new HashMap<>();
-        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM students;");
-        if (resultSet != null) {
-            try {
-                resultSet.next();
-                while (!resultSet.isAfterLast()) {
-                    int id = resultSet.getInt(1);
-                    String firstName = resultSet.getString(2);
-                    String lastName = resultSet.getString(3);
-                    Student student = new Student(firstName, lastName);
-                    student.setPhone(resultSet.getLong(4));
-                    student.setEmail(resultSet.getString(5));
-                    student.setFirstName_ed(resultSet.getString(6));
-                    student.setLastName_ed(resultSet.getString(7));
-                    student.setPhone_ed(resultSet.getLong(8));
-                    student.setEmail_ed(resultSet.getString(9));
-                    studentsList.put(id, student);
-                    resultSet.next();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return studentsList;
-    }
-
     public void updateForm(String[] array, Form form) {
         dbConnector.execute("UPDATE students SET first_name_ed = '" + array[0] +
                 "', last_name_ed = '" + array[1] +
@@ -210,5 +169,9 @@ public class DBController {
 
     public void close() {
         dbConnector.close();
+    }
+
+    public static DBConnector getDbConnector() {
+        return dbConnector;
     }
 }
