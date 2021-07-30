@@ -1,13 +1,10 @@
 package com.test.webapp.data;
 
 import com.test.webapp.model.Form;
-import com.test.webapp.model.Trainer;
 import com.test.webapp.sessions.UserAccount;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class DBController {
     private DBConnector dbConnector = new DBConnector();
@@ -62,43 +59,6 @@ public class DBController {
             }
         }
         return date;
-    }
-
-    String[] getTrainerData(int trainer_id) {
-        String[] trainerData = new String[2];
-        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM trainers WHERE trainer_id = " + trainer_id + ";");
-
-        if (resultSet != null) {
-            try {
-                resultSet.next();
-                trainerData[0] = resultSet.getString(2);
-                trainerData[1] = resultSet.getString(3);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return trainerData;
-    }
-
-    public Map<Integer, Trainer> getTrainersData() {
-        Map<Integer, Trainer> trainersList = new HashMap<>();
-        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM trainers;");
-        if (resultSet != null) {
-            try {
-                resultSet.next();
-                while (!resultSet.isAfterLast()) {
-                    int id = resultSet.getInt(1);
-                    String firstName = resultSet.getString(2);
-                    String lastName = resultSet.getString(3);
-                    Trainer trainer = new Trainer(firstName, lastName);
-                    trainersList.put(id, trainer);
-                    resultSet.next();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return trainersList;
     }
 
     public void updateForm(String[] array, Form form) {

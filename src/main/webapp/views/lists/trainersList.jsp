@@ -21,11 +21,15 @@
                 <tr>
                     <th>First name</th>
                     <th>Last name</th>
+                    <th>Edit</th>
                 </tr>
                 <c:forEach items="${trainersList}" var="trainer" >
                     <tr>
                         <td>${trainer.firstName}</td>
                         <td>${trainer.lastName}</td>
+                        <td>
+                            <a href="updateTrainer?trainer_id=${trainer.id}">Edit</a>
+                        </td>
                     </tr>
                 </c:forEach>
             </table>

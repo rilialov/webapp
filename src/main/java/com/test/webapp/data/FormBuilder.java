@@ -32,8 +32,7 @@ public class FormBuilder {
     }
 
     private void setTrainer(int id) {
-        String[] data = db.getTrainerData(id);
-        trainer = new Trainer(data[0], data[1]);
+        trainer = TrainersData.getTrainer(db.getDbConnector(), id);
     }
 
     private void setStudent(int id) {

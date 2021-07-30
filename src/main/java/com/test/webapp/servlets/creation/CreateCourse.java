@@ -26,7 +26,7 @@ public class CreateCourse extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
 
-        String[] array = new String[4];
+        String[] array = new String[3];
         array[0] = request.getParameter("vendor_id");
         array[1] = request.getParameter("course_code");
         array[2] = request.getParameter("course_name");

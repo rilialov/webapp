@@ -32,8 +32,6 @@ public class UpdateStudent extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
-        UserAccount userAccount = UsersSessions.getUser(request.getSession());
-        DBController db = UsersSessions.getDbController(userAccount);
 
         String[] array = new String[5];
         array[0] = String.valueOf(student_id);
@@ -41,6 +39,9 @@ public class UpdateStudent extends HttpServlet {
         array[2] = request.getParameter("lastname");
         array[3] = request.getParameter("phone");
         array[4] = request.getParameter("email");
+
+        UserAccount userAccount = UsersSessions.getUser(request.getSession());
+        DBController db = UsersSessions.getDbController(userAccount);
         StudentsData.updateStudent(db.getDbConnector(), array);
 
         List<Student> list = StudentsData.getStudentsData(db.getDbConnector());
