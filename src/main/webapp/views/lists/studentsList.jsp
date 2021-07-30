@@ -40,7 +40,7 @@
                         <td>${student.phone_ed}</td>
                         <td>${student.email_ed}</td>
                         <td>
-                            <a href="http://localhost:8080/updateStudent?student_id=${student.id}">Edit</a>
+                            <a href="updateStudent?student_id=${student.id}">Edit</a>
                         </td>
                     </tr>
                 </c:forEach>

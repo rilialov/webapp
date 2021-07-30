@@ -1,6 +1,7 @@
 package com.test.webapp.model;
 
 public class Course {
+    private int id;
     private int vendor_id;
     private final String courseCode;
     private final String courseName;
@@ -9,6 +10,14 @@ public class Course {
 
         this.courseCode = courseCode;
         this.courseName = courseName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCourseCode() {

@@ -22,12 +22,16 @@
                     <th>Vendor</th>
                     <th>Course code</th>
                     <th>Course name</th>
+                    <th>Edit</th>
                 </tr>
                 <c:forEach items="${coursesList}" var="course" >
                     <tr>
                         <td>${course.vendor_id}</td>
                         <td>${course.courseCode}</td>
                         <td>${course.courseName}</td>
+                        <td>
+                            <a href="updateCourse?course_id=${course.id}">Edit</a>
+                        </td>
                     </tr>
                 </c:forEach>
             </table>

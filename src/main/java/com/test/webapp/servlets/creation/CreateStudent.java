@@ -12,9 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet(name = "createStudent", value = "/createStudent")
 public class CreateStudent extends HttpServlet {
@@ -24,23 +22,21 @@ public class CreateStudent extends HttpServlet {
         getServletContext().getRequestDispatcher("/views/creation/createStudent.jsp").forward(request, response);
     }
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
-
-        UserAccount userAccount = UsersSessions.getUser(request.getSession());
 
         String[] array = new String[4];
         array[0] = request.getParameter("firstname");
         array[1] = request.getParameter("lastname");
         array[2] = request.getParameter("phone");
         array[3] = request.getParameter("email");
+
+        UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
         db.createStudent(array);
 
-        StudentsData sd = new StudentsData();
-        List<Student> list = sd.getStudentsData();
+        List<Student> list = StudentsData.getStudentsData(db.getDbConnector());
         request.setAttribute("studentsList", list);
         getServletContext().getRequestDispatcher("/views/lists/studentsList.jsp").forward(request, response);
     }

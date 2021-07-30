@@ -28,8 +28,7 @@ public class FormBuilder {
     }
 
     private void setCourse(int id) {
-        String[] data = db.getCourseData(id);
-        course = new Course(data[0], data[1]);
+        course = CoursesData.getCourse(db.getDbConnector(), id);
     }
 
     private void setTrainer(int id) {
@@ -38,8 +37,7 @@ public class FormBuilder {
     }
 
     private void setStudent(int id) {
-        StudentsData sd = new StudentsData();
-        student = sd.getStudent(id);
+        student = StudentsData.getStudent(db.getDbConnector(), id);
     }
 
     public String[] getData () {

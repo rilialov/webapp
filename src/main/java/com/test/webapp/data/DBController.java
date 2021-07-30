@@ -1,20 +1,16 @@
 package com.test.webapp.data;
 
-import com.test.webapp.model.Course;
 import com.test.webapp.model.Form;
-import com.test.webapp.model.Student;
 import com.test.webapp.model.Trainer;
 import com.test.webapp.sessions.UserAccount;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class DBController {
-    private static final DBConnector dbConnector = new DBConnector();
+    private DBConnector dbConnector = new DBConnector();
 
     public DBController() {
         dbConnector.setConnection();
@@ -27,7 +23,7 @@ public class DBController {
         if (resultSet != null) {
             try {
                 resultSet.next();
-                userAccount = new UserAccount(resultSet.getString(2),resultSet.getString(3),resultSet.getBoolean(5));
+                userAccount = new UserAccount(resultSet.getString(2), resultSet.getString(3), resultSet.getBoolean(5));
                 if (!userAccount.isManager()) {
                     userAccount.setForm_id(resultSet.getInt(4));
                 }
@@ -66,44 +62,6 @@ public class DBController {
             }
         }
         return date;
-    }
-
-    String[] getCourseData(int course_id) {
-        String[] courseData = new String[2];
-        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM courses WHERE course_id = " + course_id + ";");
-
-        if (resultSet != null) {
-            try {
-                resultSet.next();
-                courseData[0] = resultSet.getString(3);
-                courseData[1] = resultSet.getString(4);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return courseData;
-    }
-
-    public Map<Integer, Course> getCoursesData() {
-        Map<Integer, Course> coursesList = new HashMap<>();
-        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM courses;");
-        if (resultSet != null) {
-            try {
-                resultSet.next();
-                while (!resultSet.isAfterLast()) {
-                    int id = resultSet.getInt(1);
-                    String courseCode = resultSet.getString(3);
-                    String courseName = resultSet.getString(4);
-                    Course course = new Course(courseCode, courseName);
-                    course.setVendor_id(resultSet.getInt(2));
-                    coursesList.put(id, course);
-                    resultSet.next();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return coursesList;
     }
 
     String[] getTrainerData(int trainer_id) {
@@ -171,7 +129,7 @@ public class DBController {
         dbConnector.close();
     }
 
-    public static DBConnector getDbConnector() {
+    public DBConnector getDbConnector() {
         return dbConnector;
     }
 }

@@ -22,8 +22,7 @@ public class StudentsList extends HttpServlet {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
 
-        StudentsData sd = new StudentsData();
-        List<Student> list = sd.getStudentsData();
+        List<Student> list = StudentsData.getStudentsData(db.getDbConnector());
         request.setAttribute("studentsList", list);
         getServletContext().getRequestDispatcher("/views/lists/studentsList.jsp").forward(request, response);
     }

@@ -7,16 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentsData extends DBController{
-    private List<Student> studentsList;
+public class StudentsData {
 
-    public StudentsData() {
-        super();
-    }
-
-    Student getStudent(int student_id) {
+    static Student getStudent(DBConnector dbConnector, int student_id) {
         Student student = null;
-        ResultSet resultSet = DBController.getDbConnector().getQuery("SELECT * FROM students WHERE student_id = " + student_id + ";");
+        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM students WHERE student_id = " + student_id + ";");
 
         if (resultSet != null) {
             try {
@@ -29,9 +24,9 @@ public class StudentsData extends DBController{
         return student;
     }
 
-    public Student getStudentData(int student_id) {
+    public static Student getStudentData(DBConnector dbConnector, int student_id) {
         Student student = null;
-        ResultSet resultSet = DBController.getDbConnector().getQuery("SELECT * FROM students WHERE student_id = " + student_id + ";");
+        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM students WHERE student_id = " + student_id + ";");
 
         if (resultSet != null) {
             try {
@@ -47,9 +42,9 @@ public class StudentsData extends DBController{
         return student;
     }
 
-    public List<Student> getStudentsData() {
-        studentsList = new ArrayList();
-        ResultSet resultSet = DBController.getDbConnector().getQuery("SELECT * FROM students;");
+    public static List<Student> getStudentsData(DBConnector dbConnector) {
+        List<Student> studentsList = new ArrayList();
+        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM students;");
         if (resultSet != null) {
             try {
                 resultSet.next();
@@ -74,9 +69,9 @@ public class StudentsData extends DBController{
         return studentsList;
     }
 
-    public void updateStudent(String[] array) {
+    public static void updateStudent(DBConnector dbConnector, String[] array) {
         int student_id = Integer.parseInt(array[0]);
-        DBController.getDbConnector().execute("UPDATE students SET first_name = '" + array[1] +
+        dbConnector.execute("UPDATE students SET first_name = '" + array[1] +
                 "', last_name = '" + array[2] + "', phone = '" + array[3] + "' , email = '" + array[4] +
                 "' WHERE student_id = " + student_id + ";");
     }
