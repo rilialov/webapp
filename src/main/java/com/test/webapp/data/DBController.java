@@ -69,11 +69,6 @@ public class DBController {
                 "' WHERE student_id = " + form.getStudent_id() + ";");
     }
 
-    public void createTrainer(String[] array) {
-        dbConnector.execute("INSERT INTO trainers(first_name, last_name) VALUES ('" + array[0] +
-                "', '" + array[1] + "')");
-    }
-
     public void close() {
         dbConnector.close();
     }

@@ -24,7 +24,8 @@ public class UpdateTrainer extends HttpServlet {
         DBController db = UsersSessions.getDbController(userAccount);
 
         trainer_id = Integer.parseInt(request.getParameter("trainer_id"));
-        Trainer trainer = TrainersDAO.getTrainerData(db.getDbConnector(), trainer_id);
+        TrainersDAO trainersDAO = new TrainersDAO();
+        Trainer trainer = trainersDAO.get(db.getDbConnector(), trainer_id);
         request.setAttribute("trainer", trainer);
         getServletContext().getRequestDispatcher("/views/update/updateTrainer.jsp").forward(request, response);
     }
@@ -40,9 +41,11 @@ public class UpdateTrainer extends HttpServlet {
 
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
-        TrainersDAO.updateTrainer(db.getDbConnector(), array);
 
-        List<Trainer> list = TrainersDAO.getTrainersData(db.getDbConnector());
+        TrainersDAO trainersDAO = new TrainersDAO();
+        trainersDAO.update(db.getDbConnector(), array);
+
+        List<Trainer> list = trainersDAO.getAll(db.getDbConnector());
         request.setAttribute("trainersList", list);
         getServletContext().getRequestDispatcher("/views/lists/trainersList.jsp").forward(request, response);
     }

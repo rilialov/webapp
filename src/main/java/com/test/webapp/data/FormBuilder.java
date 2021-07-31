@@ -33,7 +33,8 @@ public class FormBuilder {
     }
 
     private void setTrainer(int id) {
-        trainer = TrainersDAO.getTrainer(db.getDbConnector(), id);
+        TrainersDAO trainersDAO = new TrainersDAO();
+        trainer = trainersDAO.get(db.getDbConnector(), id);
     }
 
     private void setStudent(int id) {
