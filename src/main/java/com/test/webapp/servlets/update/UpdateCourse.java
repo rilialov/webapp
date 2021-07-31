@@ -24,7 +24,8 @@ public class UpdateCourse extends HttpServlet {
         DBController db = UsersSessions.getDbController(userAccount);
 
         course_id = Integer.parseInt(request.getParameter("course_id"));
-        Course course = CoursesDAO.getCourseData(db.getDbConnector(), course_id);
+        CoursesDAO coursesDAO = new CoursesDAO();
+        Course course = coursesDAO.get(db.getDbConnector(), course_id);
         request.setAttribute("course", course);
         getServletContext().getRequestDispatcher("/views/update/updateCourse.jsp").forward(request, response);
     }
@@ -41,9 +42,11 @@ public class UpdateCourse extends HttpServlet {
 
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
-        CoursesDAO.updateCourse(db.getDbConnector(), array);
 
-        List<Course> list = CoursesDAO.getCoursesData(db.getDbConnector());
+        CoursesDAO coursesDAO = new CoursesDAO();
+        coursesDAO.update(db.getDbConnector(), array);
+
+        List<Course> list = coursesDAO.getAll(db.getDbConnector());
         request.setAttribute("coursesList", list);
         getServletContext().getRequestDispatcher("/views/lists/coursesList.jsp").forward(request, response);
     }

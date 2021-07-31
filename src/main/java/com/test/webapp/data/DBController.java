@@ -74,12 +74,6 @@ public class DBController {
                 "', '" + array[1] + "')");
     }
 
-    public void createCourse(String[] array) {
-        int vendor_id = Integer.parseInt(array[0]);
-        dbConnector.execute("INSERT INTO courses(vendor_id, course_code, course_name) VALUES ('" + vendor_id +
-                "', '" + array[1] + "', '" + array[2] + "')");
-    }
-
     public void close() {
         dbConnector.close();
     }

@@ -7,25 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CoursesDAO {
-    static Course getCourse(DBConnector dbConnector, int course_id) {
-        Course course = null;
-        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM courses WHERE course_id = " + course_id + ";");
+public class CoursesDAO implements DAO<Course> {
 
-        if (resultSet != null) {
-            try {
-                resultSet.next();
-                course = new Course(resultSet.getString(3), resultSet.getString(4));
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return course;
-    }
-
-    public static Course getCourseData(DBConnector dbConnector, int course_id) {
+    @Override
+    public Course get(DBConnector dbConnector, int id) {
         Course course = null;
-        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM courses WHERE course_id = " + course_id + ";");
+        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM courses WHERE course_id = " + id + ";");
 
         if (resultSet != null) {
             try {
@@ -40,7 +27,8 @@ public class CoursesDAO {
         return course;
     }
 
-    public static List<Course> getCoursesData(DBConnector dbConnector) {
+    @Override
+    public List<Course> getAll(DBConnector dbConnector) {
         List<Course> coursesList = new ArrayList();
         ResultSet resultSet = dbConnector.getQuery("SELECT * FROM courses;");
         if (resultSet != null) {
@@ -62,11 +50,18 @@ public class CoursesDAO {
         return coursesList;
     }
 
-    public static void updateCourse(DBConnector dbConnector, String[] array) {
+    @Override
+    public void create(DBConnector dbConnector, String[] array) {
+        int vendor_id = Integer.parseInt(array[0]);
+        dbConnector.execute("INSERT INTO courses(vendor_id, course_code, course_name) VALUES ('" + vendor_id +
+                "', '" + array[1] + "', '" + array[2] + "')");
+    }
+
+    @Override
+    public void update(DBConnector dbConnector, String[] array) {
         int course_id = Integer.parseInt(array[0]);
         dbConnector.execute("UPDATE courses SET vendor_id = '" + array[1] +
                 "', course_code = '" + array[2] + "', course_name = '" + array[3]  +
                 "' WHERE course_id = " + course_id + ";");
     }
-
 }

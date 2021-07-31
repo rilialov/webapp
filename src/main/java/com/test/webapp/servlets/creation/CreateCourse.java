@@ -33,9 +33,11 @@ public class CreateCourse extends HttpServlet {
 
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
-        db.createCourse(array);
 
-        List<Course> list = CoursesDAO.getCoursesData(db.getDbConnector());
+        CoursesDAO coursesDAO = new CoursesDAO();
+        coursesDAO.create(db.getDbConnector(), array);
+
+        List<Course> list = coursesDAO.getAll(db.getDbConnector());
         request.setAttribute("coursesList", list);
         getServletContext().getRequestDispatcher("/views/lists/coursesList.jsp").forward(request, response);
     }
