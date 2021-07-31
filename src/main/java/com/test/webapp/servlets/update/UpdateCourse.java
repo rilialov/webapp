@@ -1,6 +1,6 @@
 package com.test.webapp.servlets.update;
 
-import com.test.webapp.data.CoursesData;
+import com.test.webapp.data.CoursesDAO;
 import com.test.webapp.data.DBController;
 import com.test.webapp.model.Course;
 import com.test.webapp.sessions.UserAccount;
@@ -24,7 +24,7 @@ public class UpdateCourse extends HttpServlet {
         DBController db = UsersSessions.getDbController(userAccount);
 
         course_id = Integer.parseInt(request.getParameter("course_id"));
-        Course course = CoursesData.getCourseData(db.getDbConnector(), course_id);
+        Course course = CoursesDAO.getCourseData(db.getDbConnector(), course_id);
         request.setAttribute("course", course);
         getServletContext().getRequestDispatcher("/views/update/updateCourse.jsp").forward(request, response);
     }
@@ -41,9 +41,9 @@ public class UpdateCourse extends HttpServlet {
 
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
-        CoursesData.updateCourse(db.getDbConnector(), array);
+        CoursesDAO.updateCourse(db.getDbConnector(), array);
 
-        List<Course> list = CoursesData.getCoursesData(db.getDbConnector());
+        List<Course> list = CoursesDAO.getCoursesData(db.getDbConnector());
         request.setAttribute("coursesList", list);
         getServletContext().getRequestDispatcher("/views/lists/coursesList.jsp").forward(request, response);
     }

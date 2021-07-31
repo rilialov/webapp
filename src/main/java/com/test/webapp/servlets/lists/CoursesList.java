@@ -1,6 +1,6 @@
 package com.test.webapp.servlets.lists;
 
-import com.test.webapp.data.CoursesData;
+import com.test.webapp.data.CoursesDAO;
 import com.test.webapp.data.DBController;
 import com.test.webapp.model.Course;
 import com.test.webapp.sessions.UserAccount;
@@ -22,7 +22,7 @@ public class CoursesList extends HttpServlet {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
 
-        List<Course> list = CoursesData.getCoursesData(db.getDbConnector());
+        List<Course> list = CoursesDAO.getCoursesData(db.getDbConnector());
         request.setAttribute("coursesList", list);
         getServletContext().getRequestDispatcher("/views/lists/coursesList.jsp").forward(request, response);
     }

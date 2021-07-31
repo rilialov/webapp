@@ -7,26 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentsData {
+public class StudentsDAO implements DAO<Student> {
 
-    static Student getStudent(DBConnector dbConnector, int student_id) {
+    @Override
+    public Student get(DBConnector dbConnector, int id) {
         Student student = null;
-        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM students WHERE student_id = " + student_id + ";");
-
-        if (resultSet != null) {
-            try {
-                resultSet.next();
-                student = new Student(resultSet.getString(2), resultSet.getString(3));
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return student;
-    }
-
-    public static Student getStudentData(DBConnector dbConnector, int student_id) {
-        Student student = null;
-        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM students WHERE student_id = " + student_id + ";");
+        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM students WHERE student_id = " + id + ";");
 
         if (resultSet != null) {
             try {
@@ -42,7 +28,8 @@ public class StudentsData {
         return student;
     }
 
-    public static List<Student> getStudentsData(DBConnector dbConnector) {
+    @Override
+    public List<Student> getAll(DBConnector dbConnector) {
         List<Student> studentsList = new ArrayList();
         ResultSet resultSet = dbConnector.getQuery("SELECT * FROM students;");
         if (resultSet != null) {
@@ -69,11 +56,17 @@ public class StudentsData {
         return studentsList;
     }
 
-    public static void updateStudent(DBConnector dbConnector, String[] array) {
+    @Override
+    public void create(DBConnector dbConnector, String[] array) {
+        dbConnector.execute("INSERT INTO students(first_name, last_name, phone, email) VALUES ('" + array[0] +
+                "', '" + array[1] + "', '" + array[2] + "', '" + array[3] + "')");
+    }
+
+    @Override
+    public void update(DBConnector dbConnector, String[] array) {
         int student_id = Integer.parseInt(array[0]);
         dbConnector.execute("UPDATE students SET first_name = '" + array[1] +
                 "', last_name = '" + array[2] + "', phone = '" + array[3] + "' , email = '" + array[4] +
                 "' WHERE student_id = " + student_id + ";");
     }
-
 }

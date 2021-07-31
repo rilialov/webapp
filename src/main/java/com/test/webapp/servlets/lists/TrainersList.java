@@ -1,7 +1,7 @@
 package com.test.webapp.servlets.lists;
 
 import com.test.webapp.data.DBController;
-import com.test.webapp.data.TrainersData;
+import com.test.webapp.data.TrainersDAO;
 import com.test.webapp.model.Trainer;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
@@ -22,7 +22,7 @@ public class TrainersList extends HttpServlet {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
 
-        List<Trainer> list = TrainersData.getTrainersData(db.getDbConnector());
+        List<Trainer> list = TrainersDAO.getTrainersData(db.getDbConnector());
         request.setAttribute("trainersList", list);
         getServletContext().getRequestDispatcher("/views/lists/trainersList.jsp").forward(request, response);
     }

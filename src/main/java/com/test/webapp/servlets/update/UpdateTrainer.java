@@ -1,7 +1,7 @@
 package com.test.webapp.servlets.update;
 
 import com.test.webapp.data.DBController;
-import com.test.webapp.data.TrainersData;
+import com.test.webapp.data.TrainersDAO;
 import com.test.webapp.model.Trainer;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
@@ -24,7 +24,7 @@ public class UpdateTrainer extends HttpServlet {
         DBController db = UsersSessions.getDbController(userAccount);
 
         trainer_id = Integer.parseInt(request.getParameter("trainer_id"));
-        Trainer trainer = TrainersData.getTrainerData(db.getDbConnector(), trainer_id);
+        Trainer trainer = TrainersDAO.getTrainerData(db.getDbConnector(), trainer_id);
         request.setAttribute("trainer", trainer);
         getServletContext().getRequestDispatcher("/views/update/updateTrainer.jsp").forward(request, response);
     }
@@ -40,9 +40,9 @@ public class UpdateTrainer extends HttpServlet {
 
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
-        TrainersData.updateTrainer(db.getDbConnector(), array);
+        TrainersDAO.updateTrainer(db.getDbConnector(), array);
 
-        List<Trainer> list = TrainersData.getTrainersData(db.getDbConnector());
+        List<Trainer> list = TrainersDAO.getTrainersData(db.getDbConnector());
         request.setAttribute("trainersList", list);
         getServletContext().getRequestDispatcher("/views/lists/trainersList.jsp").forward(request, response);
     }

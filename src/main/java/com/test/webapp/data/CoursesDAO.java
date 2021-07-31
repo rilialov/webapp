@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CoursesData {
+public class CoursesDAO {
     static Course getCourse(DBConnector dbConnector, int course_id) {
         Course course = null;
         ResultSet resultSet = dbConnector.getQuery("SELECT * FROM courses WHERE course_id = " + course_id + ";");

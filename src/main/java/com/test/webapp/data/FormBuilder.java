@@ -28,15 +28,16 @@ public class FormBuilder {
     }
 
     private void setCourse(int id) {
-        course = CoursesData.getCourse(db.getDbConnector(), id);
+        course = CoursesDAO.getCourse(db.getDbConnector(), id);
     }
 
     private void setTrainer(int id) {
-        trainer = TrainersData.getTrainer(db.getDbConnector(), id);
+        trainer = TrainersDAO.getTrainer(db.getDbConnector(), id);
     }
 
     private void setStudent(int id) {
-        student = StudentsData.getStudent(db.getDbConnector(), id);
+        StudentsDAO studentsDAO = new StudentsDAO();
+        student = studentsDAO.get(db.getDbConnector(), id);
     }
 
     public String[] getData () {
