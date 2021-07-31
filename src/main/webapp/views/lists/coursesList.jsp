@@ -1,20 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="views/styles/main.css" >
+    <link rel="stylesheet" type="text/css" href="<c:url value="/styles/main.css"/>">
     <title>Courses List</title>
 </head>
 <body>
 <div class="all">
     <header>
-        <jsp:include page="../_header.jsp"></jsp:include>
+        <jsp:include page="../_header.jsp" />
     </header>
     <main>
         <h1>Courses List</h1>
         <div class="left_side">
-            <jsp:include page="../_left_menu.jsp"></jsp:include>
+            <jsp:include page="../_left_menu.jsp" />
         </div>
         <div class="center">
             <table>
@@ -24,6 +24,7 @@
                     <th>Course name</th>
                     <th>Edit</th>
                 </tr>
+                <%--@elvariable id="coursesList" type="java.util.List"--%>
                 <c:forEach items="${coursesList}" var="course" >
                     <tr>
                         <td>${course.vendor_id}</td>
@@ -35,11 +36,11 @@
                     </tr>
                 </c:forEach>
             </table>
-            <a href="/createCourse">Create a new course..</a>
+            <a href="<c:url value="/createCourse"/>">Create a new course..</a>
         </div>
     </main>
     <footer>
-        <jsp:include page="../_footer.jsp"></jsp:include>
+        <jsp:include page="../_footer.jsp" />
     </footer>
 </div>
 </body>
