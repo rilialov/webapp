@@ -28,6 +28,7 @@
                     <th>Phone (edited)</th>
                     <th>Email (edited)</th>
                     <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
                 <%--@elvariable id="studentsList" type="java.util.List"--%>
                 <c:forEach items="${studentsList}" var="student" >
@@ -42,6 +43,9 @@
                         <td>${student.email_ed}</td>
                         <td>
                             <a href="updateStudent?student_id=${student.id}">Edit</a>
+                        </td>
+                        <td>
+                            <a href="deleteStudent?student_id=${student.id}">Delete</a>
                         </td>
                     </tr>
                 </c:forEach>

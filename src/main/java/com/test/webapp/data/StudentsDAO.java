@@ -69,4 +69,9 @@ public class StudentsDAO implements DAO<Student> {
                 "', last_name = '" + array[2] + "', phone = '" + array[3] + "' , email = '" + array[4] +
                 "' WHERE student_id = " + student_id + ";");
     }
+
+    @Override
+    public void delete(DBConnector dbConnector, int id) {
+        dbConnector.execute("DELETE FROM students WHERE student_id = " + id + ";");
+    }
 }

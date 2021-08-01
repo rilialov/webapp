@@ -60,4 +60,9 @@ public class TrainersDAO implements DAO<Trainer> {
         dbConnector.execute("UPDATE trainers SET first_name = '" + array[1] +
                 "', last_name = '" + array[2] + "' WHERE trainer_id = " + trainer_id + ";");
     }
+
+    @Override
+    public void delete(DBConnector dbConnector, int id) {
+
+    }
 }

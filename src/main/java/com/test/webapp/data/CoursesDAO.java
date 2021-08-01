@@ -64,4 +64,9 @@ public class CoursesDAO implements DAO<Course> {
                 "', course_code = '" + array[2] + "', course_name = '" + array[3]  +
                 "' WHERE course_id = " + course_id + ";");
     }
+
+    @Override
+    public void delete(DBConnector dbConnector, int id) {
+
+    }
 }

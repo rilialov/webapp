@@ -12,4 +12,6 @@ public interface DAO<T> {
 
     void update(DBConnector dbConnector, String[] array);
 
+    void delete(DBConnector dbConnector, int id);
+
 }
