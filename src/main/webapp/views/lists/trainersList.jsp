@@ -22,6 +22,7 @@
                     <th>First name</th>
                     <th>Last name</th>
                     <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
                 <%--@elvariable id="trainersList" type="java.util.List"--%>
                 <c:forEach items="${trainersList}" var="trainer" >
@@ -30,6 +31,9 @@
                         <td>${trainer.lastName}</td>
                         <td>
                             <a href="updateTrainer?trainer_id=${trainer.id}">Edit</a>
+                        </td>
+                        <td>
+                            <a href="deleteTrainer?trainer_id=${trainer.id}">Delete</a>
                         </td>
                     </tr>
                 </c:forEach>

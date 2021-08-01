@@ -63,6 +63,6 @@ public class TrainersDAO implements DAO<Trainer> {
 
     @Override
     public void delete(DBConnector dbConnector, int id) {
-
+        dbConnector.execute("DELETE FROM trainers WHERE trainer_id = " + id + ";");
     }
 }
