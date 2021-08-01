@@ -23,6 +23,7 @@
                     <th>Course code</th>
                     <th>Course name</th>
                     <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
                 <%--@elvariable id="coursesList" type="java.util.List"--%>
                 <c:forEach items="${coursesList}" var="course" >
@@ -32,6 +33,9 @@
                         <td>${course.courseName}</td>
                         <td>
                             <a href="updateCourse?course_id=${course.id}">Edit</a>
+                        </td>
+                        <td>
+                            <a href="deleteCourse?course_id=${course.id}">Delete</a>
                         </td>
                     </tr>
                 </c:forEach>

@@ -67,6 +67,6 @@ public class CoursesDAO implements DAO<Course> {
 
     @Override
     public void delete(DBConnector dbConnector, int id) {
-
+        dbConnector.execute("DELETE FROM courses WHERE course_id = " + id + ";");
     }
 }
