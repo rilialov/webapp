@@ -15,14 +15,15 @@
         <form action="mainPage" method="post">
             <ul>
                 <li>
-                    <label for="name">Login:</label>
-                    <input class="txt_input" type="text" id="name" name="name">
+                    <label for="login">Login:</label>
+                    <input class="txt_input" type="text" id="login" name="login" value="${login}">
                 </li>
                 <li>
-                    <label for="pass">Password:</label>
-                    <input class="txt_input" type="text" id="pass" name="pass">
+                    <label for="password">Password:</label>
+                    <input class="txt_input" type="text" id="password" name="password">
                 </li>
                 <li class="button"><input type="submit" value="OK"></li>
+                <li class="error">${error}</li>
             </ul>
         </form>
     </main>

@@ -1,20 +1,16 @@
 package com.test.webapp.sessions;
 
 public class UserAccount {
-    private String login;
-    private String password;
+    private final String login;
+    private final String password;
     private int form_id;
-    private boolean isManager;
+    private final boolean isManager;
 
 
     public UserAccount(String login, String password, boolean isManager) {
         this.login = login;
         this.password = password;
         this.isManager = isManager;
-    }
-
-    public String getLogin() {
-        return login;
     }
 
     public String getPassword() {

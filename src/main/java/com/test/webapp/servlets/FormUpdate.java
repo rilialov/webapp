@@ -32,7 +32,6 @@ public class FormUpdate extends HttpServlet {
         array[3] = request.getParameter("email");
         DBController db = UsersSessions.getDbController(userAccount);
         db.updateForm(array, form);
-        db.close();
         getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
     }
 }
