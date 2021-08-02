@@ -28,7 +28,7 @@ public class DeleteStudent extends HttpServlet {
 
         List<Student> list = studentsDAO.getAll(db.getDbConnector());
         request.setAttribute("studentsList", list);
-        getServletContext().getRequestDispatcher("/views/lists/studentsList.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/views/lists/studentsList.jsp").forward(request, response);
     }
 
 }

@@ -30,7 +30,7 @@ public class DeleteTrainer extends HttpServlet {
 
         List<Trainer> list = trainersDAO.getAll(db.getDbConnector());
         request.setAttribute("trainersList", list);
-        getServletContext().getRequestDispatcher("/views/lists/trainersList.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/views/lists/trainersList.jsp").forward(request, response);
     }
 
 }

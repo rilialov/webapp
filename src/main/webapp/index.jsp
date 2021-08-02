@@ -9,7 +9,7 @@
 <body>
 <div class="all">
     <header>
-        <jsp:include page="views/_header.jsp" />
+        <jsp:include page="WEB-INF/views/_header.jsp" />
     </header>
     <main>
         <form action="mainPage" method="post">
@@ -27,7 +27,7 @@
         </form>
     </main>
     <footer>
-        <jsp:include page="views/_footer.jsp" />
+        <jsp:include page="WEB-INF/views/_footer.jsp" />
     </footer>
 </div>
 </body>

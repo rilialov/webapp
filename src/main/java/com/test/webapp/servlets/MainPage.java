@@ -37,8 +37,8 @@ public class MainPage extends HttpServlet {
                 request.setAttribute("firstname", array[2]);
                 request.setAttribute("lastname", array[3]);
                 request.setAttribute("date", array[4]);
-                getServletContext().getRequestDispatcher("/views/form.jsp").forward(request, response);
-            } else getServletContext().getRequestDispatcher("/views/manager.jsp").forward(request, response);
+                getServletContext().getRequestDispatcher("/WEB-INF/views/form.jsp").forward(request, response);
+            } else getServletContext().getRequestDispatcher("/WEB-INF/views/manager.jsp").forward(request, response);
         } else {
             PrintWriter printWriter = response.getWriter();
             printWriter.write("user not found");

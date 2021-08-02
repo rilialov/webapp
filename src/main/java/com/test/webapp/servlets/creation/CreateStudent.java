@@ -19,7 +19,7 @@ public class CreateStudent extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/views/creation/createStudent.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/views/creation/createStudent.jsp").forward(request, response);
     }
 
     @Override
@@ -40,6 +40,6 @@ public class CreateStudent extends HttpServlet {
 
         List<Student> list = studentsDAO.getAll(db.getDbConnector());
         request.setAttribute("studentsList", list);
-        getServletContext().getRequestDispatcher("/views/lists/studentsList.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/views/lists/studentsList.jsp").forward(request, response);
     }
 }

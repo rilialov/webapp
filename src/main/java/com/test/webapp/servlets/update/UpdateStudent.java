@@ -27,7 +27,7 @@ public class UpdateStudent extends HttpServlet {
         StudentsDAO studentsDAO = new StudentsDAO();
         Student student = studentsDAO.get(db.getDbConnector(), student_id);
         request.setAttribute("student", student);
-        getServletContext().getRequestDispatcher("/views/update/updateStudent.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/views/update/updateStudent.jsp").forward(request, response);
     }
 
     @Override
@@ -48,6 +48,6 @@ public class UpdateStudent extends HttpServlet {
 
         List<Student> list = studentsDAO.getAll(db.getDbConnector());
         request.setAttribute("studentsList", list);
-        getServletContext().getRequestDispatcher("/views/lists/studentsList.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/views/lists/studentsList.jsp").forward(request, response);
     }
 }

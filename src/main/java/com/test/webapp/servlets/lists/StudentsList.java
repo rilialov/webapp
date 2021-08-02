@@ -25,7 +25,7 @@ public class StudentsList extends HttpServlet {
         StudentsDAO studentsDAO = new StudentsDAO();
         List<Student> list = studentsDAO.getAll(db.getDbConnector());
         request.setAttribute("studentsList", list);
-        getServletContext().getRequestDispatcher("/views/lists/studentsList.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/views/lists/studentsList.jsp").forward(request, response);
     }
 
 }

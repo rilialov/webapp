@@ -28,7 +28,7 @@ public class DeleteCourse extends HttpServlet {
 
         List<Course> list = coursesDAO.getAll(db.getDbConnector());
         request.setAttribute("coursesList", list);
-        getServletContext().getRequestDispatcher("/views/lists/coursesList.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/views/lists/coursesList.jsp").forward(request, response);
     }
 
 }

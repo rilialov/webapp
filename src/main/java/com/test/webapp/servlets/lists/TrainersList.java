@@ -25,7 +25,7 @@ public class TrainersList extends HttpServlet {
         TrainersDAO trainersDAO = new TrainersDAO();
         List<Trainer> list = trainersDAO.getAll(db.getDbConnector());
         request.setAttribute("trainersList", list);
-        getServletContext().getRequestDispatcher("/views/lists/trainersList.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/views/lists/trainersList.jsp").forward(request, response);
     }
 
 }
