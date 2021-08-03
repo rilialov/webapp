@@ -1,13 +1,12 @@
 package com.test.webapp.data;
 
-import com.test.webapp.model.Form;
 import com.test.webapp.sessions.UserAccount;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DBController {
-    private DBConnector dbConnector = new DBConnector();
+    private final DBConnector dbConnector = new DBConnector();
 
     public DBController() {
         dbConnector.setConnection();
@@ -29,44 +28,6 @@ public class DBController {
             }
         }
         return userAccount;
-    }
-
-    int[] getFormData(int form_id) {
-        int[] ids = new int[3];
-        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM forms WHERE form_id = " + form_id + ";");
-        if (resultSet != null) {
-            try {
-                resultSet.next();
-                ids[0] = resultSet.getInt(2);
-                ids[1] = resultSet.getInt(3);
-                ids[2] = resultSet.getInt(4);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return ids;
-    }
-
-    String getFormDate(int form_id) {
-        String date = null;
-        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM forms WHERE form_id = " + form_id + ";");
-        if (resultSet != null) {
-            try {
-                resultSet.next();
-                date = resultSet.getString(5);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return date;
-    }
-
-    public void updateForm(String[] array, Form form) {
-        dbConnector.execute("UPDATE students SET first_name_ed = '" + array[0] +
-                "', last_name_ed = '" + array[1] +
-                "', phone_ed = '" + array[2] +
-                "', email_ed = '" + array[3] +
-                "' WHERE student_id = " + form.getStudent_id() + ";");
     }
 
     public void close() {
