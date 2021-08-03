@@ -2,11 +2,11 @@ package com.test.webapp.model;
 
 public class Student extends Man {
     private int id;
-    private long phone;
+    private String phone;
     private String email;
     private String firstName_ed;
     private String lastName_ed;
-    private long phone_ed;
+    private String phone_ed;
     private String email_ed;
 
     public Student(String firstName, String lastName) {
@@ -22,11 +22,11 @@ public class Student extends Man {
         this.id = id;
     }
 
-    public long getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(long phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -54,11 +54,11 @@ public class Student extends Man {
         this.lastName_ed = lastName_ed;
     }
 
-    public long getPhone_ed() {
+    public String getPhone_ed() {
         return phone_ed;
     }
 
-    public void setPhone_ed(long phone_ed) {
+    public void setPhone_ed(String phone_ed) {
         this.phone_ed = phone_ed;
     }
 

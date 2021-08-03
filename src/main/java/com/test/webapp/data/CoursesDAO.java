@@ -29,7 +29,7 @@ public class CoursesDAO implements DAO<Course> {
 
     @Override
     public List<Course> getAll(DBConnector dbConnector) {
-        List<Course> coursesList = new ArrayList();
+        ArrayList<Course> coursesList = new ArrayList<>();
         ResultSet resultSet = dbConnector.getQuery("SELECT * FROM courses;");
         if (resultSet != null) {
             try {

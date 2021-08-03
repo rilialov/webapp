@@ -28,7 +28,7 @@ public class TrainersDAO implements DAO<Trainer> {
 
     @Override
     public List<Trainer> getAll(DBConnector dbConnector) {
-        List<Trainer> trainersList = new ArrayList();
+        ArrayList<Trainer> trainersList = new ArrayList<>();
         ResultSet resultSet = dbConnector.getQuery("SELECT * FROM trainers;");
         if (resultSet != null) {
             try {
