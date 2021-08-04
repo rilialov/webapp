@@ -18,11 +18,11 @@
             <ul>
                 <li>
                     <label for="firstname">First Name:</label>
-                    <input class="txt_input" type="text" id="firstname" name="firstname" value="${trainer.firstName}">
+                    <input class="txt_input" type="text" id="firstname" name="firstname" maxlength="20" value="${trainer.firstName}">
                 </li>
                 <li>
                     <label for="lastname">Last Name:</label>
-                    <input class="txt_input" type="text" id="lastname" name="lastname" value="${trainer.lastName}">
+                    <input class="txt_input" type="text" id="lastname" name="lastname" maxlength="20" value="${trainer.lastName}">
                 </li>
                 <li class="button"><input type="submit" value="OK"></li>
             </ul>

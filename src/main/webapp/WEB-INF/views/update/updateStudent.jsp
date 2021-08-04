@@ -18,19 +18,19 @@
             <ul>
                 <li>
                     <label for="firstname">First Name:</label>
-                    <input class="txt_input" type="text" id="firstname" name="firstname" value="${student.firstName}">
+                    <input class="txt_input" type="text" id="firstname" name="firstname" value="${student.firstName}" maxlength="20">
                 </li>
                 <li>
                     <label for="lastname">Last Name:</label>
-                    <input class="txt_input" type="text" id="lastname" name="lastname" value="${student.lastName}">
+                    <input class="txt_input" type="text" id="lastname" name="lastname" value="${student.lastName}" maxlength="20">
                 </li>
                 <li>
                     <label for="phone">Phone:</label>
-                    <input class="txt_input" type="text" id="phone" name="phone" value="${student.phone}" onkeyup="this.value = this.value.replace(/[^\d]/g,'');">
+                    <input class="txt_input" type="text" id="phone" name="phone" value="${student.phone}" maxlength="20" onkeyup="this.value = this.value.replace(/[^\d]/g,'');">
                 </li>
                 <li>
                     <label for="email">E-mail:</label>
-                    <input class="txt_input" type="text" id="email" name="email" value="${student.email}">
+                    <input class="txt_input" type="text" id="email" name="email" value="${student.email}" maxlength="30">
                 </li>
                 <li class="button"><input type="submit" value="OK"></li>
             </ul>

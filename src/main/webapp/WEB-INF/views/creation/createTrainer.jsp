@@ -17,11 +17,11 @@
             <ul>
                 <li>
                     <label for="firstname">First Name:</label>
-                    <input class="txt_input" type="text" id="firstname" name="firstname">
+                    <input class="txt_input" type="text" id="firstname" name="firstname" maxlength="20">
                 </li>
                 <li>
                     <label for="lastname">Last Name:</label>
-                    <input class="txt_input" type="text" id="lastname" name="lastname">
+                    <input class="txt_input" type="text" id="lastname" name="lastname" maxlength="20">
                 </li>
                 <li class="button"><input type="submit" value="OK"></li>
             </ul>

@@ -17,15 +17,15 @@
             <ul>
                 <li>
                     <label for="vendor_id">Vendor:</label>
-                    <input class="txt_input" type="text" id="vendor_id" name="vendor_id" onkeyup="this.value = this.value.replace(/[^\d]/g,'');">
+                    <input class="txt_input" type="text" id="vendor_id" name="vendor_id" maxlength="9" onkeyup="this.value = this.value.replace(/[^\d]/g,'');">
                 </li>
                 <li>
                     <label for="course_code">Course code:</label>
-                    <input class="txt_input" type="text" id="course_code" name="course_code">
+                    <input class="txt_input" type="text" id="course_code" maxlength="9" name="course_code">
                 </li>
                 <li>
                     <label for="course_name">Course name:</label>
-                    <input class="txt_input" type="text" id="course_name" name="course_name">
+                    <textarea id="course_name" name="course_name" maxlength="148"></textarea>
                 </li>
                 <li class="button"><input type="submit" value="OK"></li>
             </ul>
