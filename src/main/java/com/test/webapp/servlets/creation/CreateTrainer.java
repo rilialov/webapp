@@ -34,7 +34,7 @@ public class CreateTrainer extends HttpServlet {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
 
-        TrainersDAO trainersDAO = new TrainersDAO();
+        TrainersDAO trainersDAO = db.getTrainersDAO();
         trainersDAO.create(db.getDbConnector(), array);
 
         List<Trainer> list = trainersDAO.getAll(db.getDbConnector());

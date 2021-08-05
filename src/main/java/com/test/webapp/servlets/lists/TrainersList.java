@@ -22,7 +22,7 @@ public class TrainersList extends HttpServlet {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
 
-        TrainersDAO trainersDAO = new TrainersDAO();
+        TrainersDAO trainersDAO = db.getTrainersDAO();
         List<Trainer> list = trainersDAO.getAll(db.getDbConnector());
         request.setAttribute("trainersList", list);
         getServletContext().getRequestDispatcher("/WEB-INF/views/lists/trainersList.jsp").forward(request, response);

@@ -17,15 +17,17 @@ import java.util.List;
 @WebServlet(name = "updateCourse", value = "/updateCourse")
 public class UpdateCourse extends HttpServlet {
     private int course_id;
+    private CoursesDAO coursesDAO;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
+        coursesDAO = db.getCoursesDAO();
 
         course_id = Integer.parseInt(request.getParameter("course_id"));
-        CoursesDAO coursesDAO = new CoursesDAO();
         Course course = coursesDAO.get(db.getDbConnector(), course_id);
+
         request.setAttribute("course", course);
         getServletContext().getRequestDispatcher("/WEB-INF/views/update/updateCourse.jsp").forward(request, response);
     }
@@ -42,8 +44,6 @@ public class UpdateCourse extends HttpServlet {
 
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
-
-        CoursesDAO coursesDAO = new CoursesDAO();
         coursesDAO.update(db.getDbConnector(), array);
 
         List<Course> list = coursesDAO.getAll(db.getDbConnector());

@@ -23,7 +23,7 @@ public class DeleteStudent extends HttpServlet {
         DBController db = UsersSessions.getDbController(userAccount);
 
         int student_id = Integer.parseInt(request.getParameter("student_id"));
-        StudentsDAO studentsDAO = new StudentsDAO();
+        StudentsDAO studentsDAO = db.getStudentsDAO();
         studentsDAO.delete(db.getDbConnector(), student_id);
 
         List<Student> list = studentsDAO.getAll(db.getDbConnector());

@@ -34,7 +34,7 @@ public class CreateCourse extends HttpServlet {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
 
-        CoursesDAO coursesDAO = new CoursesDAO();
+        CoursesDAO coursesDAO = db.getCoursesDAO();
         coursesDAO.create(db.getDbConnector(), array);
 
         List<Course> list = coursesDAO.getAll(db.getDbConnector());

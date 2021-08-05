@@ -23,7 +23,7 @@ public class DeleteCourse extends HttpServlet {
         DBController db = UsersSessions.getDbController(userAccount);
 
         int course_id = Integer.parseInt(request.getParameter("course_id"));
-        CoursesDAO coursesDAO = new CoursesDAO();
+        CoursesDAO coursesDAO = db.getCoursesDAO();
         coursesDAO.delete(db.getDbConnector(), course_id);
 
         List<Course> list = coursesDAO.getAll(db.getDbConnector());

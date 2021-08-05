@@ -35,7 +35,7 @@ public class CreateStudent extends HttpServlet {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
 
-        StudentsDAO studentsDAO = new StudentsDAO();
+        StudentsDAO studentsDAO = db.getStudentsDAO();
         studentsDAO.create(db.getDbConnector(),array);
 
         List<Student> list = studentsDAO.getAll(db.getDbConnector());

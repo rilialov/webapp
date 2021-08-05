@@ -7,6 +7,9 @@ import com.test.webapp.model.Student;
 
 public class FormBuilder {
     private final DBConnector dbConnector;
+    private final CoursesDAO coursesDAO;
+    private final TrainersDAO trainersDAO;
+    private final StudentsDAO studentsDAO;
     private final Form form;
     private Course course;
     private Trainer trainer;
@@ -15,7 +18,10 @@ public class FormBuilder {
 
     public FormBuilder(int formID, DBController db) {
         dbConnector = db.getDbConnector();
-        FormDAO formDAO = new FormDAO();
+        coursesDAO = db.getCoursesDAO();
+        trainersDAO = db.getTrainersDAO();
+        studentsDAO = db.getStudentsDAO();
+        FormDAO formDAO = db.getFormDAO();
         form = formDAO.get(dbConnector, formID);
         date = form.getDate();
         setForm();
@@ -28,17 +34,14 @@ public class FormBuilder {
     }
 
     private void setCourse(int id) {
-        CoursesDAO coursesDAO = new CoursesDAO();
         course = coursesDAO.get(dbConnector, id);
     }
 
     private void setTrainer(int id) {
-        TrainersDAO trainersDAO = new TrainersDAO();
         trainer = trainersDAO.get(dbConnector, id);
     }
 
     private void setStudent(int id) {
-        StudentsDAO studentsDAO = new StudentsDAO();
         student = studentsDAO.get(dbConnector, id);
     }
 

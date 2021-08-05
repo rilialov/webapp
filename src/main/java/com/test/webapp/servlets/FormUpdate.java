@@ -22,16 +22,17 @@ public class FormUpdate extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
-
         FormBuilder fb = UsersSessions.getFormBuilder(userAccount);
+
         String[] array = new String[5];
         array[0] = String.valueOf(fb.getForm().getId());
         array[1] = request.getParameter("firstname");
         array[2] = request.getParameter("lastname");
         array[3] = request.getParameter("phone");
         array[4] = request.getParameter("email");
+
         DBController db = UsersSessions.getDbController(userAccount);
-        FormDAO formDAO = new FormDAO();
+        FormDAO formDAO = db.getFormDAO();
         formDAO.update(db.getDbConnector(), array);
         getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
     }

@@ -7,6 +7,10 @@ import java.sql.SQLException;
 
 public class DBController {
     private final DBConnector dbConnector = new DBConnector();
+    private final FormDAO formDAO = new FormDAO();
+    private final CoursesDAO coursesDAO = new CoursesDAO();
+    private final TrainersDAO trainersDAO = new TrainersDAO();
+    private final StudentsDAO studentsDAO = new StudentsDAO();
 
     public DBController() {
         dbConnector.setConnection();
@@ -28,6 +32,22 @@ public class DBController {
             }
         }
         return userAccount;
+    }
+
+    public FormDAO getFormDAO() {
+        return formDAO;
+    }
+
+    public CoursesDAO getCoursesDAO() {
+        return coursesDAO;
+    }
+
+    public TrainersDAO getTrainersDAO() {
+        return trainersDAO;
+    }
+
+    public StudentsDAO getStudentsDAO() {
+        return studentsDAO;
     }
 
     public void close() {
