@@ -2,7 +2,9 @@ package com.test.webapp.servlets.creation;
 
 import com.test.webapp.data.CoursesDAO;
 import com.test.webapp.data.DBController;
+import com.test.webapp.data.VendorDAO;
 import com.test.webapp.model.Course;
+import com.test.webapp.model.Vendor;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
 
@@ -19,6 +21,11 @@ public class CreateCourse extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        UserAccount userAccount = UsersSessions.getUser(request.getSession());
+        DBController db = UsersSessions.getDbController(userAccount);
+        VendorDAO vendorDAO = db.getVendorDAO();
+        List<Vendor> list = vendorDAO.getAll(db.getDbConnector());
+        request.setAttribute("vendorsList", list);
         getServletContext().getRequestDispatcher("/WEB-INF/views/creation/createCourse.jsp").forward(request, response);
     }
 

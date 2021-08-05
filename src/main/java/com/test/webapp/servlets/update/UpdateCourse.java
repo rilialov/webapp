@@ -2,7 +2,9 @@ package com.test.webapp.servlets.update;
 
 import com.test.webapp.data.CoursesDAO;
 import com.test.webapp.data.DBController;
+import com.test.webapp.data.VendorDAO;
 import com.test.webapp.model.Course;
+import com.test.webapp.model.Vendor;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
 
@@ -28,6 +30,10 @@ public class UpdateCourse extends HttpServlet {
         course_id = Integer.parseInt(request.getParameter("course_id"));
         Course course = coursesDAO.get(db.getDbConnector(), course_id);
 
+        VendorDAO vendorDAO = db.getVendorDAO();
+        List<Vendor> list = vendorDAO.getAll(db.getDbConnector());
+
+        request.setAttribute("vendorsList", list);
         request.setAttribute("course", course);
         getServletContext().getRequestDispatcher("/WEB-INF/views/update/updateCourse.jsp").forward(request, response);
     }

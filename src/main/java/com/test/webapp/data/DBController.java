@@ -11,6 +11,7 @@ public class DBController {
     private final CoursesDAO coursesDAO = new CoursesDAO();
     private final TrainersDAO trainersDAO = new TrainersDAO();
     private final StudentsDAO studentsDAO = new StudentsDAO();
+    private final VendorDAO vendorDAO = new VendorDAO();
 
     public DBController() {
         dbConnector.setConnection();
@@ -48,6 +49,10 @@ public class DBController {
 
     public StudentsDAO getStudentsDAO() {
         return studentsDAO;
+    }
+
+    public VendorDAO getVendorDAO() {
+        return vendorDAO;
     }
 
     public void close() {

@@ -18,7 +18,13 @@
             <ul>
                 <li>
                     <label for="vendor_id">Vendor:</label>
-                    <input class="txt_input" type="text" id="vendor_id" name="vendor_id" value="${course.vendor_id}" maxlength="9" onkeyup="this.value = this.value.replace(/[^\d]/g,'');">
+                    <%--@elvariable id="vendorsList" type="java.util.List"--%>
+                    <select id="vendor_id" name="vendor_id">
+                        <c:forEach items="${vendorsList}" var="vendor" >
+                            <%--@elvariable id="vendor" type="com.test.webapp.model.Vendor"--%>
+                            <option value="${vendor.id}">${vendor.vendorName}</option>
+                        </c:forEach>
+                    </select>
                 </li>
                 <li>
                     <label for="course_code">Course code:</label>
