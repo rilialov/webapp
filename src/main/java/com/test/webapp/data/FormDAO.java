@@ -4,6 +4,7 @@ import com.test.webapp.model.Form;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FormDAO implements DAO<Form> {
@@ -28,7 +29,23 @@ public class FormDAO implements DAO<Form> {
 
     @Override
     public List<Form> getAll(DBConnector dbConnector) {
-        return null;
+        ArrayList<Form> formsList = new ArrayList<>();
+        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM forms;");
+        if (resultSet != null) {
+            try {
+                resultSet.next();
+                while (!resultSet.isAfterLast()) {
+                    Form form = new Form(resultSet.getInt(2), resultSet.getInt(3), resultSet.getInt(4));
+                    form.setId(resultSet.getInt(1));
+                    form.setDate(resultSet.getString(5));
+                    formsList.add(form);
+                    resultSet.next();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return formsList;
     }
 
     @Override

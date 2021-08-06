@@ -36,9 +36,7 @@ public class StudentsDAO implements DAO<Student> {
             try {
                 resultSet.next();
                 while (!resultSet.isAfterLast()) {
-                    String firstName = resultSet.getString(2);
-                    String lastName = resultSet.getString(3);
-                    Student student = new Student(firstName, lastName);
+                    Student student = new Student(resultSet.getString(2), resultSet.getString(3));
                     student.setId(resultSet.getInt(1));
                     student.setPhone(resultSet.getString(4));
                     student.setEmail(resultSet.getString(5));

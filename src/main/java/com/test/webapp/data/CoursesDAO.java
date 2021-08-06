@@ -35,9 +35,7 @@ public class CoursesDAO implements DAO<Course> {
             try {
                 resultSet.next();
                 while (!resultSet.isAfterLast()) {
-                    String courseCode = resultSet.getString(3);
-                    String courseName = resultSet.getString(4);
-                    Course course = new Course(courseCode, courseName);
+                    Course course = new Course(resultSet.getString(3), resultSet.getString(4));
                     course.setId(resultSet.getInt(1));
                     course.setVendor_id(resultSet.getInt(2));
                     coursesList.add(course);

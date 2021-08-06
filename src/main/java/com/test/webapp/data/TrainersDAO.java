@@ -34,9 +34,7 @@ public class TrainersDAO implements DAO<Trainer> {
             try {
                 resultSet.next();
                 while (!resultSet.isAfterLast()) {
-                    String firstName = resultSet.getString(2);
-                    String lastName = resultSet.getString(3);
-                    Trainer trainer = new Trainer(firstName, lastName);
+                    Trainer trainer = new Trainer(resultSet.getString(2), resultSet.getString(3));
                     trainer.setId(resultSet.getInt(1));
                     trainersList.add(trainer);
                     resultSet.next();
