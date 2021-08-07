@@ -2,8 +2,8 @@ package com.test.webapp.servlets;
 
 import com.test.webapp.data.DBController;
 import com.test.webapp.data.FormBuilder;
-import com.test.webapp.data.FormDAO;
 
+import com.test.webapp.data.StudentsDAO;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
 
@@ -32,8 +32,8 @@ public class FormUpdate extends HttpServlet {
         array[4] = request.getParameter("email");
 
         DBController db = UsersSessions.getDbController(userAccount);
-        FormDAO formDAO = db.getFormDAO();
-        formDAO.update(db.getDbConnector(), array);
+        StudentsDAO studentsDAO = db.getStudentsDAO();
+        studentsDAO.updateEdited(db.getDbConnector(), array);
         getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
     }
 }

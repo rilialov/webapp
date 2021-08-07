@@ -34,7 +34,7 @@
                         <td>${form.student_id}</td>
                         <td>${form.date}</td>
                         <td>
-<%--                            <a href="updateForm?form_id=${form.id}">Edit</a>--%>
+                            <a href="updateForm?form_id=${form.id}">Edit</a>
                         </td>
                         <td>
 <%--                            <a href="deleteForm?form_id=${form.id}">Delete</a>--%>
@@ -42,7 +42,7 @@
                     </tr>
                 </c:forEach>
             </table>
-<%--            <a href="<c:url value="/createForm"/>">Create a new form..</a>--%>
+            <a href="<c:url value="/createForm"/>">Create a new form..</a>
         </div>
     </main>
     <footer>

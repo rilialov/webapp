@@ -50,17 +50,18 @@ public class FormDAO implements DAO<Form> {
 
     @Override
     public void create(DBConnector dbConnector, String[] array) {
-
+        dbConnector.execute("INSERT INTO forms(course_id, trainer_id, student_id, date) VALUES ('" + array[0] +
+                "', '" + array[1] + "', '" + array[2] + "', '" + array[3] + "')");
     }
 
     @Override
     public void update(DBConnector dbConnector, String[] array) {
-        int student_id = Integer.parseInt(array[0]);
-        dbConnector.execute("UPDATE students SET first_name_ed = '" + array[1] +
-                "', last_name_ed = '" + array[2] +
-                "', phone_ed = '" + array[3] +
-                "', email_ed = '" + array[4] +
-                "' WHERE student_id = " + student_id + ";");
+        int form_id = Integer.parseInt(array[0]);
+        dbConnector.execute("UPDATE forms SET course_id = '" + array[1] +
+                "', trainer_id = '" + array[2] +
+                "', student_id = '" + array[3] +
+                "', date = '" + array[4] +
+                "' WHERE form_id = " + form_id + ";");
     }
 
     @Override
