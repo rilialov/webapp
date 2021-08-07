@@ -35,7 +35,8 @@ public class UpdateCourse extends HttpServlet {
 
         request.setAttribute("vendorsList", list);
         request.setAttribute("course", course);
-        getServletContext().getRequestDispatcher("/WEB-INF/views/update/updateCourse.jsp").forward(request, response);
+        request.setAttribute("create", "update");
+        getServletContext().getRequestDispatcher("/WEB-INF/views/create-update/Course.jsp").forward(request, response);
     }
 
     @Override

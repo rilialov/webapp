@@ -29,7 +29,8 @@ public class UpdateStudent extends HttpServlet {
         Student student = studentsDAO.get(db.getDbConnector(), student_id);
 
         request.setAttribute("student", student);
-        getServletContext().getRequestDispatcher("/WEB-INF/views/update/updateStudent.jsp").forward(request, response);
+        request.setAttribute("create", "update");
+        getServletContext().getRequestDispatcher("/WEB-INF/views/create-update/Student.jsp").forward(request, response);
     }
 
     @Override

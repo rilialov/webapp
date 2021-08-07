@@ -1,4 +1,4 @@
-package com.test.webapp.servlets.creation;
+package com.test.webapp.servlets.create;
 
 import com.test.webapp.data.CoursesDAO;
 import com.test.webapp.data.DBController;
@@ -26,7 +26,8 @@ public class CreateCourse extends HttpServlet {
         VendorDAO vendorDAO = db.getVendorDAO();
         List<Vendor> list = vendorDAO.getAll(db.getDbConnector());
         request.setAttribute("vendorsList", list);
-        getServletContext().getRequestDispatcher("/WEB-INF/views/creation/createCourse.jsp").forward(request, response);
+        request.setAttribute("create", "create");
+        getServletContext().getRequestDispatcher("/WEB-INF/views/create-update/Course.jsp").forward(request, response);
     }
 
     @Override

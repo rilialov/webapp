@@ -1,3 +1,4 @@
+<%--@elvariable id="create" type="java.lang"--%>
 <%--@elvariable id="trainer" type="com.test.webapp.model.Trainer"--%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -14,7 +15,7 @@
     </header>
     <main>
         <h1>Edit Trainer</h1>
-        <form action="updateTrainer" method="post">
+        <form action="${create}Trainer" method="post">
             <ul>
                 <li>
                     <label for="firstname">First Name:</label>

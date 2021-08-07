@@ -29,7 +29,8 @@ public class UpdateTrainer extends HttpServlet {
         Trainer trainer = trainersDAO.get(db.getDbConnector(), trainer_id);
 
         request.setAttribute("trainer", trainer);
-        getServletContext().getRequestDispatcher("/WEB-INF/views/update/updateTrainer.jsp").forward(request, response);
+        request.setAttribute("create", "update");
+        getServletContext().getRequestDispatcher("/WEB-INF/views/create-update/Trainer.jsp").forward(request, response);
     }
 
     @Override

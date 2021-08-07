@@ -1,4 +1,4 @@
-package com.test.webapp.servlets.creation;
+package com.test.webapp.servlets.create;
 
 import com.test.webapp.data.DBController;
 import com.test.webapp.data.TrainersDAO;
@@ -19,7 +19,8 @@ public class CreateTrainer extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/views/creation/createTrainer.jsp").forward(request, response);
+        request.setAttribute("create", "create");
+        getServletContext().getRequestDispatcher("/WEB-INF/views/create-update/Trainer.jsp").forward(request, response);
     }
 
 
