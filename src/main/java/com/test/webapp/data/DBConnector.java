@@ -1,11 +1,14 @@
 package com.test.webapp.data;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
+import java.util.Properties;
 
 public class DBConnector {
-    private static final String DB_URL = "jdbc:postgresql://192.168.87.17:5433/Form";
-    private static final String USER = "postgres";
-    private static final String PASS = "123qwe";
+    private static String DB_URL;
+    private static String USER;
+    private static String PASS;
     private static Connection connection = null;
     private static Statement statement;
 
@@ -17,6 +20,8 @@ public class DBConnector {
             System.out.println("DB driver is not found");
             return;
         }
+
+        loadProperties();
 
         try {
             connection = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -64,6 +69,19 @@ public class DBConnector {
             System.out.println("Failed to get query");
         }
         return resultSet;
+    }
+
+    private static void loadProperties() {
+        InputStream in = DBConnector.class.getClassLoader().getResourceAsStream("db.properties");
+        Properties properties = new Properties();
+        try {
+            properties.load(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        DB_URL = properties.getProperty("url");
+        USER = properties.getProperty("user");
+        PASS = properties.getProperty("pass");
     }
 
     void close() {
