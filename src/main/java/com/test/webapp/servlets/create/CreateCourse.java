@@ -3,7 +3,6 @@ package com.test.webapp.servlets.create;
 import com.test.webapp.data.CoursesDAO;
 import com.test.webapp.data.DBController;
 import com.test.webapp.data.VendorDAO;
-import com.test.webapp.model.Course;
 import com.test.webapp.model.Vendor;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
@@ -16,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "createCourse", value = "/createCourse")
+@WebServlet(name = "createCourse", value = "/managers/createCourse")
 public class CreateCourse extends HttpServlet {
 
     @Override
@@ -45,8 +44,7 @@ public class CreateCourse extends HttpServlet {
         CoursesDAO coursesDAO = db.getCoursesDAO();
         coursesDAO.create(db.getDbConnector(), array);
 
-        List<Course> list = coursesDAO.getAll(db.getDbConnector());
-        request.setAttribute("coursesList", list);
-        getServletContext().getRequestDispatcher("/WEB-INF/views/lists/coursesList.jsp").forward(request, response);
+        response.sendRedirect("/managers/coursesList");
     }
+
 }

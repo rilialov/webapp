@@ -2,7 +2,6 @@ package com.test.webapp.servlets.create;
 
 import com.test.webapp.data.DBController;
 import com.test.webapp.data.FormDAO;
-import com.test.webapp.model.Form;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
 
@@ -12,9 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet(name = "createForm", value = "/createForm")
+@WebServlet(name = "createForm", value = "/managers/createForm")
 public class CreateForm extends HttpServlet {
 
     @Override
@@ -22,7 +20,6 @@ public class CreateForm extends HttpServlet {
         request.setAttribute("create", "create");
         getServletContext().getRequestDispatcher("/WEB-INF/views/create-update/Form.jsp").forward(request, response);
     }
-
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -40,8 +37,7 @@ public class CreateForm extends HttpServlet {
         FormDAO formDAO = db.getFormDAO();
         formDAO.create(db.getDbConnector(), array);
 
-        List<Form> list = formDAO.getAll(db.getDbConnector());
-        request.setAttribute("formsList", list);
-        getServletContext().getRequestDispatcher("/WEB-INF/views/lists/formsList.jsp").forward(request, response);
+        response.sendRedirect("/managers/formsList");
     }
+
 }

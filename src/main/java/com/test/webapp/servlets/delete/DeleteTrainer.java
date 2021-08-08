@@ -2,7 +2,6 @@ package com.test.webapp.servlets.delete;
 
 import com.test.webapp.data.DBController;
 import com.test.webapp.data.TrainersDAO;
-import com.test.webapp.model.Trainer;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
 
@@ -12,9 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet(name = "deleteTrainer", value = "/deleteTrainer")
+@WebServlet(name = "deleteTrainer", value = "/managers/deleteTrainer")
 public class DeleteTrainer extends HttpServlet {
 
     @Override
@@ -26,9 +24,7 @@ public class DeleteTrainer extends HttpServlet {
         TrainersDAO trainersDAO = db.getTrainersDAO();
         trainersDAO.delete(db.getDbConnector(), trainer_id);
 
-        List<Trainer> list = trainersDAO.getAll(db.getDbConnector());
-        request.setAttribute("trainersList", list);
-        getServletContext().getRequestDispatcher("/WEB-INF/views/lists/trainersList.jsp").forward(request, response);
+        response.sendRedirect("/managers/trainersList");
     }
 
 }

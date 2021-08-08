@@ -38,7 +38,7 @@
                     </tr>
                 </c:forEach>
             </table>
-            <a href="<c:url value="/createTrainer"/>">Create a new trainer..</a>
+            <a href="<c:url value="/managers/createTrainer"/>">Create a new trainer..</a>
         </div>
     </main>
     <footer>

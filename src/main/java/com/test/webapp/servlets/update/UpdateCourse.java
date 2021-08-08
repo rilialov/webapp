@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "updateCourse", value = "/updateCourse")
+@WebServlet(name = "updateCourse", value = "/managers/updateCourse")
 public class UpdateCourse extends HttpServlet {
     private int course_id;
     private CoursesDAO coursesDAO;
@@ -53,8 +53,7 @@ public class UpdateCourse extends HttpServlet {
         DBController db = UsersSessions.getDbController(userAccount);
         coursesDAO.update(db.getDbConnector(), array);
 
-        List<Course> list = coursesDAO.getAll(db.getDbConnector());
-        request.setAttribute("coursesList", list);
-        getServletContext().getRequestDispatcher("/WEB-INF/views/lists/coursesList.jsp").forward(request, response);
+        response.sendRedirect("/managers/coursesList");
     }
+
 }

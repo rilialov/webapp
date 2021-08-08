@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "studentsList", value = "/studentsList")
+@WebServlet(name = "studentsList", value = "/managers/studentsList")
 public class StudentsList extends HttpServlet {
 
     @Override

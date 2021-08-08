@@ -1,3 +1,5 @@
+<%--@elvariable id="login" type="java.lang"--%>
+<%--@elvariable id="error" type="java.lang"--%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -12,7 +14,7 @@
         <jsp:include page="WEB-INF/views/_header.jsp" />
     </header>
     <main>
-        <form action="mainPage" method="post">
+        <form action="login" method="post">
             <ul>
                 <li>
                     <label for="login">Login:</label>

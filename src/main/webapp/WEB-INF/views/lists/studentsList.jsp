@@ -50,7 +50,7 @@
                     </tr>
                 </c:forEach>
             </table>
-            <a href="<c:url value="/createStudent"/>">Create a new student..</a>
+            <a href="<c:url value="/managers/createStudent"/>">Create a new student..</a>
         </div>
     </main>
     <footer>

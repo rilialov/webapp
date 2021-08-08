@@ -42,7 +42,7 @@
                     </tr>
                 </c:forEach>
             </table>
-            <a href="<c:url value="/createForm"/>">Create a new form..</a>
+            <a href="<c:url value="/managers/createForm"/>">Create a new form..</a>
         </div>
     </main>
     <footer>

@@ -40,7 +40,7 @@
                     </tr>
                 </c:forEach>
             </table>
-            <a href="<c:url value="/createCourse"/>">Create a new course..</a>
+            <a href="<c:url value="/managers/createCourse"/>">Create a new course..</a>
         </div>
     </main>
     <footer>

@@ -18,7 +18,7 @@
     </header>
     <main>
         <h1>Form</h1>
-        <form action="update" method="post">
+        <form action="formUpdate" method="post">
             <ul>
                 <li>
                     <label for="course">Course:</label>

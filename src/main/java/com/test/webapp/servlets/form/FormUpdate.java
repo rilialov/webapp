@@ -1,8 +1,7 @@
-package com.test.webapp.servlets;
+package com.test.webapp.servlets.form;
 
 import com.test.webapp.data.DBController;
 import com.test.webapp.data.FormBuilder;
-
 import com.test.webapp.data.StudentsDAO;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
@@ -14,9 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
-@WebServlet(name = "update", value = "/update")
+@WebServlet(name = "formUpdate", value = "/students/formUpdate")
 public class FormUpdate extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
@@ -34,6 +33,7 @@ public class FormUpdate extends HttpServlet {
         DBController db = UsersSessions.getDbController(userAccount);
         StudentsDAO studentsDAO = db.getStudentsDAO();
         studentsDAO.updateEdited(db.getDbConnector(), array);
-        getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+        response.sendRedirect("/");
     }
+
 }

@@ -2,7 +2,6 @@ package com.test.webapp.servlets.create;
 
 import com.test.webapp.data.DBController;
 import com.test.webapp.data.StudentsDAO;
-import com.test.webapp.model.Student;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
 
@@ -12,9 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet(name = "createStudent", value = "/createStudent")
+@WebServlet(name = "createStudent", value = "/managers/createStudent")
 public class CreateStudent extends HttpServlet {
 
     @Override
@@ -39,8 +37,7 @@ public class CreateStudent extends HttpServlet {
         StudentsDAO studentsDAO = db.getStudentsDAO();
         studentsDAO.create(db.getDbConnector(),array);
 
-        List<Student> list = studentsDAO.getAll(db.getDbConnector());
-        request.setAttribute("studentsList", list);
-        getServletContext().getRequestDispatcher("/WEB-INF/views/lists/studentsList.jsp").forward(request, response);
+        response.sendRedirect("/managers/studentsList");
     }
+
 }

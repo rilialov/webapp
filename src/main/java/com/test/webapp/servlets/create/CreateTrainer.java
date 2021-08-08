@@ -2,7 +2,6 @@ package com.test.webapp.servlets.create;
 
 import com.test.webapp.data.DBController;
 import com.test.webapp.data.TrainersDAO;
-import com.test.webapp.model.Trainer;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
 
@@ -12,9 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet(name = "createTrainer", value = "/createTrainer")
+@WebServlet(name = "createTrainer", value = "/managers/createTrainer")
 public class CreateTrainer extends HttpServlet {
 
     @Override
@@ -22,7 +20,6 @@ public class CreateTrainer extends HttpServlet {
         request.setAttribute("create", "create");
         getServletContext().getRequestDispatcher("/WEB-INF/views/create-update/Trainer.jsp").forward(request, response);
     }
-
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -38,8 +35,7 @@ public class CreateTrainer extends HttpServlet {
         TrainersDAO trainersDAO = db.getTrainersDAO();
         trainersDAO.create(db.getDbConnector(), array);
 
-        List<Trainer> list = trainersDAO.getAll(db.getDbConnector());
-        request.setAttribute("trainersList", list);
-        getServletContext().getRequestDispatcher("/WEB-INF/views/lists/trainersList.jsp").forward(request, response);
+        response.sendRedirect("/managers/trainersList");
     }
+
 }

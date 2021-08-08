@@ -3,7 +3,6 @@ package com.test.webapp.servlets.update;
 import com.test.webapp.data.DBController;
 import com.test.webapp.data.FormDAO;
 import com.test.webapp.model.Form;
-import com.test.webapp.model.Student;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
 
@@ -13,9 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet(name = "updateForm", value = "/updateForm")
+@WebServlet(name = "updateForm", value = "/managers/updateForm")
 public class UpdateForm extends HttpServlet {
     private int form_id;
     private FormDAO formDAO;
@@ -49,8 +47,7 @@ public class UpdateForm extends HttpServlet {
         DBController db = UsersSessions.getDbController(userAccount);
         formDAO.update(db.getDbConnector(), array);
 
-        List<Form> list = formDAO.getAll(db.getDbConnector());
-        request.setAttribute("formsList", list);
-        getServletContext().getRequestDispatcher("/WEB-INF/views/lists/formsList.jsp").forward(request, response);
+        response.sendRedirect("/managers/formsList");
     }
+
 }
