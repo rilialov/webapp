@@ -37,7 +37,7 @@
                             <a href="updateForm?form_id=${form.id}">Edit</a>
                         </td>
                         <td>
-<%--                            <a href="deleteForm?form_id=${form.id}">Delete</a>--%>
+                            <a href="deleteForm?form_id=${form.id}">Delete</a>
                         </td>
                     </tr>
                 </c:forEach>

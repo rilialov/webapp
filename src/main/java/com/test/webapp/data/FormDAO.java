@@ -66,6 +66,6 @@ public class FormDAO implements DAO<Form> {
 
     @Override
     public void delete(DBConnector dbConnector, int id) {
-
+        dbConnector.execute("DELETE FROM forms WHERE form_id = " + id + ";");
     }
 }
