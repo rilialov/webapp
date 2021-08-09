@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/styles/main.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/main.css"/>">
     <title>Edit Form</title>
 </head>
 <body>

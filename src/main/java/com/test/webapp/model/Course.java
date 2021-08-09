@@ -7,7 +7,6 @@ public class Course {
     private final String courseName;
 
     public Course(String courseCode, String courseName) {
-
         this.courseCode = courseCode;
         this.courseName = courseName;
     }

@@ -33,7 +33,7 @@ public class FormUpdate extends HttpServlet {
         DBController db = UsersSessions.getDbController(userAccount);
         StudentsDAO studentsDAO = db.getStudentsDAO();
         studentsDAO.updateEdited(db.getDbConnector(), array);
-        response.sendRedirect("/");
+        response.sendRedirect("/mainPage");
     }
 
 }

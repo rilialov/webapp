@@ -6,7 +6,6 @@ public class UserAccount {
     private int form_id;
     private final boolean isManager;
 
-
     public UserAccount(String login, String password, boolean isManager) {
         this.login = login;
         this.password = password;
