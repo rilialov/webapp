@@ -28,7 +28,7 @@
                 <%--@elvariable id="coursesList" type="java.util.List"--%>
                 <c:forEach items="${coursesList}" var="course" >
                     <tr>
-                        <td>${course.vendor_id}</td>
+                        <td>${course.vendorName}</td>
                         <td>${course.courseCode}</td>
                         <td>${course.courseName}</td>
                         <td>

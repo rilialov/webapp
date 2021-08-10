@@ -30,14 +30,15 @@ public class CoursesDAO implements DAO<Course> {
     @Override
     public List<Course> getAll(DBConnector dbConnector) {
         ArrayList<Course> coursesList = new ArrayList<>();
-        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM courses;");
+        ResultSet resultSet = dbConnector.getQuery("SELECT course_id, vendors.vendor_name, course_code, course_name " +
+                "FROM courses JOIN vendors ON courses.vendor_id = vendors.vendor_id");
         if (resultSet != null) {
             try {
                 resultSet.next();
                 while (!resultSet.isAfterLast()) {
                     Course course = new Course(resultSet.getString(3), resultSet.getString(4));
                     course.setId(resultSet.getInt(1));
-                    course.setVendor_id(resultSet.getInt(2));
+                    course.setVendorName(resultSet.getString(2));
                     coursesList.add(course);
                     resultSet.next();
                 }
