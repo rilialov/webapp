@@ -31,7 +31,7 @@
                 </li>
                 <li>
                     <label for="date">Date:</label>
-                    <input class="txt_input" type="text" id="date" name="date" value="${form.date}">
+                    <input class="txt_input" type="date" id="date" name="date" value="${form.date}">
                 </li>
                 <li class="button"><input type="submit" value="OK"></li>
             </ul>
