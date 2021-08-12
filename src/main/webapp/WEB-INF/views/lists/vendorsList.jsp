@@ -28,7 +28,7 @@
                     <tr>
                         <td>${vendor.vendorName}</td>
                         <td>
-<%--                            <a href="updateVendor?vendor_id=${vendor.id}">Edit</a>--%>
+                            <a href="updateVendor?vendor_id=${vendor.id}">Edit</a>
                         </td>
                         <td>
 <%--                            <a href="deleteVendor?vendor_id=${vendor.id}">Delete</a>--%>
@@ -36,7 +36,7 @@
                     </tr>
                 </c:forEach>
             </table>
-<%--            <a href="<c:url value="/managers/createVendor"/>">Create a new vendor..</a>--%>
+            <a href="<c:url value="/managers/createVendor"/>">Create a new vendor..</a>
         </div>
     </main>
     <footer>

@@ -49,12 +49,15 @@ public class VendorDAO implements DAO<Vendor> {
 
     @Override
     public void create(DBConnector dbConnector, String[] array) {
-
+        dbConnector.execute("INSERT INTO vendors(vendor_name) VALUES ('" + array[0] +
+                "')");
     }
 
     @Override
     public void update(DBConnector dbConnector, String[] array) {
-
+        int vendor_id = Integer.parseInt(array[0]);
+        dbConnector.execute("UPDATE vendors SET vendor_name = '" + array[1] +
+                "' WHERE vendor_id = " + vendor_id + ";");
     }
 
     @Override
