@@ -62,6 +62,6 @@ public class VendorDAO implements DAO<Vendor> {
 
     @Override
     public void delete(DBConnector dbConnector, int id) {
-
+        dbConnector.execute("DELETE FROM vendors WHERE vendor_id = " + id + ";");
     }
 }

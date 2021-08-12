@@ -31,7 +31,7 @@
                             <a href="updateVendor?vendor_id=${vendor.id}">Edit</a>
                         </td>
                         <td>
-<%--                            <a href="deleteVendor?vendor_id=${vendor.id}">Delete</a>--%>
+                            <a href="deleteVendor?vendor_id=${vendor.id}">Delete</a>
                         </td>
                     </tr>
                 </c:forEach>
