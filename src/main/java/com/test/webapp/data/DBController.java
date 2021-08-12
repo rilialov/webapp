@@ -24,7 +24,8 @@ public class DBController {
         if (resultSet != null) {
             try {
                 resultSet.next();
-                userAccount = new UserAccount(resultSet.getString(2), resultSet.getString(3), resultSet.getBoolean(5));
+                char[] pass = resultSet.getString(3).toCharArray();
+                userAccount = new UserAccount(resultSet.getString(2), pass, resultSet.getBoolean(5));
                 if (!userAccount.isManager()) {
                     userAccount.setForm_id(resultSet.getInt(4));
                 }

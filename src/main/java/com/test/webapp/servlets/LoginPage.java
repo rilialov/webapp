@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 
 @WebServlet(name = "LoginPage", value = "/login")
 public class LoginPage extends HttpServlet {
@@ -18,12 +19,12 @@ public class LoginPage extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("login");
-        String password = request.getParameter("password");
+        char[] password = request.getParameter("password").toCharArray();
 
         if (login.length() != 0) {
             UserAccount userAccount = db.loadUser(login);
 
-            if (userAccount != null && password.equals(userAccount.getPassword())) {
+            if (userAccount != null && Arrays.equals(password, userAccount.getPassword())) {
                 UsersSessions.setUser(request.getSession(),userAccount);
                 UsersSessions.setDbControllerMap(userAccount,db);
 
