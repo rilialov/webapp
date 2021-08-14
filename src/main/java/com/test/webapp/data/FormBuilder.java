@@ -21,8 +21,8 @@ public class FormBuilder {
         coursesDAO = db.getCoursesDAO();
         trainersDAO = db.getTrainersDAO();
         studentsDAO = db.getStudentsDAO();
-        FormDAO formDAO = db.getFormDAO();
-        form = formDAO.get(dbConnector, formID);
+        FormsDAO formsDAO = db.getFormsDAO();
+        form = formsDAO.get(dbConnector, formID);
         date = form.getDate();
         setForm();
     }

@@ -1,7 +1,7 @@
 package com.test.webapp.servlets.lists;
 
 import com.test.webapp.data.DBController;
-import com.test.webapp.data.VendorDAO;
+import com.test.webapp.data.VendorsDAO;
 import com.test.webapp.model.Vendor;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
@@ -22,8 +22,8 @@ public class VendorsList extends HttpServlet {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
 
-        VendorDAO vendorDAO = db.getVendorDAO();
-        List<Vendor> list = vendorDAO.getAll(db.getDbConnector());
+        VendorsDAO vendorsDAO = db.getVendorsDAO();
+        List<Vendor> list = vendorsDAO.getAll(db.getDbConnector());
         request.setAttribute("vendorsList", list);
         getServletContext().getRequestDispatcher("/WEB-INF/views/lists/vendorsList.jsp").forward(request, response);
     }

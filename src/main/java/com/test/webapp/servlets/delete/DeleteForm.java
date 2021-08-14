@@ -1,7 +1,7 @@
 package com.test.webapp.servlets.delete;
 
 import com.test.webapp.data.DBController;
-import com.test.webapp.data.FormDAO;
+import com.test.webapp.data.FormsDAO;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
 
@@ -21,8 +21,8 @@ public class DeleteForm extends HttpServlet {
         DBController db = UsersSessions.getDbController(userAccount);
 
         int form_id = Integer.parseInt(request.getParameter("form_id"));
-        FormDAO formDAO = db.getFormDAO();
-        formDAO.delete(db.getDbConnector(), form_id);
+        FormsDAO formsDAO = db.getFormsDAO();
+        formsDAO.delete(db.getDbConnector(), form_id);
 
         response.sendRedirect("/managers/formsList");
     }

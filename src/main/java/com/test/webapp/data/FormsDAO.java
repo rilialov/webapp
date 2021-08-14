@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FormDAO implements DAO<Form> {
+public class FormsDAO implements DAO<Form> {
 
     @Override
     public Form get(DBConnector dbConnector, int id) {

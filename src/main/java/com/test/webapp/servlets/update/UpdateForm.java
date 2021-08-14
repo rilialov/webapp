@@ -1,7 +1,7 @@
 package com.test.webapp.servlets.update;
 
 import com.test.webapp.data.DBController;
-import com.test.webapp.data.FormDAO;
+import com.test.webapp.data.FormsDAO;
 import com.test.webapp.model.Form;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
@@ -16,16 +16,16 @@ import java.io.IOException;
 @WebServlet(name = "updateForm", value = "/managers/updateForm")
 public class UpdateForm extends HttpServlet {
     private int form_id;
-    private FormDAO formDAO;
+    private FormsDAO formsDAO;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
-        formDAO = db.getFormDAO();
+        formsDAO = db.getFormsDAO();
 
         form_id = Integer.parseInt(request.getParameter("form_id"));
-        Form form= formDAO.get(db.getDbConnector(), form_id);
+        Form form= formsDAO.get(db.getDbConnector(), form_id);
 
         request.setAttribute("form", form);
         request.setAttribute("create", "update");
@@ -45,7 +45,7 @@ public class UpdateForm extends HttpServlet {
 
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
-        formDAO.update(db.getDbConnector(), array);
+        formsDAO.update(db.getDbConnector(), array);
 
         response.sendRedirect("/managers/formsList");
     }

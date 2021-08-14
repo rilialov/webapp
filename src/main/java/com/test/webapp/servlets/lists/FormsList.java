@@ -1,7 +1,7 @@
 package com.test.webapp.servlets.lists;
 
 import com.test.webapp.data.DBController;
-import com.test.webapp.data.FormDAO;
+import com.test.webapp.data.FormsDAO;
 import com.test.webapp.model.Form;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
@@ -22,8 +22,8 @@ public class FormsList extends HttpServlet {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
 
-        FormDAO formDAO = db.getFormDAO();
-        List<Form> list = formDAO.getAll(db.getDbConnector());
+        FormsDAO formsDAO = db.getFormsDAO();
+        List<Form> list = formsDAO.getAll(db.getDbConnector());
         request.setAttribute("formsList", list);
         getServletContext().getRequestDispatcher("/WEB-INF/views/lists/formsList.jsp").forward(request, response);
     }

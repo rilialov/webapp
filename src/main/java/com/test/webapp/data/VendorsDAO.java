@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VendorDAO implements DAO<Vendor> {
+public class VendorsDAO implements DAO<Vendor> {
 
     @Override
     public Vendor get(DBConnector dbConnector, int id) {

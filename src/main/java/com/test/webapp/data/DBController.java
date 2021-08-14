@@ -1,43 +1,25 @@
 package com.test.webapp.data;
 
-import com.test.webapp.sessions.UserAccount;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 public class DBController {
     private final DBConnector dbConnector = new DBConnector();
-    private final FormDAO formDAO = new FormDAO();
+    private final FormsDAO formsDAO = new FormsDAO();
     private final CoursesDAO coursesDAO = new CoursesDAO();
     private final TrainersDAO trainersDAO = new TrainersDAO();
     private final StudentsDAO studentsDAO = new StudentsDAO();
-    private final VendorDAO vendorDAO = new VendorDAO();
+    private final VendorsDAO vendorsDAO = new VendorsDAO();
+    private final UsersDAO usersDAO = new UsersDAO();
 
     public DBController() {
         dbConnector.setConnection();
         dbConnector.setStatement();
     }
 
-    public UserAccount loadUser(String login) {
-        UserAccount userAccount = null;
-        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM users WHERE login = '" + login + "';");
-        if (resultSet != null) {
-            try {
-                resultSet.next();
-                char[] pass = resultSet.getString(3).toCharArray();
-                userAccount = new UserAccount(resultSet.getString(2), pass, resultSet.getBoolean(5));
-                if (!userAccount.isManager()) {
-                    userAccount.setForm_id(resultSet.getInt(4));
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return userAccount;
+    public DBConnector getDbConnector() {
+        return dbConnector;
     }
 
-    public FormDAO getFormDAO() {
-        return formDAO;
+    public FormsDAO getFormsDAO() {
+        return formsDAO;
     }
 
     public CoursesDAO getCoursesDAO() {
@@ -52,15 +34,15 @@ public class DBController {
         return studentsDAO;
     }
 
-    public VendorDAO getVendorDAO() {
-        return vendorDAO;
+    public VendorsDAO getVendorsDAO() {
+        return vendorsDAO;
+    }
+
+    public UsersDAO getUsersDAO() {
+        return usersDAO;
     }
 
     public void close() {
         dbConnector.close();
-    }
-
-    public DBConnector getDbConnector() {
-        return dbConnector;
     }
 }

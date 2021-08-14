@@ -1,7 +1,7 @@
 package com.test.webapp.servlets.create;
 
 import com.test.webapp.data.DBController;
-import com.test.webapp.data.FormDAO;
+import com.test.webapp.data.FormsDAO;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
 
@@ -34,8 +34,8 @@ public class CreateForm extends HttpServlet {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
 
-        FormDAO formDAO = db.getFormDAO();
-        formDAO.create(db.getDbConnector(), array);
+        FormsDAO formsDAO = db.getFormsDAO();
+        formsDAO.create(db.getDbConnector(), array);
 
         response.sendRedirect("/managers/formsList");
     }
