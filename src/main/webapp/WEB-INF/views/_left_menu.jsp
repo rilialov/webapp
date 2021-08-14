@@ -6,4 +6,5 @@
     <li><a href="<c:url value="/managers/coursesList"/>">Courses List</a></li>
     <li><a href="<c:url value="/managers/trainersList"/>">Trainers List</a></li>
     <li><a href="<c:url value="/managers/formsList"/>">Forms List</a></li>
+    <li><a href="<c:url value="/managers/usersList"/>">Users List</a></li>
 </ul>

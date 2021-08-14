@@ -4,6 +4,7 @@ import com.test.webapp.sessions.UserAccount;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UsersDAO implements DAO<UserAccount> {
@@ -14,8 +15,8 @@ public class UsersDAO implements DAO<UserAccount> {
         if (resultSet != null) {
             try {
                 resultSet.next();
-                char[] pass = resultSet.getString(3).toCharArray();
-                userAccount = new UserAccount(resultSet.getString(2), pass, resultSet.getBoolean(5));
+                userAccount = new UserAccount(resultSet.getString(2), resultSet.getBoolean(5));
+                userAccount.setPassword(resultSet.getString(3).toCharArray());
                 if (!userAccount.isManager()) {
                     userAccount.setForm_id(resultSet.getInt(4));
                 } else userAccount.setForm_id(0);
@@ -28,7 +29,26 @@ public class UsersDAO implements DAO<UserAccount> {
 
     @Override
     public List<UserAccount> getAll(DBConnector dbConnector) {
-        return null;
+        ArrayList<UserAccount> usersList = new ArrayList<>();
+        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM users;");
+
+        if (resultSet != null) {
+            try {
+                resultSet.next();
+                while (!resultSet.isAfterLast()) {
+                    UserAccount userAccount = new UserAccount(resultSet.getString(2), resultSet.getBoolean(5));
+                    if (!userAccount.isManager()) {
+                        userAccount.setForm_id(resultSet.getInt(4));
+                    } else userAccount.setForm_id(0);
+                    userAccount.setId(resultSet.getInt(1));
+                    usersList.add(userAccount);
+                    resultSet.next();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return usersList;
     }
 
     @Override
@@ -52,8 +72,8 @@ public class UsersDAO implements DAO<UserAccount> {
         if (resultSet != null) {
             try {
                 resultSet.next();
-                char[] pass = resultSet.getString(3).toCharArray();
-                userAccount = new UserAccount(resultSet.getString(2), pass, resultSet.getBoolean(5));
+                userAccount = new UserAccount(resultSet.getString(2), resultSet.getBoolean(5));
+                userAccount.setPassword(resultSet.getString(3).toCharArray());
                 if (!userAccount.isManager()) {
                     userAccount.setForm_id(resultSet.getInt(4));
                 } else userAccount.setForm_id(0);
