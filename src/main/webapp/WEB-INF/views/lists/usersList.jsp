@@ -39,15 +39,15 @@
                             </c:if>
                         </td>
                         <td>
-<%--                            <a href="updateUsers?user_id=${user.id}">Edit</a>--%>
+                            <a href="updateUser?user_id=${user.id}">Edit</a>
                         </td>
                         <td>
-<%--                            <a href="deleteUsers?user_id=${user.id}">Delete</a>--%>
+<%--                            <a href="deleteUser?user_id=${user.id}">Delete</a>--%>
                         </td>
                     </tr>
                 </c:forEach>
             </table>
-<%--            <a href="<c:url value="/managers/createUsers"/>">Create a new user..</a>--%>
+            <a href="<c:url value="/managers/createUser"/>">Create a new user..</a>
         </div>
     </main>
     <footer>
