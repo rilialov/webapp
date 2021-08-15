@@ -67,7 +67,7 @@ public class UsersDAO implements DAO<UserAccount> {
 
     @Override
     public void delete(DBConnector dbConnector, int id) {
-
+        dbConnector.execute("DELETE FROM users WHERE user_id = " + id + ";");
     }
 
     public UserAccount getByLogin(DBConnector dbConnector, String login) {

@@ -42,7 +42,7 @@
                             <a href="updateUser?user_id=${user.id}">Edit</a>
                         </td>
                         <td>
-<%--                            <a href="deleteUser?user_id=${user.id}">Delete</a>--%>
+                            <a href="deleteUser?user_id=${user.id}">Delete</a>
                         </td>
                     </tr>
                 </c:forEach>
