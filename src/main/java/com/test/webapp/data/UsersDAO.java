@@ -17,6 +17,8 @@ public class UsersDAO implements DAO<UserAccount> {
                 resultSet.next();
                 userAccount = new UserAccount(resultSet.getString(2), resultSet.getBoolean(5));
                 userAccount.setPassword(resultSet.getString(3).toCharArray());
+                userAccount.setSalt(resultSet.getBytes(6));
+                userAccount.setHash(resultSet.getBytes(7));
                 if (!userAccount.isManager()) {
                     userAccount.setForm_id(resultSet.getInt(4));
                 } else userAccount.setForm_id(0);
@@ -78,6 +80,8 @@ public class UsersDAO implements DAO<UserAccount> {
                 resultSet.next();
                 userAccount = new UserAccount(resultSet.getString(2), resultSet.getBoolean(5));
                 userAccount.setPassword(resultSet.getString(3).toCharArray());
+                userAccount.setSalt(resultSet.getBytes(6));
+                userAccount.setHash(resultSet.getBytes(7));
                 if (!userAccount.isManager()) {
                     userAccount.setForm_id(resultSet.getInt(4));
                 } else userAccount.setForm_id(0);
@@ -86,5 +90,10 @@ public class UsersDAO implements DAO<UserAccount> {
             }
         }
         return userAccount;
+    }
+
+    public void setHashSalt(DBConnector dbConnector, int id, byte[] salt, byte[] hash) {
+        dbConnector.execute("UPDATE users SET salt = '" + salt +
+                "', hash = '" + hash + "' WHERE user_id = " + id + ";");
     }
 }

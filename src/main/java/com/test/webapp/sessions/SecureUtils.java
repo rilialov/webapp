@@ -9,10 +9,18 @@ import java.security.spec.KeySpec;
 
 public class SecureUtils {
 
-    public static byte[] getHash(String password) {
+    public static byte[] getSalt(String password) {
         SecureRandom random = new SecureRandom();
-        byte[] salt = new byte[password.length()];
+        int length;
+        if (password.length() == 0) {
+            length = 4;
+        } else length = password.length();
+        byte[] salt = new byte[length];
         random.nextBytes(salt);
+        return salt;
+    }
+
+    public static byte[] getHash(String password, byte[] salt) {
         KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
         SecretKeyFactory factory = null;
         try {

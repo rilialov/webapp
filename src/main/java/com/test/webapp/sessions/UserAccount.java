@@ -4,6 +4,8 @@ public class UserAccount {
     private int id;
     private final String login;
     private char[] password;
+    private byte[] salt;
+    private byte[] hash;
     private int form_id;
     private final boolean manager;
 
@@ -42,5 +44,21 @@ public class UserAccount {
 
     public boolean isManager() {
         return manager;
+    }
+
+    public byte[] getSalt() {
+        return salt;
+    }
+
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
+    }
+
+    public byte[] getHash() {
+        return hash;
+    }
+
+    public void setHash(byte[] hash) {
+        this.hash = hash;
     }
 }
