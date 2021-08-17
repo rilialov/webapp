@@ -2,6 +2,7 @@ package com.test.webapp.data;
 
 import com.test.webapp.sessions.UserAccount;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -93,7 +94,16 @@ public class UsersDAO implements DAO<UserAccount> {
     }
 
     public void setHashSalt(DBConnector dbConnector, int id, byte[] salt, byte[] hash) {
-        dbConnector.execute("UPDATE users SET salt = '" + salt +
-                "', hash = '" + hash + "' WHERE user_id = " + id + ";");
+        PreparedStatement ps = dbConnector.getPreparedStatement("UPDATE users SET salt = ?, hash = ? WHERE user_id = ?");
+        try {
+            ps.setBytes(1, salt);
+            ps.setBytes(2, hash);
+            ps.setInt(3, id);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
 }

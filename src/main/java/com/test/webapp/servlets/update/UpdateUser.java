@@ -44,13 +44,15 @@ public class UpdateUser extends HttpServlet {
         array[3] = request.getParameter("form");
         array[4] = request.getParameter("manager");
 
-        byte[] salt = SecureUtils.getSalt(array[2]);
-        byte[] hash = SecureUtils.getHash(array[2],salt);
-
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
         usersDAO.update(db.getDbConnector(), array);
-        usersDAO.setHashSalt(db.getDbConnector(), user_id, salt, hash);
+
+        if (!array[2].equals("")) {
+            byte[] salt = SecureUtils.getSalt(array[2]);
+            byte[] hash = SecureUtils.getHash(array[2],salt);
+            usersDAO.setHashSalt(db.getDbConnector(), user_id, salt, hash);
+        }
 
         response.sendRedirect("/managers/usersList");
     }

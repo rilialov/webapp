@@ -21,28 +21,16 @@ public class LoginPage extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("login");
-        char[] password = request.getParameter("password").toCharArray();
+        String password = request.getParameter("password");
 
         if (login.length() != 0) {
             UsersDAO usersDAO = db.getUsersDAO();
-            UserAccount userAccount = usersDAO.getByLogin(db.getDbConnector(),login);
+            UserAccount userAccount = usersDAO.getByLogin(db.getDbConnector(), login);
 
-//            if (userAccount != null) {
-//                byte[] passwordHash = SecureUtils.getHash(request.getParameter("password"), userAccount.getSalt());
-//
-//                if (Arrays.equals(passwordHash, userAccount.getHash())) {
-//                    UsersSessions.setUser(request.getSession(),userAccount);
-//                    UsersSessions.setDbControllerMap(userAccount,db);
-
-//                    if (userAccount.isManager()) {
-//                        response.sendRedirect("/managers");
-//                    } else response.sendRedirect("/students/form");
-//                }
-//            }
-
-            if (userAccount != null && Arrays.equals(password, userAccount.getPassword())) {
-                UsersSessions.setUser(request.getSession(),userAccount);
-                UsersSessions.setDbControllerMap(userAccount,db);
+            if (userAccount != null && Arrays.equals(SecureUtils.getHash(password, userAccount.getSalt()),
+                            userAccount.getHash())) {
+                UsersSessions.setUser(request.getSession(), userAccount);
+                UsersSessions.setDbControllerMap(userAccount, db);
 
                 if (userAccount.isManager()) {
                     response.sendRedirect("/managers");

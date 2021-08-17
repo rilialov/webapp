@@ -71,6 +71,16 @@ public class DBConnector {
         return resultSet;
     }
 
+    PreparedStatement getPreparedStatement(String sqlCommand) {
+        PreparedStatement ps = null;
+        try {
+            ps = connection.prepareStatement(sqlCommand);
+        } catch (SQLException e) {
+            System.out.println("Failed to create statement");
+        }
+        return ps;
+    }
+
     private static void loadProperties() {
         InputStream in = DBConnector.class.getClassLoader().getResourceAsStream("db.properties");
         Properties properties = new Properties();
