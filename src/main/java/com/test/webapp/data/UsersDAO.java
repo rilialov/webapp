@@ -17,7 +17,6 @@ public class UsersDAO implements DAO<UserAccount> {
             try {
                 resultSet.next();
                 userAccount = new UserAccount(resultSet.getString(2), resultSet.getBoolean(5));
-                userAccount.setPassword(resultSet.getString(3).toCharArray());
                 userAccount.setSalt(resultSet.getBytes(6));
                 userAccount.setHash(resultSet.getBytes(7));
                 if (!userAccount.isManager()) {
@@ -60,6 +59,21 @@ public class UsersDAO implements DAO<UserAccount> {
                 "', '" + array[1] + "' , '" + array[2] + "', '" + array[3] + "')");
     }
 
+    public void createWithSaltHash(DBConnector dbConnector, String[] array, byte[] salt, byte[] hash) {
+        PreparedStatement ps = dbConnector.getPreparedStatement("INSERT INTO users(login, form_id, manager, salt, hash) VALUES (?, ?, ?, ?, ?)");
+        try {
+            ps.setString(1, array[0]);
+            ps.setInt(2, Integer.parseInt(array[1]));
+            ps.setBoolean(3, Boolean.parseBoolean(array[2]));
+            ps.setBytes(4, salt);
+            ps.setBytes(5, hash);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void update(DBConnector dbConnector, String[] array) {
         int user_id = Integer.parseInt(array[0]);
@@ -80,7 +94,6 @@ public class UsersDAO implements DAO<UserAccount> {
             try {
                 resultSet.next();
                 userAccount = new UserAccount(resultSet.getString(2), resultSet.getBoolean(5));
-                userAccount.setPassword(resultSet.getString(3).toCharArray());
                 userAccount.setSalt(resultSet.getBytes(6));
                 userAccount.setHash(resultSet.getBytes(7));
                 if (!userAccount.isManager()) {
