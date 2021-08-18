@@ -37,20 +37,20 @@ public class UpdateUser extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
 
-        String[] array = new String[5];
+        String[] array = new String[4];
         array[0] = String.valueOf(user_id);
         array[1] = request.getParameter("login");
-        array[2] = request.getParameter("password");
-        array[3] = request.getParameter("form");
-        array[4] = request.getParameter("manager");
+        array[2] = request.getParameter("form");
+        array[3] = request.getParameter("manager");
 
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
         usersDAO.update(db.getDbConnector(), array);
 
-        if (!array[2].equals("")) {
-            byte[] salt = SecureUtils.getSalt(array[2]);
-            byte[] hash = SecureUtils.getHash(array[2],salt);
+        char[] password = request.getParameter("password").toCharArray();
+        if (password.length != 0) {
+            byte[] salt = SecureUtils.getSalt(password);
+            byte[] hash = SecureUtils.getHash(password,salt);
             usersDAO.setHashSalt(db.getDbConnector(), user_id, salt, hash);
         }
 

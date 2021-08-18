@@ -78,8 +78,7 @@ public class UsersDAO implements DAO<UserAccount> {
     public void update(DBConnector dbConnector, String[] array) {
         int user_id = Integer.parseInt(array[0]);
         dbConnector.execute("UPDATE users SET login = '" + array[1] +
-                "', pass = '" + array[2] + "', form_id = '" + array[3] + "', manager = '" + array[4] +
-                "' WHERE user_id = " + user_id + ";");
+                "', form_id = '" + array[2] + "', manager = '" + array[3] + "' WHERE user_id = " + user_id + ";");
     }
 
     @Override

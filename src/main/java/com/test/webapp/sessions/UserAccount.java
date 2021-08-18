@@ -3,7 +3,6 @@ package com.test.webapp.sessions;
 public class UserAccount {
     private int id;
     private final String login;
-    private char[] password;
     private byte[] salt;
     private byte[] hash;
     private int form_id;
@@ -18,10 +17,6 @@ public class UserAccount {
         this.id = id;
     }
 
-    public void setPassword(char[] password) {
-        this.password = password;
-    }
-
     public void setForm_id(int form_id) {
         this.form_id = form_id;
     }
@@ -32,10 +27,6 @@ public class UserAccount {
 
     public String getLogin() {
         return login;
-    }
-
-    public char[] getPassword() {
-        return password;
     }
 
     public int getForm_id() {

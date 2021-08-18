@@ -35,7 +35,7 @@ public class CreateUser extends HttpServlet {
         DBController db = UsersSessions.getDbController(userAccount);
         UsersDAO usersDAO = db.getUsersDAO();
 
-        String password = request.getParameter("password");
+        char[] password = request.getParameter("password").toCharArray();
         byte[] salt = SecureUtils.getSalt(password);
         byte[] hash = SecureUtils.getHash(password,salt);
         usersDAO.createWithSaltHash(db.getDbConnector(), array, salt, hash);

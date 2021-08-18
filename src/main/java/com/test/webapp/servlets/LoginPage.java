@@ -21,7 +21,7 @@ public class LoginPage extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("login");
-        String password = request.getParameter("password");
+        char[] password = request.getParameter("password").toCharArray();
 
         if (login.length() != 0) {
             UsersDAO usersDAO = db.getUsersDAO();
