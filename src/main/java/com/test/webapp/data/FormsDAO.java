@@ -2,6 +2,7 @@ package com.test.webapp.data;
 
 import com.test.webapp.model.Form;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -50,22 +51,40 @@ public class FormsDAO implements DAO<Form> {
 
     @Override
     public void create(DBConnector dbConnector, String[] array) {
-        dbConnector.execute("INSERT INTO forms(course_id, trainer_id, student_id, date) VALUES ('" + array[0] +
-                "', '" + array[1] + "', '" + array[2] + "', '" + array[3] + "')");
+        PreparedStatement ps = dbConnector.getPreparedStatement("INSERT INTO " +
+                "forms(course_id, trainer_id, student_id, date) VALUES (?, ?, ?, ?)");
+        try {
+            ps.setInt(1, Integer.parseInt(array[0]));
+            ps.setInt(2, Integer.parseInt(array[1]));
+            ps.setInt(3, Integer.parseInt(array[2]));
+            ps.setString(4, array[3]);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void update(DBConnector dbConnector, String[] array) {
-        int form_id = Integer.parseInt(array[0]);
-        dbConnector.execute("UPDATE forms SET course_id = '" + array[1] +
-                "', trainer_id = '" + array[2] +
-                "', student_id = '" + array[3] +
-                "', date = '" + array[4] +
-                "' WHERE form_id = " + form_id + ";");
+        PreparedStatement ps = dbConnector.getPreparedStatement("UPDATE forms " +
+                "SET course_id = ?, trainer_id = ?, student_id = ?, date = ? WHERE form_id = ?");
+        try {
+            ps.setInt(1, Integer.parseInt(array[1]));
+            ps.setInt(2, Integer.parseInt(array[2]));
+            ps.setInt(3, Integer.parseInt(array[3]));
+            ps.setString(4, array[4]);
+            ps.setInt(5, Integer.parseInt(array[0]));
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(DBConnector dbConnector, int id) {
         dbConnector.execute("DELETE FROM forms WHERE form_id = " + id + ";");
     }
+
 }
