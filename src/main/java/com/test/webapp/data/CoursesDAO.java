@@ -2,6 +2,7 @@ package com.test.webapp.data;
 
 import com.test.webapp.model.Course;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -51,21 +52,38 @@ public class CoursesDAO implements DAO<Course> {
 
     @Override
     public void create(DBConnector dbConnector, String[] array) {
-        int vendor_id = Integer.parseInt(array[0]);
-        dbConnector.execute("INSERT INTO courses(vendor_id, course_code, course_name) VALUES ('" + vendor_id +
-                "', '" + array[1] + "', '" + array[2] + "')");
+        PreparedStatement ps = dbConnector.getPreparedStatement("INSERT INTO " +
+                "courses(vendor_id, course_code, course_name) VALUES (?, ?, ?)");
+        try {
+            ps.setInt(1, Integer.parseInt(array[0]));
+            ps.setString(2, array[1]);
+            ps.setString(3, array[2]);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void update(DBConnector dbConnector, String[] array) {
-        int course_id = Integer.parseInt(array[0]);
-        dbConnector.execute("UPDATE courses SET vendor_id = '" + array[1] +
-                "', course_code = '" + array[2] + "', course_name = '" + array[3]  +
-                "' WHERE course_id = " + course_id + ";");
+        PreparedStatement ps = dbConnector.getPreparedStatement("UPDATE courses " +
+                "SET vendor_id = ?, course_code = ?, course_name = ? WHERE course_id = ?");
+        try {
+            ps.setInt(1, Integer.parseInt(array[1]));
+            ps.setString(2, array[2]);
+            ps.setString(3, array[3]);
+            ps.setInt(4, Integer.parseInt(array[0]));
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(DBConnector dbConnector, int id) {
         dbConnector.execute("DELETE FROM courses WHERE course_id = " + id + ";");
     }
+
 }
