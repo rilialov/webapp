@@ -19,28 +19,28 @@
         <div class="container">
             <div class="row">
                 <div class="col"></div>
-                <div class="col">
-                    <div class="container-fluid border border-dark">
-                        <form action="login" method="post">
-                            <div class="form-group">
-                                <label for="login">Login:</label>
-                                <input class="form-control ${valid}" type="text" id="login" name="login"
-                                       value="${login}"
-                                       placeholder="Enter login">
+                <div class="col container border border-dark">
+                    <form action="login" method="post">
+                        <div class="form-group">
+                            <label for="login">Login:</label>
+                            <input class="form-control ${valid}" type="text" id="login" name="login"
+                                   value="${login}"
+                                   placeholder="Enter login">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input class="form-control ${valid}" type="password" id="password" name="password"
+                                   placeholder="Password">
+                            <div class="invalid-feedback">${error}</div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col"></div>
+                            <div class="col"></div>
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary">OK</button>
                             </div>
-                            <div class="form-group">
-                                <label for="password">Password:</label>
-                                <input class="form-control ${valid}" type="password" id="password" name="password"
-                                       placeholder="Password">
-                                <div class="invalid-feedback">${error}</div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col"></div>
-                                <div class="col"></div>
-                                <div class="col"><button type="submit" class="btn btn-primary">OK</button></div>
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="col"></div>
             </div>
