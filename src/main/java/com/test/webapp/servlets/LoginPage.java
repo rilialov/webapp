@@ -38,10 +38,12 @@ public class LoginPage extends HttpServlet {
 
             } else {
                 request.setAttribute("login", login);
+                request.setAttribute("valid", "is-invalid");
                 request.setAttribute("error", "Login or Password is invalid!");
                 getServletContext().getRequestDispatcher("/").forward(request, response);
             }
         } else {
+            request.setAttribute("valid", "is-invalid");
             request.setAttribute("error", "Required Login and Password!");
             getServletContext().getRequestDispatcher("/").forward(request, response);
         }
