@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 
 @WebServlet(name = "studentsPage", value = "/students/form")
 public class StudentPage extends HttpServlet {
@@ -27,7 +28,7 @@ public class StudentPage extends HttpServlet {
         request.setAttribute("trainer", array[1]);
         request.setAttribute("firstname", array[2]);
         request.setAttribute("lastname", array[3]);
-        request.setAttribute("date", array[4]);
+        request.setAttribute("date", LocalDate.parse(array[4]));
         getServletContext().getRequestDispatcher("/WEB-INF/views/form.jsp").forward(request, response);
     }
 

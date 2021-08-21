@@ -1,11 +1,13 @@
 package com.test.webapp.model;
 
+import java.time.LocalDate;
+
 public class Form {
     private int id;
     private final int course_id;
     private final int trainer_id;
     private final int student_id;
-    private String date;
+    private LocalDate date;
 
     public Form(int course_id, int trainer_id, int student_id) {
         this.course_id = course_id;
@@ -33,11 +35,11 @@ public class Form {
         return student_id;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 }

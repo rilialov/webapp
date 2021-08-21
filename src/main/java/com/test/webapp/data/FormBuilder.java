@@ -5,6 +5,8 @@ import com.test.webapp.model.Course;
 import com.test.webapp.model.Trainer;
 import com.test.webapp.model.Student;
 
+import java.time.LocalDate;
+
 public class FormBuilder {
     private final DBConnector dbConnector;
     private final CoursesDAO coursesDAO;
@@ -14,7 +16,7 @@ public class FormBuilder {
     private Course course;
     private Trainer trainer;
     private Student student;
-    private final String date;
+    private final LocalDate date;
 
     public FormBuilder(int formID, DBController db) {
         dbConnector = db.getDbConnector();
@@ -51,7 +53,7 @@ public class FormBuilder {
         array[1] = trainer.getFirstName() + " " + trainer.getLastName();
         array[2] = student.getFirstName();
         array[3] = student.getLastName();
-        array[4] = date;
+        array[4] = String.valueOf(date);
         return array;
     }
 

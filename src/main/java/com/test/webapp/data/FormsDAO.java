@@ -5,6 +5,7 @@ import com.test.webapp.model.Form;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class FormsDAO implements DAO<Form> {
                 resultSet.next();
                 form = new Form(resultSet.getInt(2), resultSet.getInt(3), resultSet.getInt(4));
                 form.setId(resultSet.getInt(1));
-                form.setDate(resultSet.getString(5));
+                form.setDate(resultSet.getObject(5, LocalDate.class));
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -38,7 +39,7 @@ public class FormsDAO implements DAO<Form> {
                 while (!resultSet.isAfterLast()) {
                     Form form = new Form(resultSet.getInt(2), resultSet.getInt(3), resultSet.getInt(4));
                     form.setId(resultSet.getInt(1));
-                    form.setDate(resultSet.getString(5));
+                    form.setDate(resultSet.getObject(5, LocalDate.class));
                     formsList.add(form);
                     resultSet.next();
                 }
@@ -57,7 +58,7 @@ public class FormsDAO implements DAO<Form> {
             ps.setInt(1, Integer.parseInt(array[0]));
             ps.setInt(2, Integer.parseInt(array[1]));
             ps.setInt(3, Integer.parseInt(array[2]));
-            ps.setString(4, array[3]);
+            ps.setObject(4, LocalDate.parse(array[3]));
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
@@ -73,7 +74,7 @@ public class FormsDAO implements DAO<Form> {
             ps.setInt(1, Integer.parseInt(array[1]));
             ps.setInt(2, Integer.parseInt(array[2]));
             ps.setInt(3, Integer.parseInt(array[3]));
-            ps.setString(4, array[4]);
+            ps.setObject(4, LocalDate.parse(array[4]));
             ps.setInt(5, Integer.parseInt(array[0]));
             ps.executeUpdate();
             ps.close();

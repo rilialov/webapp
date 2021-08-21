@@ -3,6 +3,7 @@
 <%--@elvariable id="date" type="com.test.webapp.model.Form"--%>
 <%--@elvariable id="course" type="com.test.webapp.model.Course"--%>
 <%--@elvariable id="trainer" type="com.test.webapp.model.Trainer"--%>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -30,7 +31,7 @@
                 </li>
                 <li>
                     <label for="date">Date:</label>
-                    <input class="txt_input" type="text" id="date" value="${date}" readonly>
+                    <input class="txt_input" type="text" id="date" value="<tags:localDate date="${date}"/>" readonly>
                 </li>
                 <li>
                     <label for="firstname">First Name:</label>
