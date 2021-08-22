@@ -16,85 +16,9 @@ header {
 }
 
 main {
-    padding: 0 20px;
+    padding: 0 20px 20px;
     min-height: 500px;
 }
-
-/*.left_side {*/
-/*    width: 20%;*/
-/*    float: left;*/
-/*}*/
-
-/*.center {*/
-/*    margin: 0 0 10px 20px;*/
-/*    float: left;*/
-/*    width: 70%;*/
-/*}*/
-
-/*form {*/
-/*    margin: 0 auto;*/
-/*    width: 250px;*/
-/*    padding: 1em;*/
-/*    border: 1px solid #CCC;*/
-/*}*/
-
-/*ul {*/
-/*    list-style: none;*/
-/*    padding: 0;*/
-/*    margin: 0;*/
-/*}*/
-
-/*form li + li {*/
-/*    margin-top: 1em;*/
-/*}*/
-
-/*.left_side li {*/
-/*    padding: 5px;*/
-/*    border-bottom: solid 1px #2EB845;*/
-/*}*/
-
-/*.left_side a {*/
-/*    color: #636363;*/
-/*    font-weight: bold;*/
-/*    text-decoration: none;*/
-/*}*/
-
-/*label {*/
-/*    display: inline-block;*/
-/*    width: 90px;*/
-/*}*/
-
-/*.txt_input {*/
-/*    width: 150px;*/
-/*    border: 1px solid #999;*/
-/*}*/
-
-/*input:focus {*/
-/*    border-color: #000;*/
-/*}*/
-
-/*textarea {*/
-/*    vertical-align: top;*/
-/*    width: 240px;*/
-/*}*/
-
-/*.button {*/
-/*    padding-left: 215px;*/
-/*}*/
-
-/*table {*/
-/*    margin: 0 auto;*/
-/*    border: solid 1px #2EB845;*/
-/*}*/
-
-/*td, th {*/
-/*    padding: 5px;*/
-/*    background: #EFE7B6;*/
-/*}*/
-
-/*.error {*/
-/*    color: red;*/
-/*}*/
 
 footer {
     padding: 10px 20px 10px 20px;
