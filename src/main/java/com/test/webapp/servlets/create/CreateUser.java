@@ -26,10 +26,13 @@ public class CreateUser extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
 
-        String[] array = new String[4];
+        String[] array = new String[3];
         array[0] = request.getParameter("login");
         array[1] = request.getParameter("form");
-        array[2] = request.getParameter("manager");
+        String manager = request.getParameter("manager");
+        if (manager == null) {
+            array[2] = "false";
+        } else array[2] = "true";
 
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
