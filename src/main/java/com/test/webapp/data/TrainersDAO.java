@@ -2,6 +2,7 @@ package com.test.webapp.data;
 
 import com.test.webapp.model.Trainer;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -48,15 +49,31 @@ public class TrainersDAO implements DAO<Trainer> {
 
     @Override
     public void create(DBConnector dbConnector, String[] array) {
-        dbConnector.execute("INSERT INTO trainers(first_name, last_name) VALUES ('" + array[0] +
-                "', '" + array[1] + "')");
+        PreparedStatement ps = dbConnector.getPreparedStatement("INSERT INTO " +
+                "trainers(first_name, last_name) VALUES (?, ?)");
+        try {
+            ps.setString(1, array[0]);
+            ps.setString(2, array[1]);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void update(DBConnector dbConnector, String[] array) {
-        int trainer_id = Integer.parseInt(array[0]);
-        dbConnector.execute("UPDATE trainers SET first_name = '" + array[1] +
-                "', last_name = '" + array[2] + "' WHERE trainer_id = " + trainer_id + ";");
+        PreparedStatement ps = dbConnector.getPreparedStatement("UPDATE trainers " +
+                "SET first_name = ?, last_name = ? WHERE trainer_id = ?");
+        try {
+            ps.setString(1, array[1]);
+            ps.setString(2, array[2]);
+            ps.setInt(3, Integer.parseInt(array[0]));
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
