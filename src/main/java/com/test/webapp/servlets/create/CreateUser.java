@@ -28,11 +28,14 @@ public class CreateUser extends HttpServlet {
 
         String[] array = new String[3];
         array[0] = request.getParameter("login");
-        array[1] = request.getParameter("form");
         String manager = request.getParameter("manager");
         if (manager == null) {
             array[2] = "false";
-        } else array[2] = "true";
+            array[1] = request.getParameter("form");
+        } else {
+            array[2] = "true";
+            array[1] = "0";
+        }
 
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);

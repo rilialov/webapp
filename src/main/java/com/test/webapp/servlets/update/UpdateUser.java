@@ -40,11 +40,14 @@ public class UpdateUser extends HttpServlet {
         String[] array = new String[4];
         array[0] = String.valueOf(user_id);
         array[1] = request.getParameter("login");
-        array[2] = request.getParameter("form");
         String manager = request.getParameter("manager");
         if (manager == null) {
             array[3] = "false";
-        } else array[3] = "true";
+            array[2] = request.getParameter("form");
+        } else {
+            array[3] = "true";
+            array[2] = "0";
+        }
 
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
