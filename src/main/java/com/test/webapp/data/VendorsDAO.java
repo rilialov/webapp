@@ -2,6 +2,7 @@ package com.test.webapp.data;
 
 import com.test.webapp.model.Vendor;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -49,15 +50,29 @@ public class VendorsDAO implements DAO<Vendor> {
 
     @Override
     public void create(DBConnector dbConnector, String[] array) {
-        dbConnector.execute("INSERT INTO vendors(vendor_name) VALUES ('" + array[0] +
-                "')");
+        PreparedStatement ps = dbConnector.getPreparedStatement("INSERT INTO " +
+                "vendors(vendor_name) VALUES (?)");
+        try {
+            ps.setString(1, array[0]);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void update(DBConnector dbConnector, String[] array) {
-        int vendor_id = Integer.parseInt(array[0]);
-        dbConnector.execute("UPDATE vendors SET vendor_name = '" + array[1] +
-                "' WHERE vendor_id = " + vendor_id + ";");
+        PreparedStatement ps = dbConnector.getPreparedStatement("UPDATE vendors " +
+                "SET vendor_name = ? WHERE vendor_id = ?");
+        try {
+            ps.setString(1, array[1]);
+            ps.setInt(2, Integer.parseInt(array[0]));
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
