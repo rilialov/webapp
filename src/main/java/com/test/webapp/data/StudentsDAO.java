@@ -2,6 +2,7 @@ package com.test.webapp.data;
 
 import com.test.webapp.model.Student;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -56,16 +57,51 @@ public class StudentsDAO implements DAO<Student> {
 
     @Override
     public void create(DBConnector dbConnector, String[] array) {
-        dbConnector.execute("INSERT INTO students(first_name, last_name, phone, email) VALUES ('" + array[0] +
-                "', '" + array[1] + "', '" + array[2] + "', '" + array[3] + "')");
+        PreparedStatement ps = dbConnector.getPreparedStatement("INSERT INTO " +
+                "students(first_name, last_name, phone, email) VALUES (?, ?, ?, ?)");
+        try {
+            ps.setString(1, array[0]);
+            ps.setString(2, array[1]);
+            ps.setString(3, array[2]);
+            ps.setString(4, array[3]);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void update(DBConnector dbConnector, String[] array) {
-        int student_id = Integer.parseInt(array[0]);
-        dbConnector.execute("UPDATE students SET first_name = '" + array[1] +
-                "', last_name = '" + array[2] + "', phone = '" + array[3] + "' , email = '" + array[4] +
-                "' WHERE student_id = " + student_id + ";");
+        PreparedStatement ps = dbConnector.getPreparedStatement("UPDATE students " +
+                "SET first_name = ?, last_name = ?, phone = ?, email = ? WHERE student_id = ?");
+        try {
+            ps.setString(1, array[1]);
+            ps.setString(2, array[2]);
+            ps.setString(3, array[3]);
+            ps.setString(4, array[4]);
+            ps.setInt(5, Integer.parseInt(array[0]));
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateEdited(DBConnector dbConnector, String[] array) {
+        PreparedStatement ps = dbConnector.getPreparedStatement("UPDATE students " +
+                "SET first_name_ed = ?, last_name_ed = ?, phone_ed = ?, email_ed = ? WHERE student_id = ?");
+        try {
+            ps.setString(1, array[1]);
+            ps.setString(2, array[2]);
+            ps.setString(3, array[3]);
+            ps.setString(4, array[4]);
+            ps.setInt(5, Integer.parseInt(array[0]));
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -73,10 +109,4 @@ public class StudentsDAO implements DAO<Student> {
         dbConnector.execute("DELETE FROM students WHERE student_id = " + id + ";");
     }
 
-    public void updateEdited(DBConnector dbConnector, String[] array) {
-        int student_id = Integer.parseInt(array[0]);
-        dbConnector.execute("UPDATE students SET first_name_ed = '" + array[1] +
-                "', last_name_ed = '" + array[2] + "', phone_ed = '" + array[3] + "' , email_ed = '" + array[4] +
-                "' WHERE student_id = " + student_id + ";");
-    }
 }
