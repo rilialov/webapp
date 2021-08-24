@@ -17,6 +17,7 @@ public class CreateVendor extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("title", "Create");
         request.setAttribute("create", "create");
         getServletContext().getRequestDispatcher("/WEB-INF/views/create-update/Vendor.jsp").forward(request, response);
     }

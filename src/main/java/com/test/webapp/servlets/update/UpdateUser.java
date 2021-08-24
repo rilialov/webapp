@@ -28,6 +28,7 @@ public class UpdateUser extends HttpServlet {
         user_id = Integer.parseInt(request.getParameter("user_id"));
         UserAccount userAccountNew = usersDAO.get(db.getDbConnector(), user_id);
 
+        request.setAttribute("title", "Update");
         request.setAttribute("user", userAccountNew);
         request.setAttribute("create", "update");
         getServletContext().getRequestDispatcher("/WEB-INF/views/create-update/User.jsp").forward(request, response);

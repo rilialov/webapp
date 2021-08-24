@@ -27,6 +27,7 @@ public class UpdateTrainer extends HttpServlet {
         trainer_id = Integer.parseInt(request.getParameter("trainer_id"));
         Trainer trainer = trainersDAO.get(db.getDbConnector(), trainer_id);
 
+        request.setAttribute("title", "Update");
         request.setAttribute("trainer", trainer);
         request.setAttribute("create", "update");
         getServletContext().getRequestDispatcher("/WEB-INF/views/create-update/Trainer.jsp").forward(request, response);

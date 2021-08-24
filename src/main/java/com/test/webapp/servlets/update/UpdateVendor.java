@@ -27,6 +27,7 @@ public class UpdateVendor extends HttpServlet {
         vendor_id = Integer.parseInt(request.getParameter("vendor_id"));
         Vendor vendor = vendorsDAO.get(db.getDbConnector(), vendor_id);
 
+        request.setAttribute("title", "Update");
         request.setAttribute("vendor", vendor);
         request.setAttribute("create", "update");
         getServletContext().getRequestDispatcher("/WEB-INF/views/create-update/Vendor.jsp").forward(request, response);

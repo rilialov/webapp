@@ -1,3 +1,4 @@
+<%--@elvariable id="title" type="java.lang"--%>
 <%--@elvariable id="create" type="java.lang"--%>
 <%--@elvariable id="vendor" type="com.test.webapp.model.Vendor"--%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -7,7 +8,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.min.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/main.css"/>">
-    <title>Edit Vendor</title>
+    <title>${title} Vendor</title>
 </head>
 <body>
 <div class="all">
@@ -21,7 +22,7 @@
                     <jsp:include page="../_left_menu.jsp"/>
                 </div>
                 <div class="col-10">
-                    <h2>Edit Vendor</h2>
+                    <h2>${title} Vendor</h2>
                     <div class="row">
                         <div class="col container">
                             <form action="${create}Vendor" method="post">

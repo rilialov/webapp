@@ -1,3 +1,4 @@
+<%--@elvariable id="title" type="java.lang"--%>
 <%--@elvariable id="create" type="java.lang"--%>
 <%--@elvariable id="form" type="com.test.webapp.model.Form"--%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -7,7 +8,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.min.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/main.css"/>">
-    <title>Edit Form</title>
+    <title>${title} Form</title>
 </head>
 <body>
 <div class="all">
@@ -21,13 +22,14 @@
                     <jsp:include page="../_left_menu.jsp"/>
                 </div>
                 <div class="col-10">
-                    <h2>Edit Form</h2>
+                    <h2>${title} Form</h2>
                     <div class="row">
                         <div class="col container">
                             <form action="${create}Form" method="post">
                                 <div class="form-group">
                                     <label for="course">Course:</label>
-                                    <textarea class="form-control" id="course" name="course_id">${form.course_id}</textarea>
+                                    <textarea class="form-control" id="course"
+                                              name="course_id">${form.course_id}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="trainer">Trainer:</label>

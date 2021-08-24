@@ -27,6 +27,7 @@ public class UpdateForm extends HttpServlet {
         form_id = Integer.parseInt(request.getParameter("form_id"));
         Form form= formsDAO.get(db.getDbConnector(), form_id);
 
+        request.setAttribute("title", "Update");
         request.setAttribute("form", form);
         request.setAttribute("create", "update");
         getServletContext().getRequestDispatcher("/WEB-INF/views/create-update/Form.jsp").forward(request, response);
