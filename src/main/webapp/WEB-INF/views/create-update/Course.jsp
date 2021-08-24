@@ -1,4 +1,5 @@
 <%--@elvariable id="create" type="java.lang"--%>
+<%--@elvariable id="title" type="java.lang"--%>
 <%--@elvariable id="course" type="com.test.webapp.model.Course"--%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -7,7 +8,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.min.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/main.css"/>">
-    <title>Edit Course</title>
+    <title>${title} Course</title>
 </head>
 <body>
 <div class="all">
@@ -21,7 +22,7 @@
                     <jsp:include page="../_left_menu.jsp"/>
                 </div>
                 <div class="col-10">
-                    <h2>Edit Course</h2>
+                    <h2>${title} Course</h2>
                     <div class="row">
                         <div class="col container">
                             <form action="${create}Course" method="post">

@@ -33,6 +33,7 @@ public class UpdateCourse extends HttpServlet {
         VendorsDAO vendorsDAO = db.getVendorsDAO();
         List<Vendor> list = vendorsDAO.getAll(db.getDbConnector());
 
+        request.setAttribute("title", "Update");
         request.setAttribute("vendorsList", list);
         request.setAttribute("course", course);
         request.setAttribute("create", "update");

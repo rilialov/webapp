@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.min.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/main.css"/>">
     <title>Trainers List</title>
@@ -35,15 +36,17 @@
                                 <td>${trainer.firstName}</td>
                                 <td>${trainer.lastName}</td>
                                 <td>
-                                    <a href="updateTrainer?trainer_id=${trainer.id}">Edit</a>
+                                    <a href="updateTrainer?trainer_id=${trainer.id}"><i
+                                            class="bi bi-file-earmark-text"></i></a>
                                 </td>
                                 <td>
-                                    <a href="deleteTrainer?trainer_id=${trainer.id}">Delete</a>
+                                    <a href="deleteTrainer?trainer_id=${trainer.id}"><i class="bi bi-trash"></i></a>
                                 </td>
                             </tr>
                         </c:forEach>
                     </table>
-                    <a href="<c:url value="/managers/createTrainer"/>">Create a new trainer..</a>
+                    <a class="btn btn-primary" href="<c:url value="/managers/createTrainer"/>" role="button">Create <i
+                            class="bi bi-file-earmark-plus"></i></a>
                 </div>
             </div>
         </div>

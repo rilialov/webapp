@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.min.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/main.css"/>">
     <title>Students List</title>
@@ -47,15 +48,17 @@
                                 <td>${student.phone_ed}</td>
                                 <td>${student.email_ed}</td>
                                 <td>
-                                    <a href="updateStudent?student_id=${student.id}">Edit</a>
+                                    <a href="updateStudent?student_id=${student.id}"><i
+                                            class="bi bi-file-earmark-text"></i></a>
                                 </td>
                                 <td>
-                                    <a href="deleteStudent?student_id=${student.id}">Delete</a>
+                                    <a href="deleteStudent?student_id=${student.id}"><i class="bi bi-trash"></i></a>
                                 </td>
                             </tr>
                         </c:forEach>
                     </table>
-                    <a href="<c:url value="/managers/createStudent"/>">Create a new student..</a>
+                    <a class="btn btn-primary" href="<c:url value="/managers/createStudent"/>" role="button">Create <i
+                            class="bi bi-file-earmark-plus"></i></a>
                 </div>
             </div>
         </div>

@@ -24,6 +24,7 @@ public class CreateCourse extends HttpServlet {
         DBController db = UsersSessions.getDbController(userAccount);
         VendorsDAO vendorsDAO = db.getVendorsDAO();
         List<Vendor> list = vendorsDAO.getAll(db.getDbConnector());
+        request.setAttribute("title", "Create");
         request.setAttribute("vendorsList", list);
         request.setAttribute("create", "create");
         getServletContext().getRequestDispatcher("/WEB-INF/views/create-update/Course.jsp").forward(request, response);
