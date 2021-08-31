@@ -6,6 +6,7 @@ public class UserAccount {
     private byte[] salt;
     private byte[] hash;
     private int form_id;
+    private String form;
     private final boolean manager;
 
     public UserAccount(String login, boolean manager) {
@@ -31,6 +32,14 @@ public class UserAccount {
 
     public int getForm_id() {
         return form_id;
+    }
+
+    public void setForm(String form) {
+        this.form = form;
+    }
+
+    public String getForm() {
+        return form;
     }
 
     public boolean isManager() {

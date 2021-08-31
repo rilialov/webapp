@@ -5,6 +5,8 @@ import com.test.webapp.sessions.UserAccount;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,15 +42,23 @@ public class UsersDAO implements DAO<UserAccount> {
     @Override
     public List<UserAccount> getAll(DBConnector dbConnector) {
         ArrayList<UserAccount> usersList = new ArrayList<>();
-        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM users;");
+        ResultSet resultSet = dbConnector.getQuery("SELECT user_id, login, users.form_id, forms.date, " +
+                "students.last_name, manager FROM users LEFT JOIN forms ON users.form_id = forms.form_id " +
+                "LEFT JOIN students ON forms.student_id = students.student_id;");
 
         if (resultSet != null) {
             try {
                 resultSet.next();
                 while (!resultSet.isAfterLast()) {
-                    UserAccount userAccount = new UserAccount(resultSet.getString(2), resultSet.getBoolean(4));
-                    userAccount.setForm_id(resultSet.getInt(3));
+                    UserAccount userAccount = new UserAccount(resultSet.getString(2), resultSet.getBoolean(6));
+                    int form_id = resultSet.getInt(3);
                     userAccount.setId(resultSet.getInt(1));
+                    userAccount.setForm_id(form_id);
+                    if (form_id != 0) {
+                        LocalDate date = resultSet.getObject(4, LocalDate.class);
+                        String formattedDate = date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+                        userAccount.setForm(formattedDate + " - " + resultSet.getString(5));
+                    }
                     usersList.add(userAccount);
                     resultSet.next();
                 }

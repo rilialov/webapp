@@ -35,7 +35,14 @@
                         <c:forEach items="${usersList}" var="user">
                             <tr>
                                 <td>${user.login}</td>
-                                <td>${user.form_id}</td>
+                                <td>
+                                    <c:if test="${user.form_id == 0}">
+                                        0
+                                    </c:if>
+                                    <c:if test="${user.form_id > 0}">
+                                        ${user.form}
+                                    </c:if>
+                                </td>
                                 <td>
                                     <c:if test="${user.manager == true}">
                                         Yes
