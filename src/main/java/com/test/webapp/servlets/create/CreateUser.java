@@ -31,11 +31,11 @@ public class CreateUser extends HttpServlet {
         array[0] = request.getParameter("login");
         String manager = request.getParameter("manager");
         if (manager == null) {
-            array[2] = "false";
+            array[2] = "STUDENT";
             array[1] = request.getParameter("form");
         } else {
-            array[2] = "true";
-            array[1] = "0";
+            array[2] = "MANAGER";
+            array[1] = "null";
         }
 
         UserAccount userAccount = UsersSessions.getUser(request.getSession());

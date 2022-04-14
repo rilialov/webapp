@@ -1,8 +1,8 @@
 package com.test.webapp.model;
 
 public class Course {
-    private int id;
-    private int vendor_id;
+    private long id;
+    private long vendor;
     private String vendorName;
     private final String courseCode;
     private final String courseName;
@@ -12,20 +12,20 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public int getVendor_id() {
-        return vendor_id;
+    public long getVendor() {
+        return vendor;
     }
 
-    public void setVendor_id(int vendor_id) {
-        this.vendor_id = vendor_id;
+    public void setVendor(long vendor) {
+        this.vendor = vendor;
     }
 
     public String getVendorName() {

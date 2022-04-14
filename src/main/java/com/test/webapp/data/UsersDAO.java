@@ -13,13 +13,13 @@ import java.util.List;
 public class UsersDAO implements DAO<UserAccount> {
 
     @Override
-    public UserAccount get(DBConnector dbConnector, int id) {
+    public UserAccount get(DBConnector dbConnector, long id) {
         ResultSet resultSet = dbConnector.getQuery("SELECT * FROM users WHERE user_id = '" + id + "';");
         return getUserAccount(resultSet);
     }
 
     public UserAccount getByLogin(DBConnector dbConnector, String login) {
-        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM users WHERE login = '" + login + "';");
+        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM users_salt WHERE login = '" + login + "';");
         return getUserAccount(resultSet);
     }
 
@@ -28,10 +28,10 @@ public class UsersDAO implements DAO<UserAccount> {
         if (resultSet != null) {
             try {
                 resultSet.next();
-                userAccount = new UserAccount(resultSet.getString(2), resultSet.getBoolean(4));
-                userAccount.setForm_id(resultSet.getInt(3));
-                userAccount.setSalt(resultSet.getBytes(5));
-                userAccount.setHash(resultSet.getBytes(6));
+                userAccount = new UserAccount(resultSet.getString(2), resultSet.getString(5));
+                userAccount.setHash(resultSet.getBytes(3));
+                userAccount.setSalt(resultSet.getBytes(4));
+                userAccount.setForm_id(resultSet.getInt(6));
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -50,7 +50,7 @@ public class UsersDAO implements DAO<UserAccount> {
             try {
                 resultSet.next();
                 while (!resultSet.isAfterLast()) {
-                    UserAccount userAccount = new UserAccount(resultSet.getString(2), resultSet.getBoolean(6));
+                    UserAccount userAccount = new UserAccount(resultSet.getString(2), resultSet.getString(6));
                     int form_id = resultSet.getInt(3);
                     userAccount.setId(resultSet.getInt(1));
                     userAccount.setForm_id(form_id);
@@ -75,14 +75,15 @@ public class UsersDAO implements DAO<UserAccount> {
     }
 
     public void createWithSaltHash(DBConnector dbConnector, String[] array, byte[] salt, byte[] hash) {
-        PreparedStatement ps = dbConnector.getPreparedStatement("INSERT INTO users" +
-                "(login, form_id, manager, salt, hash) VALUES (?, ?, ?, ?, ?)");
+
+        PreparedStatement ps = dbConnector.getPreparedStatement("INSERT INTO users_salt" +
+                "(login, hash, salt, role) VALUES (?, ?, ?, ?)");
         try {
             ps.setString(1, array[0]);
-            ps.setInt(2, Integer.parseInt(array[1]));
-            ps.setBoolean(3, Boolean.parseBoolean(array[2]));
-            ps.setBytes(4, salt);
-            ps.setBytes(5, hash);
+            ps.setBytes(2, hash);
+            ps.setBytes(3, salt);
+            ps.setString(4, array[2]);
+//            ps.setInt(5, Integer.parseInt(array[1]));
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
@@ -107,7 +108,7 @@ public class UsersDAO implements DAO<UserAccount> {
     }
 
     @Override
-    public void delete(DBConnector dbConnector, int id) {
+    public void delete(DBConnector dbConnector, long id) {
         dbConnector.execute("DELETE FROM users WHERE user_id = " + id + ";");
     }
 

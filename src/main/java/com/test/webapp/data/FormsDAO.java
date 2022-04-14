@@ -12,7 +12,7 @@ import java.util.List;
 public class FormsDAO implements DAO<Form> {
 
     @Override
-    public Form get(DBConnector dbConnector, int id) {
+    public Form get(DBConnector dbConnector, long id) {
         Form form = null;
         ResultSet resultSet = dbConnector.getQuery("SELECT * FROM forms WHERE form_id = " + id + ";");
 
@@ -84,7 +84,7 @@ public class FormsDAO implements DAO<Form> {
     }
 
     @Override
-    public void delete(DBConnector dbConnector, int id) {
+    public void delete(DBConnector dbConnector, long id) {
         dbConnector.execute("DELETE FROM forms WHERE form_id = " + id + ";");
     }
 

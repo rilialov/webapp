@@ -30,20 +30,20 @@ public class FormBuilder {
     }
 
     private void setForm() {
-        setCourse(form.getCourse_id());
-        setTrainer(form.getTrainer_id());
-        setStudent(form.getStudent_id());
+        setCourse(form.getCourse());
+        setTrainer(form.getTrainer());
+        setStudent(form.getStudent());
     }
 
-    private void setCourse(int id) {
+    private void setCourse(long id) {
         course = coursesDAO.get(dbConnector, id);
     }
 
-    private void setTrainer(int id) {
+    private void setTrainer(long id) {
         trainer = trainersDAO.get(dbConnector, id);
     }
 
-    private void setStudent(int id) {
+    private void setStudent(long id) {
         student = studentsDAO.get(dbConnector, id);
     }
 

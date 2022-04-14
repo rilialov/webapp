@@ -1,9 +1,6 @@
 package com.test.webapp.model;
 
 public class Student extends Man {
-    private int id;
-    private String phone;
-    private String email;
     private String firstName_ed;
     private String lastName_ed;
     private String phone_ed;
@@ -12,30 +9,6 @@ public class Student extends Man {
     public Student(String firstName, String lastName) {
         super.firstName = firstName;
         super.lastName = lastName;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getFirstName_ed() {

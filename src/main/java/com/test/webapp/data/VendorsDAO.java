@@ -11,15 +11,15 @@ import java.util.List;
 public class VendorsDAO implements DAO<Vendor> {
 
     @Override
-    public Vendor get(DBConnector dbConnector, int id) {
+    public Vendor get(DBConnector dbConnector, long id) {
         Vendor vendor = null;
-        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM vendors WHERE vendor_id = " + id + ";");
+        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM vendors WHERE id = " + id + ";");
 
         if (resultSet != null) {
             try {
                 resultSet.next();
                 vendor = new Vendor(resultSet.getString(2));
-                vendor.setId(resultSet.getInt(1));
+                vendor.setId(resultSet.getLong(1));
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -37,7 +37,7 @@ public class VendorsDAO implements DAO<Vendor> {
                 resultSet.next();
                 while (!resultSet.isAfterLast()) {
                     Vendor vendor = new Vendor(resultSet.getString(2));
-                    vendor.setId(resultSet.getInt(1));
+                    vendor.setId(resultSet.getLong(1));
                     vendorsList.add(vendor);
                     resultSet.next();
                 }
@@ -64,10 +64,10 @@ public class VendorsDAO implements DAO<Vendor> {
     @Override
     public void update(DBConnector dbConnector, String[] array) {
         PreparedStatement ps = dbConnector.getPreparedStatement("UPDATE vendors " +
-                "SET vendor_name = ? WHERE vendor_id = ?");
+                "SET vendor_name = ? WHERE id = ?");
         try {
             ps.setString(1, array[1]);
-            ps.setInt(2, Integer.parseInt(array[0]));
+            ps.setLong(2, Integer.parseInt(array[0]));
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
@@ -76,7 +76,7 @@ public class VendorsDAO implements DAO<Vendor> {
     }
 
     @Override
-    public void delete(DBConnector dbConnector, int id) {
-        dbConnector.execute("DELETE FROM vendors WHERE vendor_id = " + id + ";");
+    public void delete(DBConnector dbConnector, long id) {
+        dbConnector.execute("DELETE FROM vendors WHERE id = " + id + ";");
     }
 }

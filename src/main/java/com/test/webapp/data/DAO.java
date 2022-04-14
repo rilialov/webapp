@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface DAO<T> {
 
-    T get(DBConnector dbConnector, int id);
+    T get(DBConnector dbConnector, long id);
 
     List<T> getAll(DBConnector dbConnector);
 
@@ -12,6 +12,6 @@ public interface DAO<T> {
 
     void update(DBConnector dbConnector, String[] array);
 
-    void delete(DBConnector dbConnector, int id);
+    void delete(DBConnector dbConnector, long id);
 
 }

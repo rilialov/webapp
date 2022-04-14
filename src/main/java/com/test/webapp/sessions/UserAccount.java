@@ -7,9 +7,9 @@ public class UserAccount {
     private byte[] hash;
     private int form_id;
     private String form;
-    private final boolean manager;
+    private final String manager;
 
-    public UserAccount(String login, boolean manager) {
+    public UserAccount(String login, String manager) {
         this.login = login;
         this.manager = manager;
     }
@@ -43,7 +43,7 @@ public class UserAccount {
     }
 
     public boolean isManager() {
-        return manager;
+        return manager.equals("MANAGER");
     }
 
     public byte[] getSalt() {

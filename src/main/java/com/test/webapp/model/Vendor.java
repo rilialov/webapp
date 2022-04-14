@@ -1,18 +1,18 @@
 package com.test.webapp.model;
 
 public class Vendor {
-    private int id;
+    private long id;
     private final String vendorName;
 
     public Vendor(String vendorName) {
         this.vendorName = vendorName;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

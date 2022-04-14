@@ -11,7 +11,7 @@ import java.util.List;
 public class TrainersDAO implements DAO<Trainer> {
 
     @Override
-    public Trainer get(DBConnector dbConnector, int id) {
+    public Trainer get(DBConnector dbConnector, long id) {
         Trainer trainer = null;
         ResultSet resultSet = dbConnector.getQuery("SELECT * FROM trainers WHERE trainer_id = " + id + ";");
 
@@ -77,7 +77,7 @@ public class TrainersDAO implements DAO<Trainer> {
     }
 
     @Override
-    public void delete(DBConnector dbConnector, int id) {
+    public void delete(DBConnector dbConnector, long id) {
         dbConnector.execute("DELETE FROM trainers WHERE trainer_id = " + id + ";");
     }
 }

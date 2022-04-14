@@ -11,16 +11,16 @@ import java.util.List;
 public class CoursesDAO implements DAO<Course> {
 
     @Override
-    public Course get(DBConnector dbConnector, int id) {
+    public Course get(DBConnector dbConnector, long id) {
         Course course = null;
-        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM courses WHERE course_id = " + id + ";");
+        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM courses WHERE id = " + id + ";");
 
         if (resultSet != null) {
             try {
                 resultSet.next();
-                course = new Course(resultSet.getString(3), resultSet.getString(4));
-                course.setId(resultSet.getInt(1));
-                course.setVendor_id(resultSet.getInt(2));
+                course = new Course(resultSet.getString(2), resultSet.getString(3));
+                course.setId(resultSet.getLong(1));
+                course.setVendor(resultSet.getLong(5));
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -31,8 +31,8 @@ public class CoursesDAO implements DAO<Course> {
     @Override
     public List<Course> getAll(DBConnector dbConnector) {
         ArrayList<Course> coursesList = new ArrayList<>();
-        ResultSet resultSet = dbConnector.getQuery("SELECT course_id, vendors.vendor_name, course_code, course_name " +
-                "FROM courses JOIN vendors ON courses.vendor_id = vendors.vendor_id");
+        ResultSet resultSet = dbConnector.getQuery("SELECT courses.id, vendors.vendor_name, course_code, course_name " +
+                "FROM courses JOIN vendors ON courses.vendor = vendors.id;");
         if (resultSet != null) {
             try {
                 resultSet.next();
@@ -53,9 +53,9 @@ public class CoursesDAO implements DAO<Course> {
     @Override
     public void create(DBConnector dbConnector, String[] array) {
         PreparedStatement ps = dbConnector.getPreparedStatement("INSERT INTO " +
-                "courses(vendor_id, course_code, course_name) VALUES (?, ?, ?)");
+                "courses(vendor, course_code, course_name) VALUES (?, ?, ?)");
         try {
-            ps.setInt(1, Integer.parseInt(array[0]));
+            ps.setLong(1, Integer.parseInt(array[0]));
             ps.setString(2, array[1]);
             ps.setString(3, array[2]);
             ps.executeUpdate();
@@ -68,12 +68,12 @@ public class CoursesDAO implements DAO<Course> {
     @Override
     public void update(DBConnector dbConnector, String[] array) {
         PreparedStatement ps = dbConnector.getPreparedStatement("UPDATE courses " +
-                "SET vendor_id = ?, course_code = ?, course_name = ? WHERE course_id = ?");
+                "SET vendor = ?, course_code = ?, course_name = ? WHERE id = ?");
         try {
-            ps.setInt(1, Integer.parseInt(array[1]));
+            ps.setLong(1, Integer.parseInt(array[1]));
             ps.setString(2, array[2]);
             ps.setString(3, array[3]);
-            ps.setInt(4, Integer.parseInt(array[0]));
+            ps.setLong(4, Integer.parseInt(array[0]));
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
@@ -82,8 +82,8 @@ public class CoursesDAO implements DAO<Course> {
     }
 
     @Override
-    public void delete(DBConnector dbConnector, int id) {
-        dbConnector.execute("DELETE FROM courses WHERE course_id = " + id + ";");
+    public void delete(DBConnector dbConnector, long id) {
+        dbConnector.execute("DELETE FROM courses WHERE id = " + id + ";");
     }
 
 }

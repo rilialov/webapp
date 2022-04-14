@@ -11,7 +11,7 @@ import java.util.List;
 public class StudentsDAO implements DAO<Student> {
 
     @Override
-    public Student get(DBConnector dbConnector, int id) {
+    public Student get(DBConnector dbConnector, long id) {
         Student student = null;
         ResultSet resultSet = dbConnector.getQuery("SELECT * FROM students WHERE student_id = " + id + ";");
 
@@ -105,7 +105,7 @@ public class StudentsDAO implements DAO<Student> {
     }
 
     @Override
-    public void delete(DBConnector dbConnector, int id) {
+    public void delete(DBConnector dbConnector, long id) {
         dbConnector.execute("DELETE FROM students WHERE student_id = " + id + ";");
     }
 
