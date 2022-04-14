@@ -8,12 +8,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentsDAO implements DAO<Student> {
+public class StudentsDAOImpl implements DAO<Student> {
 
     @Override
     public Student get(DBConnector dbConnector, long id) {
         Student student = null;
-        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM students WHERE student_id = " + id + ";");
+        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM students WHERE id = " + id + ";");
 
         if (resultSet != null) {
             try {
@@ -74,13 +74,13 @@ public class StudentsDAO implements DAO<Student> {
     @Override
     public void update(DBConnector dbConnector, String[] array) {
         PreparedStatement ps = dbConnector.getPreparedStatement("UPDATE students " +
-                "SET first_name = ?, last_name = ?, phone = ?, email = ? WHERE student_id = ?");
+                "SET first_name = ?, last_name = ?, phone = ?, email = ? WHERE id = ?");
         try {
             ps.setString(1, array[1]);
             ps.setString(2, array[2]);
             ps.setString(3, array[3]);
             ps.setString(4, array[4]);
-            ps.setInt(5, Integer.parseInt(array[0]));
+            ps.setLong(5, Integer.parseInt(array[0]));
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
@@ -90,13 +90,13 @@ public class StudentsDAO implements DAO<Student> {
 
     public void updateEdited(DBConnector dbConnector, String[] array) {
         PreparedStatement ps = dbConnector.getPreparedStatement("UPDATE students " +
-                "SET first_name_ed = ?, last_name_ed = ?, phone_ed = ?, email_ed = ? WHERE student_id = ?");
+                "SET first_name_ed = ?, last_name_ed = ?, phone_ed = ?, email_ed = ? WHERE id = ?");
         try {
             ps.setString(1, array[1]);
             ps.setString(2, array[2]);
             ps.setString(3, array[3]);
             ps.setString(4, array[4]);
-            ps.setInt(5, Integer.parseInt(array[0]));
+            ps.setLong(5, Integer.parseInt(array[0]));
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
@@ -106,7 +106,7 @@ public class StudentsDAO implements DAO<Student> {
 
     @Override
     public void delete(DBConnector dbConnector, long id) {
-        dbConnector.execute("DELETE FROM students WHERE student_id = " + id + ";");
+        dbConnector.execute("DELETE FROM students WHERE id = " + id + ";");
     }
 
 }

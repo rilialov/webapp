@@ -1,7 +1,7 @@
 package com.test.webapp.servlets.update;
 
 import com.test.webapp.data.DBController;
-import com.test.webapp.data.VendorsDAO;
+import com.test.webapp.data.VendorsDAOImpl;
 import com.test.webapp.model.Vendor;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
@@ -16,16 +16,16 @@ import java.io.IOException;
 @WebServlet(name = "updateVendor", value = "/managers/updateVendor")
 public class UpdateVendor extends HttpServlet {
     private int vendor_id;
-    private VendorsDAO vendorsDAO;
+    private VendorsDAOImpl vendorsDAOImpl;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
-        vendorsDAO = db.getVendorsDAO();
+        vendorsDAOImpl = db.getVendorsDAO();
 
         vendor_id = Integer.parseInt(request.getParameter("vendor_id"));
-        Vendor vendor = vendorsDAO.get(db.getDbConnector(), vendor_id);
+        Vendor vendor = vendorsDAOImpl.get(db.getDbConnector(), vendor_id);
 
         request.setAttribute("title", "Update");
         request.setAttribute("vendor", vendor);
@@ -43,7 +43,7 @@ public class UpdateVendor extends HttpServlet {
 
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
-        vendorsDAO.update(db.getDbConnector(), array);
+        vendorsDAOImpl.update(db.getDbConnector(), array);
 
         response.sendRedirect("/managers/vendorsList");
     }

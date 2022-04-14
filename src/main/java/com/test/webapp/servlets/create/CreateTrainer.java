@@ -1,7 +1,7 @@
 package com.test.webapp.servlets.create;
 
 import com.test.webapp.data.DBController;
-import com.test.webapp.data.TrainersDAO;
+import com.test.webapp.data.TrainersDAOImpl;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
 
@@ -33,8 +33,8 @@ public class CreateTrainer extends HttpServlet {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
 
-        TrainersDAO trainersDAO = db.getTrainersDAO();
-        trainersDAO.create(db.getDbConnector(), array);
+        TrainersDAOImpl trainersDAOImpl = db.getTrainersDAO();
+        trainersDAOImpl.create(db.getDbConnector(), array);
 
         response.sendRedirect("/managers/trainersList");
     }

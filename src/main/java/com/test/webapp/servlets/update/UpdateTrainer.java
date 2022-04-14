@@ -1,7 +1,7 @@
 package com.test.webapp.servlets.update;
 
 import com.test.webapp.data.DBController;
-import com.test.webapp.data.TrainersDAO;
+import com.test.webapp.data.TrainersDAOImpl;
 import com.test.webapp.model.Trainer;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
@@ -16,16 +16,16 @@ import java.io.IOException;
 @WebServlet(name = "updateTrainer", value = "/managers/updateTrainer")
 public class UpdateTrainer extends HttpServlet {
     private int trainer_id;
-    private TrainersDAO trainersDAO;
+    private TrainersDAOImpl trainersDAOImpl;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
-        trainersDAO = db.getTrainersDAO();
+        trainersDAOImpl = db.getTrainersDAO();
 
         trainer_id = Integer.parseInt(request.getParameter("trainer_id"));
-        Trainer trainer = trainersDAO.get(db.getDbConnector(), trainer_id);
+        Trainer trainer = trainersDAOImpl.get(db.getDbConnector(), trainer_id);
 
         request.setAttribute("title", "Update");
         request.setAttribute("trainer", trainer);
@@ -44,7 +44,7 @@ public class UpdateTrainer extends HttpServlet {
 
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
-        trainersDAO.update(db.getDbConnector(), array);
+        trainersDAOImpl.update(db.getDbConnector(), array);
 
         response.sendRedirect("/managers/trainersList");
     }

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CoursesDAO implements DAO<Course> {
+public class CoursesDAOImpl implements DAO<Course> {
 
     @Override
     public Course get(DBConnector dbConnector, long id) {

@@ -1,7 +1,7 @@
 package com.test.webapp.servlets.create;
 
 import com.test.webapp.data.DBController;
-import com.test.webapp.data.UsersDAO;
+import com.test.webapp.data.UsersDAOImpl;
 import com.test.webapp.sessions.SecureUtils;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
@@ -40,12 +40,12 @@ public class CreateUser extends HttpServlet {
 
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
-        UsersDAO usersDAO = db.getUsersDAO();
+        UsersDAOImpl usersDAOImpl = db.getUsersDAO();
 
         char[] password = request.getParameter("password").toCharArray();
         byte[] salt = SecureUtils.getSalt(password);
         byte[] hash = SecureUtils.getHash(password,salt);
-        usersDAO.createWithSaltHash(db.getDbConnector(), array, salt, hash);
+        usersDAOImpl.createWithSaltHash(db.getDbConnector(), array, salt, hash);
 
         response.sendRedirect("/managers/usersList");
     }

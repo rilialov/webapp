@@ -1,7 +1,7 @@
 package com.test.webapp.servlets.update;
 
 import com.test.webapp.data.DBController;
-import com.test.webapp.data.StudentsDAO;
+import com.test.webapp.data.StudentsDAOImpl;
 import com.test.webapp.model.Student;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
@@ -16,16 +16,16 @@ import java.io.IOException;
 @WebServlet(name = "updateStudent", value = "/managers/updateStudent")
 public class UpdateStudent extends HttpServlet {
     private int student_id;
-    private StudentsDAO studentsDAO;
+    private StudentsDAOImpl studentsDAOImpl;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
-        studentsDAO = db.getStudentsDAO();
+        studentsDAOImpl = db.getStudentsDAO();
 
         student_id = Integer.parseInt(request.getParameter("student_id"));
-        Student student = studentsDAO.get(db.getDbConnector(), student_id);
+        Student student = studentsDAOImpl.get(db.getDbConnector(), student_id);
 
         request.setAttribute("title", "Update");
         request.setAttribute("student", student);
@@ -46,7 +46,7 @@ public class UpdateStudent extends HttpServlet {
 
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
-        studentsDAO.update(db.getDbConnector(), array);
+        studentsDAOImpl.update(db.getDbConnector(), array);
 
         response.sendRedirect("/managers/studentsList");
     }

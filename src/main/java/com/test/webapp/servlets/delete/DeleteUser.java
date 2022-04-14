@@ -1,7 +1,7 @@
 package com.test.webapp.servlets.delete;
 
 import com.test.webapp.data.DBController;
-import com.test.webapp.data.UsersDAO;
+import com.test.webapp.data.UsersDAOImpl;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
 
@@ -21,8 +21,8 @@ public class DeleteUser extends HttpServlet {
         DBController db = UsersSessions.getDbController(userAccount);
 
         int user_id = Integer.parseInt(request.getParameter("user_id"));
-        UsersDAO usersDAO = db.getUsersDAO();
-        usersDAO.delete(db.getDbConnector(), user_id);
+        UsersDAOImpl usersDAOImpl = db.getUsersDAO();
+        usersDAOImpl.delete(db.getDbConnector(), user_id);
 
         response.sendRedirect("/managers/usersList");
     }

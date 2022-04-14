@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FormsDAO implements DAO<Form> {
+public class FormsDAOImpl implements DAO<Form> {
 
     @Override
     public Form get(DBConnector dbConnector, long id) {

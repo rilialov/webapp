@@ -2,12 +2,12 @@ package com.test.webapp.data;
 
 public class DBController {
     private final DBConnector dbConnector = new DBConnector();
-    private final FormsDAO formsDAO = new FormsDAO();
-    private final CoursesDAO coursesDAO = new CoursesDAO();
-    private final TrainersDAO trainersDAO = new TrainersDAO();
-    private final StudentsDAO studentsDAO = new StudentsDAO();
-    private final VendorsDAO vendorsDAO = new VendorsDAO();
-    private final UsersDAO usersDAO = new UsersDAO();
+    private final FormsDAOImpl formsDAOImpl = new FormsDAOImpl();
+    private final CoursesDAOImpl coursesDAOImpl = new CoursesDAOImpl();
+    private final TrainersDAOImpl trainersDAOImpl = new TrainersDAOImpl();
+    private final StudentsDAOImpl studentsDAOImpl = new StudentsDAOImpl();
+    private final VendorsDAOImpl vendorsDAOImpl = new VendorsDAOImpl();
+    private final UsersDAOImpl usersDAOImpl = new UsersDAOImpl();
 
     public DBController() {
         dbConnector.setConnection();
@@ -18,28 +18,28 @@ public class DBController {
         return dbConnector;
     }
 
-    public FormsDAO getFormsDAO() {
-        return formsDAO;
+    public FormsDAOImpl getFormsDAO() {
+        return formsDAOImpl;
     }
 
-    public CoursesDAO getCoursesDAO() {
-        return coursesDAO;
+    public CoursesDAOImpl getCoursesDAO() {
+        return coursesDAOImpl;
     }
 
-    public TrainersDAO getTrainersDAO() {
-        return trainersDAO;
+    public TrainersDAOImpl getTrainersDAO() {
+        return trainersDAOImpl;
     }
 
-    public StudentsDAO getStudentsDAO() {
-        return studentsDAO;
+    public StudentsDAOImpl getStudentsDAO() {
+        return studentsDAOImpl;
     }
 
-    public VendorsDAO getVendorsDAO() {
-        return vendorsDAO;
+    public VendorsDAOImpl getVendorsDAO() {
+        return vendorsDAOImpl;
     }
 
-    public UsersDAO getUsersDAO() {
-        return usersDAO;
+    public UsersDAOImpl getUsersDAO() {
+        return usersDAOImpl;
     }
 
     public void close() {

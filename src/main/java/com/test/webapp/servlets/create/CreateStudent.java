@@ -1,7 +1,7 @@
 package com.test.webapp.servlets.create;
 
 import com.test.webapp.data.DBController;
-import com.test.webapp.data.StudentsDAO;
+import com.test.webapp.data.StudentsDAOImpl;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
 
@@ -35,8 +35,8 @@ public class CreateStudent extends HttpServlet {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
 
-        StudentsDAO studentsDAO = db.getStudentsDAO();
-        studentsDAO.create(db.getDbConnector(),array);
+        StudentsDAOImpl studentsDAOImpl = db.getStudentsDAO();
+        studentsDAOImpl.create(db.getDbConnector(),array);
 
         response.sendRedirect("/managers/studentsList");
     }

@@ -1,8 +1,8 @@
 package com.test.webapp.servlets.create;
 
-import com.test.webapp.data.CoursesDAO;
+import com.test.webapp.data.CoursesDAOImpl;
 import com.test.webapp.data.DBController;
-import com.test.webapp.data.VendorsDAO;
+import com.test.webapp.data.VendorsDAOImpl;
 import com.test.webapp.model.Vendor;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
@@ -22,8 +22,8 @@ public class CreateCourse extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
-        VendorsDAO vendorsDAO = db.getVendorsDAO();
-        List<Vendor> list = vendorsDAO.getAll(db.getDbConnector());
+        VendorsDAOImpl vendorsDAOImpl = db.getVendorsDAO();
+        List<Vendor> list = vendorsDAOImpl.getAll(db.getDbConnector());
         request.setAttribute("title", "Create");
         request.setAttribute("vendorsList", list);
         request.setAttribute("create", "create");
@@ -42,8 +42,8 @@ public class CreateCourse extends HttpServlet {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
 
-        CoursesDAO coursesDAO = db.getCoursesDAO();
-        coursesDAO.create(db.getDbConnector(), array);
+        CoursesDAOImpl coursesDAOImpl = db.getCoursesDAO();
+        coursesDAOImpl.create(db.getDbConnector(), array);
 
         response.sendRedirect("/managers/coursesList");
     }

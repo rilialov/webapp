@@ -1,7 +1,7 @@
 package com.test.webapp.servlets.create;
 
 import com.test.webapp.data.DBController;
-import com.test.webapp.data.VendorsDAO;
+import com.test.webapp.data.VendorsDAOImpl;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
 
@@ -32,8 +32,8 @@ public class CreateVendor extends HttpServlet {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
 
-        VendorsDAO vendorsDAO = db.getVendorsDAO();
-        vendorsDAO.create(db.getDbConnector(), array);
+        VendorsDAOImpl vendorsDAOImpl = db.getVendorsDAO();
+        vendorsDAOImpl.create(db.getDbConnector(), array);
 
         response.sendRedirect("/managers/vendorsList");
     }

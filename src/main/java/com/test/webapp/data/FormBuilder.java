@@ -9,9 +9,9 @@ import java.time.LocalDate;
 
 public class FormBuilder {
     private final DBConnector dbConnector;
-    private final CoursesDAO coursesDAO;
-    private final TrainersDAO trainersDAO;
-    private final StudentsDAO studentsDAO;
+    private final CoursesDAOImpl coursesDAOImpl;
+    private final TrainersDAOImpl trainersDAOImpl;
+    private final StudentsDAOImpl studentsDAOImpl;
     private final Form form;
     private Course course;
     private Trainer trainer;
@@ -20,11 +20,11 @@ public class FormBuilder {
 
     public FormBuilder(int formID, DBController db) {
         dbConnector = db.getDbConnector();
-        coursesDAO = db.getCoursesDAO();
-        trainersDAO = db.getTrainersDAO();
-        studentsDAO = db.getStudentsDAO();
-        FormsDAO formsDAO = db.getFormsDAO();
-        form = formsDAO.get(dbConnector, formID);
+        coursesDAOImpl = db.getCoursesDAO();
+        trainersDAOImpl = db.getTrainersDAO();
+        studentsDAOImpl = db.getStudentsDAO();
+        FormsDAOImpl formsDAOImpl = db.getFormsDAO();
+        form = formsDAOImpl.get(dbConnector, formID);
         date = form.getDate();
         setForm();
     }
@@ -36,15 +36,15 @@ public class FormBuilder {
     }
 
     private void setCourse(long id) {
-        course = coursesDAO.get(dbConnector, id);
+        course = coursesDAOImpl.get(dbConnector, id);
     }
 
     private void setTrainer(long id) {
-        trainer = trainersDAO.get(dbConnector, id);
+        trainer = trainersDAOImpl.get(dbConnector, id);
     }
 
     private void setStudent(long id) {
-        student = studentsDAO.get(dbConnector, id);
+        student = studentsDAOImpl.get(dbConnector, id);
     }
 
     public String[] getData () {

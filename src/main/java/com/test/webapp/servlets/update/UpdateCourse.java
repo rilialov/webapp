@@ -1,8 +1,8 @@
 package com.test.webapp.servlets.update;
 
-import com.test.webapp.data.CoursesDAO;
+import com.test.webapp.data.CoursesDAOImpl;
 import com.test.webapp.data.DBController;
-import com.test.webapp.data.VendorsDAO;
+import com.test.webapp.data.VendorsDAOImpl;
 import com.test.webapp.model.Course;
 import com.test.webapp.model.Vendor;
 import com.test.webapp.sessions.UserAccount;
@@ -19,19 +19,19 @@ import java.util.List;
 @WebServlet(name = "updateCourse", value = "/managers/updateCourse")
 public class UpdateCourse extends HttpServlet {
     private int course_id;
-    private CoursesDAO coursesDAO;
+    private CoursesDAOImpl coursesDAOImpl;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
-        coursesDAO = db.getCoursesDAO();
+        coursesDAOImpl = db.getCoursesDAO();
 
         course_id = Integer.parseInt(request.getParameter("course_id"));
-        Course course = coursesDAO.get(db.getDbConnector(), course_id);
+        Course course = coursesDAOImpl.get(db.getDbConnector(), course_id);
 
-        VendorsDAO vendorsDAO = db.getVendorsDAO();
-        List<Vendor> list = vendorsDAO.getAll(db.getDbConnector());
+        VendorsDAOImpl vendorsDAOImpl = db.getVendorsDAO();
+        List<Vendor> list = vendorsDAOImpl.getAll(db.getDbConnector());
 
         request.setAttribute("title", "Update");
         request.setAttribute("vendorsList", list);
@@ -52,7 +52,7 @@ public class UpdateCourse extends HttpServlet {
 
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
-        coursesDAO.update(db.getDbConnector(), array);
+        coursesDAOImpl.update(db.getDbConnector(), array);
 
         response.sendRedirect("/managers/coursesList");
     }

@@ -1,7 +1,7 @@
 package com.test.webapp.servlets.update;
 
 import com.test.webapp.data.DBController;
-import com.test.webapp.data.UsersDAO;
+import com.test.webapp.data.UsersDAOImpl;
 import com.test.webapp.sessions.SecureUtils;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
@@ -16,17 +16,17 @@ import java.io.IOException;
 @WebServlet(name = "updateUser", value = "/managers/updateUser")
 public class UpdateUser extends HttpServlet {
     private int user_id;
-    private UsersDAO usersDAO;
+    private UsersDAOImpl usersDAOImpl;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
 
-        usersDAO = db.getUsersDAO();
+        usersDAOImpl = db.getUsersDAO();
 
         user_id = Integer.parseInt(request.getParameter("user_id"));
-        UserAccount userAccountNew = usersDAO.get(db.getDbConnector(), user_id);
+        UserAccount userAccountNew = usersDAOImpl.get(db.getDbConnector(), user_id);
 
         request.setAttribute("title", "Update");
         request.setAttribute("user", userAccountNew);
@@ -52,13 +52,13 @@ public class UpdateUser extends HttpServlet {
 
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
-        usersDAO.update(db.getDbConnector(), array);
+        usersDAOImpl.update(db.getDbConnector(), array);
 
         char[] password = request.getParameter("password").toCharArray();
         if (password.length != 0) {
             byte[] salt = SecureUtils.getSalt(password);
             byte[] hash = SecureUtils.getHash(password,salt);
-            usersDAO.setHashSalt(db.getDbConnector(), user_id, salt, hash);
+            usersDAOImpl.setHashSalt(db.getDbConnector(), user_id, salt, hash);
         }
 
         response.sendRedirect("/managers/usersList");

@@ -1,7 +1,7 @@
 package com.test.webapp.servlets.delete;
 
 import com.test.webapp.data.DBController;
-import com.test.webapp.data.VendorsDAO;
+import com.test.webapp.data.VendorsDAOImpl;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
 
@@ -21,8 +21,8 @@ public class DeleteVendor extends HttpServlet {
         DBController db = UsersSessions.getDbController(userAccount);
 
         int vendor_id = Integer.parseInt(request.getParameter("vendor_id"));
-        VendorsDAO vendorsDAO = db.getVendorsDAO();
-        vendorsDAO.delete(db.getDbConnector(), vendor_id);
+        VendorsDAOImpl vendorsDAOImpl = db.getVendorsDAO();
+        vendorsDAOImpl.delete(db.getDbConnector(), vendor_id);
 
         response.sendRedirect("/managers/vendorsList");
     }

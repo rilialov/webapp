@@ -1,7 +1,7 @@
 package com.test.webapp.servlets;
 
 import com.test.webapp.data.DBController;
-import com.test.webapp.data.UsersDAO;
+import com.test.webapp.data.UsersDAOImpl;
 import com.test.webapp.sessions.SecureUtils;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
@@ -24,8 +24,8 @@ public class LoginPage extends HttpServlet {
         char[] password = request.getParameter("password").toCharArray();
 
         if (login.length() != 0) {
-            UsersDAO usersDAO = db.getUsersDAO();
-            UserAccount userAccount = usersDAO.getByLogin(db.getDbConnector(), login);
+            UsersDAOImpl usersDAOImpl = db.getUsersDAO();
+            UserAccount userAccount = usersDAOImpl.getByLogin(db.getDbConnector(), login);
 
             if (userAccount != null && Arrays.equals(SecureUtils.getHash(password, userAccount.getSalt()),
                             userAccount.getHash())) {
