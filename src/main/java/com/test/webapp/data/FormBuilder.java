@@ -18,7 +18,7 @@ public class FormBuilder {
     private Student student;
     private final LocalDate date;
 
-    public FormBuilder(int formID, DBController db) {
+    public FormBuilder(long formID, DBController db) {
         dbConnector = db.getDbConnector();
         coursesDAOImpl = db.getCoursesDAO();
         trainersDAOImpl = db.getTrainersDAO();

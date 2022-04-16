@@ -43,9 +43,9 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="manager" name="manager" maxlength="20"
-                                               <c:if test="${user.manager == true}">checked=checked</c:if> value="true">
-                                        <label class="form-check-label" for="manager">Manager</label>
+                                        <input class="form-check-input" type="checkbox" id="role" name="role" maxlength="20"
+                                               <c:if test="${user.role == true}">checked=checked</c:if> value="true">
+                                        <label class="form-check-label" for="role">Manager</label>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">OK</button>

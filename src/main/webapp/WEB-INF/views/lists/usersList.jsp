@@ -44,12 +44,12 @@
                                     </c:if>
                                 </td>
                                 <td>
-                                    <c:if test="${user.manager == true}">
-                                        Yes
-                                    </c:if>
-                                    <c:if test="${user.manager == false}">
-                                        No
-                                    </c:if>
+<%--                                    <c:if test="${user.role.equals('MANAGER')}">--%>
+<%--                                        Yes--%>
+<%--                                    </c:if>--%>
+<%--                                    <c:if test="${user.role.equals('STUDENT')}">--%>
+<%--                                        No--%>
+<%--                                    </c:if>--%>
                                 </td>
                                 <td>
                                     <a href="updateUser?user_id=${user.id}"><i class="bi bi-file-earmark-text"></i></a>

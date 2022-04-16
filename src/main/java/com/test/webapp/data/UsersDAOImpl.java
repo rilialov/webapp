@@ -14,7 +14,7 @@ public class UsersDAOImpl implements UsersDAO<UserAccount> {
 
     @Override
     public UserAccount get(DBConnector dbConnector, long id) {
-        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM users WHERE user_id = '" + id + "';");
+        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM users_salt WHERE id = '" + id + "';");
         return getUserAccount(resultSet);
     }
 
@@ -43,23 +43,23 @@ public class UsersDAOImpl implements UsersDAO<UserAccount> {
     @Override
     public List<UserAccount> getAll(DBConnector dbConnector) {
         ArrayList<UserAccount> usersList = new ArrayList<>();
-        ResultSet resultSet = dbConnector.getQuery("SELECT user_id, login, users.form_id, forms.date, " +
-                "students.last_name, manager FROM users LEFT JOIN forms ON users.form_id = forms.form_id " +
-                "LEFT JOIN students ON forms.student_id = students.student_id;");
-
+        ResultSet resultSet = dbConnector.getQuery("SELECT id, login, role, form FROM users_salt;");
+//        ResultSet resultSet = dbConnector.getQuery("SELECT user_id, login, users.form_id, forms.date, " +
+//                "students.last_name, manager FROM users LEFT JOIN forms ON users.form_id = forms.form_id " +
+//                "LEFT JOIN students ON forms.student_id = students.student_id;");
         if (resultSet != null) {
             try {
                 resultSet.next();
                 while (!resultSet.isAfterLast()) {
-                    UserAccount userAccount = new UserAccount(resultSet.getString(2), resultSet.getString(6));
-                    int form_id = resultSet.getInt(3);
-                    userAccount.setId(resultSet.getInt(1));
-                    userAccount.setForm_id(form_id);
-                    if (form_id != 0) {
-                        LocalDate date = resultSet.getObject(4, LocalDate.class);
-                        String formattedDate = date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-                        userAccount.setForm(formattedDate + " - " + resultSet.getString(5));
-                    }
+                    UserAccount userAccount = new UserAccount(resultSet.getString(2), resultSet.getString(3));
+                    userAccount.setId(resultSet.getLong(1));
+//                    long form_id = resultSet.getLong(4);
+//                    userAccount.setForm_id(form_id);
+//                    if (form_id != 0) {
+//                        LocalDate date = resultSet.getObject(4, LocalDate.class);
+//                        String formattedDate = date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+//                        userAccount.setForm(formattedDate + " - " + resultSet.getString(5));
+//                    }
                     usersList.add(userAccount);
                     resultSet.next();
                 }
@@ -94,8 +94,8 @@ public class UsersDAOImpl implements UsersDAO<UserAccount> {
 
     @Override
     public void update(DBConnector dbConnector, String[] array) {
-        PreparedStatement ps = dbConnector.getPreparedStatement("UPDATE users " +
-                "SET login = ?, form_id = ?, manager = ? WHERE user_id = ?");
+        PreparedStatement ps = dbConnector.getPreparedStatement("UPDATE users_salt " +
+                "SET login = ?, form_id = ?, manager = ? WHERE id = ?");
         try {
             ps.setString(1, array[1]);
             ps.setInt(2, Integer.parseInt(array[2]));
@@ -110,13 +110,13 @@ public class UsersDAOImpl implements UsersDAO<UserAccount> {
 
     @Override
     public void delete(DBConnector dbConnector, long id) {
-        dbConnector.execute("DELETE FROM users WHERE user_id = " + id + ";");
+        dbConnector.execute("DELETE FROM users_salt WHERE id = " + id + ";");
     }
 
     @Override
     public void setHashSalt(DBConnector dbConnector, int id, byte[] salt, byte[] hash) {
-        PreparedStatement ps = dbConnector.getPreparedStatement("UPDATE users SET salt = ?, hash = ? " +
-                "WHERE user_id = ?");
+        PreparedStatement ps = dbConnector.getPreparedStatement("UPDATE users_salt SET salt = ?, hash = ? " +
+                "WHERE id = ?");
         try {
             ps.setBytes(1, salt);
             ps.setBytes(2, hash);
