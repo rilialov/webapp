@@ -1,10 +1,7 @@
 package com.test.webapp.servlets.lists;
 
-import com.test.webapp.data.DBController;
-import com.test.webapp.data.VendorsDAOImpl;
-import com.test.webapp.model.Vendor;
-import com.test.webapp.sessions.UserAccount;
-import com.test.webapp.sessions.UsersSessions;
+import com.test.webapp.dao.VendorsDAOImpl;
+import com.test.webapp.entity.Vendor;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,11 +16,9 @@ public class VendorsList extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserAccount userAccount = UsersSessions.getUser(request.getSession());
-        DBController db = UsersSessions.getDbController(userAccount);
+        VendorsDAOImpl vendorsDAOImpl = new VendorsDAOImpl();
+        List<Vendor> list = vendorsDAOImpl.getAll();
 
-        VendorsDAOImpl vendorsDAOImpl = db.getVendorsDAO();
-        List<Vendor> list = vendorsDAOImpl.getAll(db.getDbConnector());
         request.setAttribute("vendorsList", list);
         getServletContext().getRequestDispatcher("/WEB-INF/views/lists/vendorsList.jsp").forward(request, response);
     }

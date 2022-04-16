@@ -1,9 +1,7 @@
 package com.test.webapp.servlets.create;
 
-import com.test.webapp.data.DBController;
-import com.test.webapp.data.VendorsDAOImpl;
-import com.test.webapp.sessions.UserAccount;
-import com.test.webapp.sessions.UsersSessions;
+import com.test.webapp.dao.VendorsDAOImpl;
+import com.test.webapp.entity.Vendor;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,15 +23,10 @@ public class CreateVendor extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
+        Vendor vendor = new Vendor(request.getParameter("vendorName"));
 
-        String[] array = new String[1];
-        array[0] = request.getParameter("vendorName");
-
-        UserAccount userAccount = UsersSessions.getUser(request.getSession());
-        DBController db = UsersSessions.getDbController(userAccount);
-
-        VendorsDAOImpl vendorsDAOImpl = db.getVendorsDAO();
-        vendorsDAOImpl.create(db.getDbConnector(), array);
+        VendorsDAOImpl vendorsDAOImpl = new VendorsDAOImpl();
+        vendorsDAOImpl.create(vendor);
 
         response.sendRedirect("/managers/vendorsList");
     }

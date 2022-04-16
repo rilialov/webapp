@@ -1,10 +1,7 @@
 package com.test.webapp.servlets.update;
 
-import com.test.webapp.data.DBController;
-import com.test.webapp.data.VendorsDAOImpl;
-import com.test.webapp.model.Vendor;
-import com.test.webapp.sessions.UserAccount;
-import com.test.webapp.sessions.UsersSessions;
+import com.test.webapp.dao.VendorsDAOImpl;
+import com.test.webapp.entity.Vendor;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,17 +12,12 @@ import java.io.IOException;
 
 @WebServlet(name = "updateVendor", value = "/managers/updateVendor")
 public class UpdateVendor extends HttpServlet {
-    private int vendor_id;
-    private VendorsDAOImpl vendorsDAOImpl;
+    private Vendor vendor;
+    private final VendorsDAOImpl vendorsDAOImpl = new VendorsDAOImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserAccount userAccount = UsersSessions.getUser(request.getSession());
-        DBController db = UsersSessions.getDbController(userAccount);
-        vendorsDAOImpl = db.getVendorsDAO();
-
-        vendor_id = Integer.parseInt(request.getParameter("vendor_id"));
-        Vendor vendor = vendorsDAOImpl.get(db.getDbConnector(), vendor_id);
+        vendor = vendorsDAOImpl.getById(Long.parseLong(request.getParameter("vendor_id")));
 
         request.setAttribute("title", "Update");
         request.setAttribute("vendor", vendor);
@@ -37,13 +29,8 @@ public class UpdateVendor extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
 
-        String[] array = new String[2];
-        array[0] = String.valueOf(vendor_id);
-        array[1] = request.getParameter("vendorName");
-
-        UserAccount userAccount = UsersSessions.getUser(request.getSession());
-        DBController db = UsersSessions.getDbController(userAccount);
-        vendorsDAOImpl.update(db.getDbConnector(), array);
+        vendor.setVendorName(request.getParameter("vendorName"));
+        vendorsDAOImpl.update(vendor);
 
         response.sendRedirect("/managers/vendorsList");
     }
