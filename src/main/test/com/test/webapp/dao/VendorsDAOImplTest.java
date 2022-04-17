@@ -33,8 +33,7 @@ class VendorsDAOImplTest {
 
     @Test
     void create() {
-        Vendor vendor = new Vendor();
-        vendor.setVendorName("TestVendor");
+        Vendor vendor = new Vendor("TestVendor");
         Vendor created = vendorsDAO.create(vendor);
 
         vendorsDAO.delete(created);
@@ -43,8 +42,7 @@ class VendorsDAOImplTest {
 
     @Test
     void update() {
-        Vendor vendor = new Vendor();
-        vendor.setVendorName("TestVendor");
+        Vendor vendor = new Vendor("TestVendor");
         Vendor created = vendorsDAO.create(vendor);
 
         created.setVendorName("ChangedVendor");
@@ -57,8 +55,7 @@ class VendorsDAOImplTest {
 
     @Test
     void delete() {
-        Vendor vendor = new Vendor();
-        vendor.setVendorName("TestVendor");
+        Vendor vendor = new Vendor("TestVendor");
         Vendor created = vendorsDAO.create(vendor);
 
         vendorsDAO.delete(created);

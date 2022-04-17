@@ -17,7 +17,7 @@ public class UpdateVendor extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        vendor = vendorsDAOImpl.getById(Long.parseLong(request.getParameter("vendor_id")));
+        vendor = vendorsDAOImpl.getById(Long.valueOf(request.getParameter("vendor_id")));
 
         request.setAttribute("title", "Update");
         request.setAttribute("vendor", vendor);

@@ -1,10 +1,7 @@
 package com.test.webapp.servlets.update;
 
-import com.test.webapp.data.DBController;
-import com.test.webapp.data.TrainersDAOImpl;
-import com.test.webapp.model.Trainer;
-import com.test.webapp.sessions.UserAccount;
-import com.test.webapp.sessions.UsersSessions;
+import com.test.webapp.dao.TrainersDAOImpl;
+import com.test.webapp.entity.Trainer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,17 +12,12 @@ import java.io.IOException;
 
 @WebServlet(name = "updateTrainer", value = "/managers/updateTrainer")
 public class UpdateTrainer extends HttpServlet {
-    private int trainer_id;
-    private TrainersDAOImpl trainersDAOImpl;
+    private Trainer trainer;
+    private final TrainersDAOImpl trainersDAOImpl = new TrainersDAOImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserAccount userAccount = UsersSessions.getUser(request.getSession());
-        DBController db = UsersSessions.getDbController(userAccount);
-        trainersDAOImpl = db.getTrainersDAO();
-
-        trainer_id = Integer.parseInt(request.getParameter("trainer_id"));
-        Trainer trainer = trainersDAOImpl.get(db.getDbConnector(), trainer_id);
+        trainer = trainersDAOImpl.getById(Long.valueOf(request.getParameter("trainer_id")));
 
         request.setAttribute("title", "Update");
         request.setAttribute("trainer", trainer);
@@ -37,14 +29,10 @@ public class UpdateTrainer extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
 
-        String[] array = new String[3];
-        array[0] = String.valueOf(trainer_id);
-        array[1] = request.getParameter("firstname");
-        array[2] = request.getParameter("lastname");
+        trainer.setFirstName(request.getParameter("firstname"));
+        trainer.setLastName(request.getParameter("lastname"));
 
-        UserAccount userAccount = UsersSessions.getUser(request.getSession());
-        DBController db = UsersSessions.getDbController(userAccount);
-        trainersDAOImpl.update(db.getDbConnector(), array);
+        trainersDAOImpl.update(trainer);
 
         response.sendRedirect("/managers/trainersList");
     }

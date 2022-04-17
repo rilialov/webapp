@@ -2,8 +2,6 @@ package com.test.webapp.servlets.create;
 
 import com.test.webapp.data.CoursesDAOImpl;
 import com.test.webapp.data.DBController;
-import com.test.webapp.data.VendorsDAOImpl;
-import com.test.webapp.model.Vendor;
 import com.test.webapp.sessions.UserAccount;
 import com.test.webapp.sessions.UsersSessions;
 
@@ -13,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(name = "createCourse", value = "/managers/createCourse")
 public class CreateCourse extends HttpServlet {
@@ -22,10 +19,10 @@ public class CreateCourse extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserAccount userAccount = UsersSessions.getUser(request.getSession());
         DBController db = UsersSessions.getDbController(userAccount);
-        VendorsDAOImpl vendorsDAOImpl = db.getVendorsDAO();
-        List<Vendor> list = vendorsDAOImpl.getAll(db.getDbConnector());
+//        VendorsDAOImpl vendorsDAOImpl = db.getVendorsDAO();
+//        List<Vendor> list = vendorsDAOImpl.getAll(db.getDbConnector());
         request.setAttribute("title", "Create");
-        request.setAttribute("vendorsList", list);
+//        request.setAttribute("vendorsList", list);
         request.setAttribute("create", "create");
         getServletContext().getRequestDispatcher("/WEB-INF/views/create-update/Course.jsp").forward(request, response);
     }

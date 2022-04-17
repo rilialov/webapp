@@ -2,7 +2,7 @@
 <%--@elvariable id="lastname" type="com.test.webapp.model.Student"--%>
 <%--@elvariable id="date" type="com.test.webapp.model.Form"--%>
 <%--@elvariable id="course" type="com.test.webapp.model.Course"--%>
-<%--@elvariable id="trainer" type="com.test.webapp.model.Trainer"--%>
+<%--@elvariable id="trainer" type="com.test.entity.model.Trainer"--%>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>

@@ -1,9 +1,7 @@
 package com.test.webapp.servlets.create;
 
-import com.test.webapp.data.DBController;
-import com.test.webapp.data.TrainersDAOImpl;
-import com.test.webapp.sessions.UserAccount;
-import com.test.webapp.sessions.UsersSessions;
+import com.test.webapp.dao.TrainersDAOImpl;
+import com.test.webapp.entity.Trainer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,16 +23,10 @@ public class CreateTrainer extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
+        Trainer trainer = new Trainer(request.getParameter("firstname"), request.getParameter("lastname"));
 
-        String[] array = new String[2];
-        array[0] = request.getParameter("firstname");
-        array[1] = request.getParameter("lastname");
-
-        UserAccount userAccount = UsersSessions.getUser(request.getSession());
-        DBController db = UsersSessions.getDbController(userAccount);
-
-        TrainersDAOImpl trainersDAOImpl = db.getTrainersDAO();
-        trainersDAOImpl.create(db.getDbConnector(), array);
+        TrainersDAOImpl trainersDAOImpl = new TrainersDAOImpl();
+        trainersDAOImpl.create(trainer);
 
         response.sendRedirect("/managers/trainersList");
     }

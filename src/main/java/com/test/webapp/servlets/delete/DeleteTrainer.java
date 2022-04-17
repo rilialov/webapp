@@ -1,9 +1,7 @@
 package com.test.webapp.servlets.delete;
 
-import com.test.webapp.data.DBController;
-import com.test.webapp.data.TrainersDAOImpl;
-import com.test.webapp.sessions.UserAccount;
-import com.test.webapp.sessions.UsersSessions;
+import com.test.webapp.dao.TrainersDAOImpl;
+import com.test.webapp.entity.Trainer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,12 +15,9 @@ public class DeleteTrainer extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserAccount userAccount = UsersSessions.getUser(request.getSession());
-        DBController db = UsersSessions.getDbController(userAccount);
-
-        int trainer_id = Integer.parseInt(request.getParameter("trainer_id"));
-        TrainersDAOImpl trainersDAOImpl = db.getTrainersDAO();
-        trainersDAOImpl.delete(db.getDbConnector(), trainer_id);
+        TrainersDAOImpl trainersDAOImpl = new TrainersDAOImpl();
+        Trainer trainer = trainersDAOImpl.getById(Long.valueOf(request.getParameter("trainer_id")));
+        trainersDAOImpl.delete(trainer);
 
         response.sendRedirect("/managers/trainersList");
     }

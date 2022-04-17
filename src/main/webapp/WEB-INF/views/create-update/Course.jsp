@@ -31,7 +31,7 @@
                                     <%--@elvariable id="vendorsList" type="java.util.List"--%>
                                     <select class="form-control" id="vendor_id" name="vendor_id">
                                         <c:forEach items="${vendorsList}" var="vendor">
-                                            <%--@elvariable id="vendor" type="com.test.webapp.model.Vendor"--%>
+                                            <%--@elvariable id="vendor" type="com.test.webapp.entity.Vendor"--%>
                                             <option value="${vendor.id}">${vendor.vendorName}</option>
                                         </c:forEach>
                                     </select>
