@@ -1,6 +1,6 @@
 <%--@elvariable id="title" type="java.lang"--%>
 <%--@elvariable id="create" type="java.lang"--%>
-<%--@elvariable id="student" type="com.test.webapp.model.Student"--%>
+<%--@elvariable id="student" type="com.test.webapp.entity.Student"--%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>

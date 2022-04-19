@@ -1,6 +1,6 @@
 package com.test.webapp.data;
 
-import com.test.webapp.model.Student;
+import com.test.webapp.entity.Student;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,47 +12,14 @@ public class StudentsDAOImpl implements DAO<Student> {
 
     @Override
     public Student get(DBConnector dbConnector, long id) {
-        Student student = null;
-        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM students WHERE id = " + id + ";");
 
-        if (resultSet != null) {
-            try {
-                resultSet.next();
-                student = new Student(resultSet.getString(2), resultSet.getString(3));
-                student.setId(resultSet.getInt(1));
-                student.setPhone(resultSet.getString(4));
-                student.setEmail(resultSet.getString(5));
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return student;
+        return null;
     }
 
     @Override
     public List<Student> getAll(DBConnector dbConnector) {
-        ArrayList<Student> studentsList = new ArrayList<>();
-        ResultSet resultSet = dbConnector.getQuery("SELECT * FROM students;");
-        if (resultSet != null) {
-            try {
-                resultSet.next();
-                while (!resultSet.isAfterLast()) {
-                    Student student = new Student(resultSet.getString(2), resultSet.getString(3));
-                    student.setId(resultSet.getInt(1));
-                    student.setPhone(resultSet.getString(4));
-                    student.setEmail(resultSet.getString(5));
-                    student.setFirstName_ed(resultSet.getString(6));
-                    student.setLastName_ed(resultSet.getString(7));
-                    student.setPhone_ed(resultSet.getString(8));
-                    student.setEmail_ed(resultSet.getString(9));
-                    studentsList.add(student);
-                    resultSet.next();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return studentsList;
+
+        return null;
     }
 
     @Override

@@ -1,5 +1,5 @@
-<%--@elvariable id="firstname" type="com.test.webapp.model.Student"--%>
-<%--@elvariable id="lastname" type="com.test.webapp.model.Student"--%>
+<%--@elvariable id="firstname" type="com.test.webapp.entity.Student"--%>
+<%--@elvariable id="lastname" type="com.test.webapp.entity.Student"--%>
 <%--@elvariable id="date" type="com.test.webapp.model.Form"--%>
 <%--@elvariable id="course" type="com.test.webapp.model.Course"--%>
 <%--@elvariable id="trainer" type="com.test.entity.model.Trainer"--%>
