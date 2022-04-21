@@ -1,10 +1,7 @@
 package com.test.webapp.servlets.courses;
 
-import com.test.webapp.data.CoursesDAOImpl;
-import com.test.webapp.data.DBController;
-import com.test.webapp.model.Course;
-import com.test.webapp.util.UserAccount;
-import com.test.webapp.util.UsersSessions;
+import com.test.webapp.dao.CoursesDAOImpl;
+import com.test.webapp.entity.Course;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,11 +16,9 @@ public class CoursesList extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserAccount userAccount = UsersSessions.getUser(request.getSession());
-        DBController db = UsersSessions.getDbController(userAccount);
+        CoursesDAOImpl coursesDAOImpl = new CoursesDAOImpl();
+        List<Course> list = coursesDAOImpl.getAll();
 
-        CoursesDAOImpl coursesDAOImpl = db.getCoursesDAO();
-        List<Course> list = coursesDAOImpl.getAll(db.getDbConnector());
         request.setAttribute("coursesList", list);
         getServletContext().getRequestDispatcher("/WEB-INF/views/lists/coursesList.jsp").forward(request, response);
     }

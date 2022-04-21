@@ -1,9 +1,7 @@
 package com.test.webapp.servlets.courses;
 
-import com.test.webapp.data.CoursesDAOImpl;
-import com.test.webapp.data.DBController;
-import com.test.webapp.util.UserAccount;
-import com.test.webapp.util.UsersSessions;
+import com.test.webapp.dao.CoursesDAOImpl;
+import com.test.webapp.entity.Course;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,12 +15,9 @@ public class DeleteCourse extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserAccount userAccount = UsersSessions.getUser(request.getSession());
-        DBController db = UsersSessions.getDbController(userAccount);
-
-        int course_id = Integer.parseInt(request.getParameter("course_id"));
-        CoursesDAOImpl coursesDAOImpl = db.getCoursesDAO();
-        coursesDAOImpl.delete(db.getDbConnector(), course_id);
+        CoursesDAOImpl coursesDAOImpl = new CoursesDAOImpl();
+        Course course = coursesDAOImpl.getById(Long.valueOf(request.getParameter("course_id")));
+        coursesDAOImpl.delete(course);
 
         response.sendRedirect("/managers/coursesList");
     }

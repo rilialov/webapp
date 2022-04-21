@@ -28,10 +28,6 @@
                             <th>Last name</th>
                             <th>Phone</th>
                             <th>Email</th>
-                            <th>First name (edited)</th>
-                            <th>Last name (edited)</th>
-                            <th>Phone (edited)</th>
-                            <th>Email (edited)</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -43,10 +39,6 @@
                                 <td>${student.lastName}</td>
                                 <td>${student.phone}</td>
                                 <td>${student.email}</td>
-                                <td>${student.firstName_ed}</td>
-                                <td>${student.lastName_ed}</td>
-                                <td>${student.phone_ed}</td>
-                                <td>${student.email_ed}</td>
                                 <td>
                                     <a href="updateStudent?student_id=${student.id}"><i
                                             class="bi bi-file-earmark-text"></i></a>

@@ -2,6 +2,7 @@ package com.test.webapp.entity;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "vendors")
@@ -14,6 +15,9 @@ public class Vendor {
 
     @Column(name = "vendor_name", nullable = false)
     private String vendorName;
+
+    @OneToMany(mappedBy="vendor")
+    private Set<Course> courses;
 
     public Vendor() {
     }

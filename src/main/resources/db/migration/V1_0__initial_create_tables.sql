@@ -29,11 +29,7 @@ CREATE TABLE IF NOT EXISTS lt.students (
     first_name 		varchar(100) NOT NULL,
     last_name 		varchar(100) NOT NULL,
     phone 			varchar(50) NULL,
-    email 			varchar(100) NULL,
-    first_name_ed 	varchar(100) NULL,
-    last_name_ed 	varchar(100) NULL,
-    phone_ed 		varchar(50) NULL,
-    email_ed 		varchar(100) NULL
+    email 			varchar(100) NULL
     );
 
 DROP TABLE IF EXISTS lt.events;
@@ -51,6 +47,10 @@ CREATE TABLE IF NOT EXISTS lt.forms (
     id				bigserial NOT NULL PRIMARY KEY,
     student 		bigint NOT NULL,
     "event"			bigint NOT NULL,
+    first_name_ed 	varchar(100) NULL,
+    last_name_ed 	varchar(100) NULL,
+    phone_ed 		varchar(50) NULL,
+    email_ed 		varchar(100) NULL,
     FOREIGN KEY (student) REFERENCES lt.students(id),
     FOREIGN KEY ("event") REFERENCES lt.events(id)
     );

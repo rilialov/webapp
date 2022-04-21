@@ -1,5 +1,6 @@
 package com.test.webapp.util;
 
+import com.test.webapp.entity.Course;
 import com.test.webapp.entity.Student;
 import com.test.webapp.entity.Trainer;
 import com.test.webapp.entity.Vendor;
@@ -21,6 +22,7 @@ public class HibernateSessionFactoryUtil {
                 configuration.addAnnotatedClass(Vendor.class);
                 configuration.addAnnotatedClass(Trainer.class);
                 configuration.addAnnotatedClass(Student.class);
+                configuration.addAnnotatedClass(Course.class);
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(builder.build());
             } catch (Exception e) {
