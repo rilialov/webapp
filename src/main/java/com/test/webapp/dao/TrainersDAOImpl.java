@@ -16,7 +16,8 @@ public class TrainersDAOImpl implements TrainersDAO<Trainer> {
 
     @Override
     public List<Trainer> getAll() {
-        return (List<Trainer>) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From Trainer").list();
+        return (List<Trainer>) HibernateSessionFactoryUtil.getSessionFactory()
+                .openSession().createQuery("From Trainer").list();
     }
 
     @Override

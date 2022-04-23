@@ -1,8 +1,6 @@
 package com.test.webapp.servlets.users;
 
-import com.test.webapp.data.DBController;
-import com.test.webapp.data.UsersDAOImpl;
-import com.test.webapp.util.UserAccount;
+import com.test.webapp.entity.User;
 import com.test.webapp.util.UsersSessions;
 
 import javax.servlet.ServletException;
@@ -17,12 +15,12 @@ public class DeleteUser extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserAccount userAccount = UsersSessions.getUser(request.getSession());
-        DBController db = UsersSessions.getDbController(userAccount);
-
-        int user_id = Integer.parseInt(request.getParameter("user_id"));
-        UsersDAOImpl usersDAOImpl = db.getUsersDAO();
-        usersDAOImpl.delete(db.getDbConnector(), user_id);
+//        User user = UsersSessions.getUser(request.getSession());
+//        DBController db = UsersSessions.getDbController(user);
+//
+//        int user_id = Integer.parseInt(request.getParameter("user_id"));
+//        UsersDAOImpl usersDAOImpl = db.getUsersDAO();
+//        usersDAOImpl.delete(db.getDbConnector(), user_id);
 
         response.sendRedirect("/managers/usersList");
     }

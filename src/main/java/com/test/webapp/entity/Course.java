@@ -10,7 +10,7 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private long id;
 
     @Column(name = "course_code", nullable = false)
     private String courseCode;
@@ -32,7 +32,7 @@ public class Course {
         this.vendor = vendor;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -73,7 +73,7 @@ public class Course {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Course course = (Course) o;
-        return duration == course.duration && id.equals(course.id) && courseCode.equals(course.courseCode) && courseName.equals(course.courseName);
+        return id == course.id && duration == course.duration && courseCode.equals(course.courseCode) && courseName.equals(course.courseName);
     }
 
     @Override

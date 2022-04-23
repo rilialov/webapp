@@ -1,9 +1,9 @@
 package com.test.webapp.servlets.main;
 
-import com.test.webapp.data.DBController;
-import com.test.webapp.data.UsersDAOImpl;
+import com.test.webapp.dao.UsersDAOImpl;
+import com.test.webapp.util.Role;
 import com.test.webapp.util.SecureUtils;
-import com.test.webapp.util.UserAccount;
+import com.test.webapp.entity.User;
 import com.test.webapp.util.UsersSessions;
 
 import javax.servlet.ServletException;
@@ -16,7 +16,6 @@ import java.util.Arrays;
 
 @WebServlet(name = "LoginPage", value = "/login")
 public class LoginPage extends HttpServlet {
-    private final DBController db = new DBController();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -24,15 +23,14 @@ public class LoginPage extends HttpServlet {
         char[] password = request.getParameter("password").toCharArray();
 
         if (login.length() != 0) {
-            UsersDAOImpl usersDAOImpl = db.getUsersDAO();
-            UserAccount userAccount = usersDAOImpl.getByLogin(db.getDbConnector(), login);
+            UsersDAOImpl usersDAOImpl = new UsersDAOImpl();
+            User user = usersDAOImpl.getByLogin(login);
 
-            if (userAccount != null && Arrays.equals(SecureUtils.getHash(password, userAccount.getSalt()),
-                            userAccount.getHash())) {
-                UsersSessions.setUser(request.getSession(), userAccount);
-                UsersSessions.setDbControllerMap(userAccount, db);
+            if (user != null && Arrays.equals(SecureUtils.getHash(password, user.getSalt()),
+                            user.getHash())) {
+                UsersSessions.setUser(request.getSession(), user);
 
-                if (userAccount.isManager()) {
+                if (user.getRole().equals(Role.MANAGER)) {
                     response.sendRedirect("/managers");
                 } else response.sendRedirect("/students/form");
 

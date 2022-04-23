@@ -33,7 +33,7 @@ class TrainersDAOImplTest {
 
     @Test
     void create() {
-        Trainer trainer = new Trainer("Name","Last Name");
+        Trainer trainer = new Trainer("Name", "Last Name");
         Trainer created = trainersDAO.create(trainer);
 
         trainersDAO.delete(created);
@@ -42,7 +42,7 @@ class TrainersDAOImplTest {
 
     @Test
     void update() {
-        Trainer trainer = new Trainer("Name","Last Name");
+        Trainer trainer = new Trainer("Name", "Last Name");
         Trainer created = trainersDAO.create(trainer);
 
         created.setFirstName("Changed Name");
@@ -55,7 +55,7 @@ class TrainersDAOImplTest {
 
     @Test
     void delete() {
-        Trainer trainer = new Trainer("Name","Last Name");
+        Trainer trainer = new Trainer("Name", "Last Name");
         Trainer created = trainersDAO.create(trainer);
 
         trainersDAO.delete(created);

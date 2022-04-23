@@ -33,7 +33,7 @@ class StudentsDAOImplTest {
 
     @Test
     void create() {
-        Student student = new Student("Name","Last Name");
+        Student student = new Student("Name", "Last Name");
         Student created = studentsDAO.create(student);
 
         studentsDAO.delete(created);
@@ -42,7 +42,7 @@ class StudentsDAOImplTest {
 
     @Test
     void update() {
-        Student student = new Student("Name","Last Name");
+        Student student = new Student("Name", "Last Name");
         Student created = studentsDAO.create(student);
 
         created.setFirstName("Changed Name");
@@ -55,7 +55,7 @@ class StudentsDAOImplTest {
 
     @Test
     void delete() {
-        Student student = new Student("Name","Last Name");
+        Student student = new Student("Name", "Last Name");
         Student created = studentsDAO.create(student);
 
         studentsDAO.delete(created);

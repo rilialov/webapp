@@ -16,7 +16,8 @@ public class StudentsDAOImpl implements StudentsDAO<Student>{
 
     @Override
     public List<Student> getAll() {
-        return (List<Student>) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From Student").list();
+        return (List<Student>) HibernateSessionFactoryUtil.getSessionFactory()
+                .openSession().createQuery("From Student").list();
     }
 
     @Override

@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS lt.forms (
 DROP TABLE IF EXISTS lt.users_salt;
 CREATE TABLE IF NOT EXISTS lt.users_salt (
     id				bigserial NOT NULL PRIMARY KEY,
-    login 			varchar(100) NOT NULL,
+    login 			varchar(100) NOT NULL UNIQUE,
     hash 			bytea NOT NULL,
     salt 			bytea NOT NULL,
     "role" 			varchar(100) NOT NULL,

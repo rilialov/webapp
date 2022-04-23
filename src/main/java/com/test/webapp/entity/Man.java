@@ -9,7 +9,7 @@ public abstract class Man {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private long id;
 
     @Column(name = "first_name", nullable = false)
     private String firstName;
@@ -23,7 +23,7 @@ public abstract class Man {
     @Column(name = "email")
     private String email;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -64,12 +64,12 @@ public abstract class Man {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Man man = (Man) o;
-        return id.equals(man.id) && firstName.equals(man.firstName) && lastName.equals(man.lastName) && Objects.equals(phone, man.phone) && Objects.equals(email, man.email);
+        return id == man.id && firstName.equals(man.firstName) && lastName.equals(man.lastName) && Objects.equals(phone, man.phone) && Objects.equals(email, man.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName);
+        return Objects.hash(id, firstName, lastName, phone, email);
     }
 
     @Override

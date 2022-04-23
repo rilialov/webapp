@@ -1,8 +1,6 @@
 package com.test.webapp.servlets.forms;
 
-import com.test.webapp.data.DBController;
-import com.test.webapp.data.FormsDAOImpl;
-import com.test.webapp.util.UserAccount;
+import com.test.webapp.entity.User;
 import com.test.webapp.util.UsersSessions;
 
 import javax.servlet.ServletException;
@@ -17,12 +15,12 @@ public class DeleteForm extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserAccount userAccount = UsersSessions.getUser(request.getSession());
-        DBController db = UsersSessions.getDbController(userAccount);
-
-        int form_id = Integer.parseInt(request.getParameter("form_id"));
-        FormsDAOImpl formsDAOImpl = db.getFormsDAO();
-        formsDAOImpl.delete(db.getDbConnector(), form_id);
+//        User user = UsersSessions.getUser(request.getSession());
+//        DBController db = UsersSessions.getDbController(user);
+//
+//        int form_id = Integer.parseInt(request.getParameter("form_id"));
+//        FormsDAOImpl formsDAOImpl = db.getFormsDAO();
+//        formsDAOImpl.delete(db.getDbConnector(), form_id);
 
         response.sendRedirect("/managers/formsList");
     }

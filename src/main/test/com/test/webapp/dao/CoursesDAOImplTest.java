@@ -1,7 +1,6 @@
 package com.test.webapp.dao;
 
 import com.test.webapp.entity.Course;
-import com.test.webapp.entity.Vendor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,8 +35,7 @@ class CoursesDAOImplTest {
     @Test
     void create() {
         vendorsDAO = new VendorsDAOImpl();
-        Vendor vendor = vendorsDAO.getById(1L);
-        Course course = new Course("CourseCode", "CourseName", vendor);
+        Course course = new Course("CourseCode", "CourseName", vendorsDAO.getById(1L));
         Course created = courseDAO.create(course);
 
         courseDAO.delete(created);
@@ -47,8 +45,7 @@ class CoursesDAOImplTest {
     @Test
     void update() {
         vendorsDAO = new VendorsDAOImpl();
-        Vendor vendor = vendorsDAO.getById(1L);
-        Course course = new Course("CourseCode", "CourseName", vendor);
+        Course course = new Course("CourseCode", "CourseName", vendorsDAO.getById(1L));
         Course created = courseDAO.create(course);
 
         created.setCourseCode("ChangedCode");
@@ -64,8 +61,7 @@ class CoursesDAOImplTest {
     @Test
     void delete() {
         vendorsDAO = new VendorsDAOImpl();
-        Vendor vendor = vendorsDAO.getById(1L);
-        Course course = new Course("CourseCode", "CourseName", vendor);
+        Course course = new Course("CourseCode", "CourseName", vendorsDAO.getById(1L));
         Course created = courseDAO.create(course);
 
         courseDAO.delete(created);

@@ -1,49 +1,49 @@
 package com.test.webapp.dao;
 
-import com.test.webapp.entity.Course;
+import com.test.webapp.entity.Event;
 import com.test.webapp.util.HibernateSessionFactoryUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.List;
 
-public class CoursesDAOImpl implements CourseDAO<Course> {
+public class EventsDAOImpl implements EventsDAO<Event> {
     @Override
-    public Course getById(Long id) {
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Course.class, id);
+    public Event getById(Long id) {
+        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Event.class, id);
     }
 
     @Override
-    public List<Course> getAll() {
-        return (List<Course>) HibernateSessionFactoryUtil.getSessionFactory()
-                .openSession().createQuery("From Course").list();
+    public List<Event> getAll() {
+        return (List<Event>) HibernateSessionFactoryUtil.getSessionFactory()
+                .openSession().createQuery("From Event").list();
     }
 
     @Override
-    public Course create(Course course) {
+    public Event create(Event event) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.save(course);
+        session.save(event);
         tx1.commit();
         session.close();
-        return course;
+        return event;
     }
 
     @Override
-    public Course update(Course course) {
+    public Event update(Event event) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.update(course);
+        session.update(event);
         tx1.commit();
         session.close();
-        return course;
+        return event;
     }
 
     @Override
-    public void delete(Course course) {
+    public void delete(Event event) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.delete(course);
+        session.delete(event);
         tx1.commit();
         session.close();
     }

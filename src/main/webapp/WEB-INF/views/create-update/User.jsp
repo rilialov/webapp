@@ -1,6 +1,6 @@
 <%--@elvariable id="title" type="java.lang"--%>
 <%--@elvariable id="create" type="java.lang"--%>
-<%--@elvariable id="user" type="com.test.webapp.util.UserAccount"--%>
+<%--@elvariable id="user" type="com.test.webapp.entity.User"--%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -39,7 +39,7 @@
                                 <div class="form-group">
                                     <label for="form">Form:</label>
                                     <input class="form-control" type="text" id="form" name="form" maxlength="20"
-                                           value="${user.form_id}">
+                                           value="${user.form.id}">
                                 </div>
                                 <div class="form-group">
                                     <div class="form-check">

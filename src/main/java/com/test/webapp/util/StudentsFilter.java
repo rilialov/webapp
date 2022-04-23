@@ -1,5 +1,7 @@
 package com.test.webapp.util;
 
+import com.test.webapp.entity.User;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -17,8 +19,8 @@ public class StudentsFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        UserAccount userAccount = UsersSessions.getUser(request.getSession());
-        if (userAccount != null && userAccount.getForm_id() != 0) {
+        User user = UsersSessions.getUser(request.getSession());
+        if (user != null && user.getForm() != null) {
             filterChain.doFilter(request, response);
         } else {
             response.sendRedirect("/");

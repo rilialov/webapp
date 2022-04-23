@@ -1,9 +1,6 @@
 package com.test.webapp.util;
 
-import com.test.webapp.entity.Course;
-import com.test.webapp.entity.Student;
-import com.test.webapp.entity.Trainer;
-import com.test.webapp.entity.Vendor;
+import com.test.webapp.entity.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -23,10 +20,13 @@ public class HibernateSessionFactoryUtil {
                 configuration.addAnnotatedClass(Trainer.class);
                 configuration.addAnnotatedClass(Student.class);
                 configuration.addAnnotatedClass(Course.class);
+                configuration.addAnnotatedClass(Event.class);
+                configuration.addAnnotatedClass(Form.class);
+                configuration.addAnnotatedClass(User.class);
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(builder.build());
             } catch (Exception e) {
-
+                e.printStackTrace();
             }
         }
         return sessionFactory;

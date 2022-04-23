@@ -16,7 +16,8 @@ public class VendorsDAOImpl implements VendorsDAO<Vendor> {
 
     @Override
     public List<Vendor> getAll() {
-        return (List<Vendor>) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From Vendor").list();
+        return (List<Vendor>) HibernateSessionFactoryUtil.getSessionFactory()
+                .openSession().createQuery("From Vendor").list();
     }
 
     @Override

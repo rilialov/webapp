@@ -1,9 +1,6 @@
 package com.test.webapp.servlets.users;
 
-import com.test.webapp.data.DBController;
-import com.test.webapp.data.UsersDAOImpl;
-import com.test.webapp.util.SecureUtils;
-import com.test.webapp.util.UserAccount;
+import com.test.webapp.entity.User;
 import com.test.webapp.util.UsersSessions;
 
 import javax.servlet.ServletException;
@@ -27,25 +24,25 @@ public class CreateUser extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
 
-        String[] array = new String[3];
-        array[0] = request.getParameter("login");
-        String manager = request.getParameter("manager");
-        if (manager == null) {
-            array[2] = "STUDENT";
-            array[1] = request.getParameter("form");
-        } else {
-            array[2] = "MANAGER";
-            array[1] = "null";
-        }
+//        String[] array = new String[3];
+//        array[0] = request.getParameter("login");
+//        String manager = request.getParameter("manager");
+//        if (manager == null) {
+//            array[2] = "STUDENT";
+//            array[1] = request.getParameter("form");
+//        } else {
+//            array[2] = "MANAGER";
+//            array[1] = "null";
+//        }
 
-        UserAccount userAccount = UsersSessions.getUser(request.getSession());
-        DBController db = UsersSessions.getDbController(userAccount);
-        UsersDAOImpl usersDAOImpl = db.getUsersDAO();
-
-        char[] password = request.getParameter("password").toCharArray();
-        byte[] salt = SecureUtils.getSalt(password);
-        byte[] hash = SecureUtils.getHash(password,salt);
-        usersDAOImpl.createWithSaltHash(db.getDbConnector(), array, salt, hash);
+        User user = UsersSessions.getUser(request.getSession());
+//        DBController db = UsersSessions.getDbController(user);
+//        UsersDAOImpl usersDAOImpl = db.getUsersDAO();
+//
+//        char[] password = request.getParameter("password").toCharArray();
+//        byte[] salt = SecureUtils.getSalt(password);
+//        byte[] hash = SecureUtils.getHash(password,salt);
+//        usersDAOImpl.createWithSaltHash(db.getDbConnector(), array, salt, hash);
 
         response.sendRedirect("/managers/usersList");
     }

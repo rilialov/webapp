@@ -1,9 +1,6 @@
 package com.test.webapp.servlets.forms;
 
-import com.test.webapp.data.DBController;
-import com.test.webapp.data.FormsDAOImpl;
-import com.test.webapp.model.Form;
-import com.test.webapp.util.UserAccount;
+import com.test.webapp.entity.User;
 import com.test.webapp.util.UsersSessions;
 
 import javax.servlet.ServletException;
@@ -19,12 +16,12 @@ public class FormsList extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserAccount userAccount = UsersSessions.getUser(request.getSession());
-        DBController db = UsersSessions.getDbController(userAccount);
-
-        FormsDAOImpl formsDAOImpl = db.getFormsDAO();
-        List<Form> list = formsDAOImpl.getAll(db.getDbConnector());
-        request.setAttribute("formsList", list);
+//        User user = UsersSessions.getUser(request.getSession());
+//        DBController db = UsersSessions.getDbController(user);
+//
+//        FormsDAOImpl formsDAOImpl = db.getFormsDAO();
+//        List<Form> list = formsDAOImpl.getAll(db.getDbConnector());
+//        request.setAttribute("formsList", list);
         getServletContext().getRequestDispatcher("/WEB-INF/views/lists/formsList.jsp").forward(request, response);
     }
 

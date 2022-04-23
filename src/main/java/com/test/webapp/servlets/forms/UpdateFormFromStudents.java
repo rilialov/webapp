@@ -1,9 +1,6 @@
 package com.test.webapp.servlets.forms;
 
-import com.test.webapp.data.DBController;
-import com.test.webapp.data.FormBuilder;
-import com.test.webapp.data.StudentsDAOImpl;
-import com.test.webapp.util.UserAccount;
+import com.test.webapp.entity.User;
 import com.test.webapp.util.UsersSessions;
 
 import javax.servlet.ServletException;
@@ -20,19 +17,19 @@ public class UpdateFormFromStudents extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
 
-        UserAccount userAccount = UsersSessions.getUser(request.getSession());
-        FormBuilder fb = UsersSessions.getFormBuilder(userAccount);
-
-        String[] array = new String[5];
-//        array[0] = String.valueOf(fb.getForm().getId());
-        array[1] = request.getParameter("firstname");
-        array[2] = request.getParameter("lastname");
-        array[3] = request.getParameter("phone");
-        array[4] = request.getParameter("email");
-
-        DBController db = UsersSessions.getDbController(userAccount);
-        StudentsDAOImpl studentsDAOImpl = db.getStudentsDAO();
-        studentsDAOImpl.updateEdited(db.getDbConnector(), array);
+//        User user = UsersSessions.getUser(request.getSession());
+//        FormBuilder fb = UsersSessions.getFormBuilder(user);
+//
+//        String[] array = new String[5];
+////        array[0] = String.valueOf(fb.getForm().getId());
+//        array[1] = request.getParameter("firstname");
+//        array[2] = request.getParameter("lastname");
+//        array[3] = request.getParameter("phone");
+//        array[4] = request.getParameter("email");
+//
+//        DBController db = UsersSessions.getDbController(user);
+//        StudentsDAOImpl studentsDAOImpl = db.getStudentsDAO();
+//        studentsDAOImpl.updateEdited(db.getDbConnector(), array);
         response.sendRedirect("/");
     }
 

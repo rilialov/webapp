@@ -1,9 +1,6 @@
 package com.test.webapp.servlets.forms;
 
-import com.test.webapp.data.DBController;
-import com.test.webapp.data.FormsDAOImpl;
-import com.test.webapp.model.Form;
-import com.test.webapp.util.UserAccount;
+import com.test.webapp.entity.User;
 import com.test.webapp.util.UsersSessions;
 
 import javax.servlet.ServletException;
@@ -16,19 +13,19 @@ import java.io.IOException;
 @WebServlet(name = "updateForm", value = "/managers/updateForm")
 public class UpdateForm extends HttpServlet {
     private int form_id;
-    private FormsDAOImpl formsDAOImpl;
+//    private FormsDAOImpl formsDAOImpl;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserAccount userAccount = UsersSessions.getUser(request.getSession());
-        DBController db = UsersSessions.getDbController(userAccount);
-        formsDAOImpl = db.getFormsDAO();
-
-        form_id = Integer.parseInt(request.getParameter("form_id"));
-        Form form= formsDAOImpl.get(db.getDbConnector(), form_id);
-
-        request.setAttribute("title", "Update");
-        request.setAttribute("form", form);
+//        User user = UsersSessions.getUser(request.getSession());
+//        DBController db = UsersSessions.getDbController(user);
+//        formsDAOImpl = db.getFormsDAO();
+//
+//        form_id = Integer.parseInt(request.getParameter("form_id"));
+//        Form form= formsDAOImpl.get(db.getDbConnector(), form_id);
+//
+//        request.setAttribute("title", "Update");
+//        request.setAttribute("form", form);
         request.setAttribute("create", "update");
         getServletContext().getRequestDispatcher("/WEB-INF/views/create-update/Form.jsp").forward(request, response);
     }
@@ -37,16 +34,16 @@ public class UpdateForm extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
 
-        String[] array = new String[5];
-        array[0] = String.valueOf(form_id);
-        array[1] = request.getParameter("course_id");
-        array[2] = request.getParameter("trainer_id");
-        array[3] = request.getParameter("student_id");
-        array[4] = request.getParameter("date");
+//        String[] array = new String[5];
+//        array[0] = String.valueOf(form_id);
+//        array[1] = request.getParameter("course_id");
+//        array[2] = request.getParameter("trainer_id");
+//        array[3] = request.getParameter("student_id");
+//        array[4] = request.getParameter("date");
 
-        UserAccount userAccount = UsersSessions.getUser(request.getSession());
-        DBController db = UsersSessions.getDbController(userAccount);
-        formsDAOImpl.update(db.getDbConnector(), array);
+//        User user = UsersSessions.getUser(request.getSession());
+//        DBController db = UsersSessions.getDbController(user);
+//        formsDAOImpl.update(db.getDbConnector(), array);
 
         response.sendRedirect("/managers/formsList");
     }

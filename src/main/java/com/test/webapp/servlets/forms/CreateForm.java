@@ -1,8 +1,6 @@
 package com.test.webapp.servlets.forms;
 
-import com.test.webapp.data.DBController;
-import com.test.webapp.data.FormsDAOImpl;
-import com.test.webapp.util.UserAccount;
+import com.test.webapp.entity.User;
 import com.test.webapp.util.UsersSessions;
 
 import javax.servlet.ServletException;
@@ -26,17 +24,17 @@ public class CreateForm extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
 
-        String[] array = new String[4];
-        array[0] = request.getParameter("course_id");
-        array[1] = request.getParameter("trainer_id");
-        array[2] = request.getParameter("student_id");
-        array[3] = request.getParameter("date");
+//        String[] array = new String[4];
+//        array[0] = request.getParameter("course_id");
+//        array[1] = request.getParameter("trainer_id");
+//        array[2] = request.getParameter("student_id");
+//        array[3] = request.getParameter("date");
 
-        UserAccount userAccount = UsersSessions.getUser(request.getSession());
-        DBController db = UsersSessions.getDbController(userAccount);
-
-        FormsDAOImpl formsDAOImpl = db.getFormsDAO();
-        formsDAOImpl.create(db.getDbConnector(), array);
+//        User user = UsersSessions.getUser(request.getSession());
+//        DBController db = UsersSessions.getDbController(user);
+//
+//        FormsDAOImpl formsDAOImpl = db.getFormsDAO();
+//        formsDAOImpl.create(db.getDbConnector(), array);
 
         response.sendRedirect("/managers/formsList");
     }
