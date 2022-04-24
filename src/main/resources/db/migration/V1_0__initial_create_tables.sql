@@ -1,13 +1,13 @@
 DROP TABLE IF EXISTS lt.vendors;
 CREATE TABLE IF NOT EXISTS lt.vendors (
     id				bigserial NOT NULL PRIMARY KEY,
-    vendor_name 	varchar(100) NOT NULL
+    vendor_name 	varchar(100) NOT NULL UNIQUE
     );
 
 DROP TABLE IF EXISTS lt.courses;
 CREATE TABLE IF NOT EXISTS lt.courses (
     id				bigserial NOT NULL PRIMARY KEY,
-    course_code 	varchar(50) NOT NULL,
+    course_code 	varchar(50) NOT NULL UNIQUE,
     course_name 	varchar(250) NOT NULL,
     duration 		integer NULL,
     vendor		bigint NOT NULL,
