@@ -16,10 +16,10 @@ public class VendorsList extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        VendorsDAOImpl vendorsDAOImpl = new VendorsDAOImpl();
-        List<Vendor> list = vendorsDAOImpl.getAll();
+        VendorsDAOImpl vendorsDAO = new VendorsDAOImpl();
+        List<Vendor> vendors = vendorsDAO.getAll();
 
-        request.setAttribute("vendorsList", list);
+        request.setAttribute("vendorsList", vendors);
         getServletContext().getRequestDispatcher("/WEB-INF/views/lists/vendorsList.jsp").forward(request, response);
     }
 

@@ -15,12 +15,11 @@ import java.util.List;
 
 @WebServlet(name = "createCourse", value = "/managers/createCourse")
 public class CreateCourse extends HttpServlet {
-    private VendorsDAOImpl vendorsDAOImpl = new VendorsDAOImpl();
-
+    private final VendorsDAOImpl vendorsDAO = new VendorsDAOImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Vendor> list = vendorsDAOImpl.getAll();
+        List<Vendor> list = vendorsDAO.getAll();
         request.setAttribute("title", "Create");
         request.setAttribute("vendorsList", list);
         request.setAttribute("create", "create");
@@ -32,7 +31,7 @@ public class CreateCourse extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         Course course = new Course(request.getParameter("course_code"), request.getParameter("course_name"),
-                vendorsDAOImpl.getById(Long.valueOf(request.getParameter("vendor_id"))));
+                vendorsDAO.getById(Long.valueOf(request.getParameter("vendor_id"))));
 
         CoursesDAOImpl coursesDAOImpl = new CoursesDAOImpl();
         coursesDAOImpl.create(course);

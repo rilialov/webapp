@@ -15,9 +15,9 @@ public class DeleteTrainer extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        TrainersDAOImpl trainersDAOImpl = new TrainersDAOImpl();
-        Trainer trainer = trainersDAOImpl.getById(Long.valueOf(request.getParameter("trainer_id")));
-        trainersDAOImpl.delete(trainer);
+        TrainersDAOImpl trainersDAO = new TrainersDAOImpl();
+        Trainer trainer = trainersDAO.getById(Long.valueOf(request.getParameter("trainer_id")));
+        trainersDAO.delete(trainer);
 
         response.sendRedirect("/managers/trainersList");
     }

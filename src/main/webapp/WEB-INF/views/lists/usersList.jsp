@@ -36,20 +36,20 @@
                             <tr>
                                 <td>${user.login}</td>
                                 <td>
-                                    <c:if test="${user.form_id == 0}">
+                                    <c:if test="${user.form == null}">
                                         0
                                     </c:if>
-                                    <c:if test="${user.form_id > 0}">
-                                        ${user.form}
+                                    <c:if test="${user.form.id > 0}">
+                                        ${user.form.id}
                                     </c:if>
                                 </td>
                                 <td>
-<%--                                    <c:if test="${user.role.equals('MANAGER')}">--%>
-<%--                                        Yes--%>
-<%--                                    </c:if>--%>
-<%--                                    <c:if test="${user.role.equals('STUDENT')}">--%>
-<%--                                        No--%>
-<%--                                    </c:if>--%>
+                                    <c:if test="${user.role.equals('MANAGER')}">
+                                        Yes
+                                    </c:if>
+                                    <c:if test="${user.role.equals('STUDENT')}">
+                                        No
+                                    </c:if>
                                 </td>
                                 <td>
                                     <a href="updateUser?user_id=${user.id}"><i class="bi bi-file-earmark-text"></i></a>

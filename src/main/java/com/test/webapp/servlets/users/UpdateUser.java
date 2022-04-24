@@ -1,8 +1,11 @@
 package com.test.webapp.servlets.users;
 
-import com.test.webapp.util.SecureUtils;
+import com.test.webapp.dao.FormsDAOImpl;
+import com.test.webapp.dao.UsersDAOImpl;
+import com.test.webapp.entity.Form;
 import com.test.webapp.entity.User;
-import com.test.webapp.util.UsersSessions;
+import com.test.webapp.util.Role;
+import com.test.webapp.util.SecureUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,21 +16,15 @@ import java.io.IOException;
 
 @WebServlet(name = "updateUser", value = "/managers/updateUser")
 public class UpdateUser extends HttpServlet {
-    private int user_id;
-//    private UsersDAOImpl usersDAOImpl;
+    private User user;
+    private final UsersDAOImpl usersDAO = new UsersDAOImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = UsersSessions.getUser(request.getSession());
-//        DBController db = UsersSessions.getDbController(user);
-//
-//        usersDAOImpl = db.getUsersDAO();
-//
-//        user_id = Integer.parseInt(request.getParameter("user_id"));
-//        User userNew = usersDAOImpl.get(db.getDbConnector(), user_id);
+        user = usersDAO.getById(Long.valueOf(request.getParameter("user_id")));
 
         request.setAttribute("title", "Update");
-//        request.setAttribute("user", userNew);
+        request.setAttribute("user", user);
         request.setAttribute("create", "update");
         getServletContext().getRequestDispatcher("/WEB-INF/views/create-update/User.jsp").forward(request, response);
     }
@@ -35,29 +32,32 @@ public class UpdateUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
+        FormsDAOImpl formsDAO = new FormsDAOImpl();
 
-//        String[] array = new String[4];
-//        array[0] = String.valueOf(user_id);
-//        array[1] = request.getParameter("login");
-//        String manager = request.getParameter("manager");
-//        if (manager == null) {
-//            array[3] = "false";
-//            array[2] = request.getParameter("form");
-//        } else {
-//            array[3] = "true";
-//            array[2] = "0";
-//        }
+        user.setLogin(request.getParameter("login"));
+        char[] password = request.getParameter("password").toCharArray();
+        if (password.length != 0) {
+            byte[] salt = SecureUtils.getSalt(password);
+            byte[] hash = SecureUtils.getHash(password, salt);
+            user.setSalt(salt);
+            user.setHash(hash);
+        }
 
-//        User user = UsersSessions.getUser(request.getSession());
-//        DBController db = UsersSessions.getDbController(user);
-//        usersDAOImpl.update(db.getDbConnector(), array);
-//
-//        char[] password = request.getParameter("password").toCharArray();
-//        if (password.length != 0) {
-//            byte[] salt = SecureUtils.getSalt(password);
-//            byte[] hash = SecureUtils.getHash(password,salt);
-//            usersDAOImpl.setHashSalt(db.getDbConnector(), user_id, salt, hash);
-//        }
+        Role role;
+        Form form;
+        String manager = request.getParameter("manager");
+        if (manager == null) {
+            role = Role.STUDENT;
+            form = formsDAO.getById(Long.valueOf(request.getParameter("form")));
+        } else {
+            role = Role.MANAGER;
+            form = null;
+        }
+        if (form != null) {
+            user.setForm(form);
+        }
+        user.setRole(role);
+        usersDAO.update(user);
 
         response.sendRedirect("/managers/usersList");
     }

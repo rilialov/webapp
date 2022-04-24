@@ -25,8 +25,8 @@ public class CreateVendor extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         Vendor vendor = new Vendor(request.getParameter("vendorName"));
 
-        VendorsDAOImpl vendorsDAOImpl = new VendorsDAOImpl();
-        vendorsDAOImpl.create(vendor);
+        VendorsDAOImpl vendorsDAO = new VendorsDAOImpl();
+        vendorsDAO.create(vendor);
 
         response.sendRedirect("/managers/vendorsList");
     }

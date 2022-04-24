@@ -1,8 +1,7 @@
 package com.test.webapp.servlets.users;
 
-
+import com.test.webapp.dao.UsersDAOImpl;
 import com.test.webapp.entity.User;
-import com.test.webapp.util.UsersSessions;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,12 +16,10 @@ public class UsersList extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        User user = UsersSessions.getUser(request.getSession());
-//        DBController db = UsersSessions.getDbController(user);
-//
-//        UsersDAOImpl usersDAOImpl = db.getUsersDAO();
-//        List<User> list = usersDAOImpl.getAll(db.getDbConnector());
-//        request.setAttribute("usersList", list);
+        UsersDAOImpl usersDAO = new UsersDAOImpl();
+        List<User> users = usersDAO.getAll();
+
+        request.setAttribute("usersList", users);
         getServletContext().getRequestDispatcher("/WEB-INF/views/lists/usersList.jsp").forward(request, response);
     }
 

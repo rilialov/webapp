@@ -15,9 +15,9 @@ public class DeleteStudent extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        StudentsDAOImpl studentsDAOImpl = new StudentsDAOImpl();
-        Student student = studentsDAOImpl.getById(Long.valueOf(request.getParameter("student_id")));
-        studentsDAOImpl.delete(student);
+        StudentsDAOImpl studentsDAO = new StudentsDAOImpl();
+        Student student = studentsDAO.getById(Long.valueOf(request.getParameter("student_id")));
+        studentsDAO.delete(student);
 
         response.sendRedirect("/managers/studentsList");
     }

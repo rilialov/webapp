@@ -15,9 +15,9 @@ public class DeleteVendor extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        VendorsDAOImpl vendorsDAOImpl = new VendorsDAOImpl();
-        Vendor vendor = vendorsDAOImpl.getById(Long.valueOf(request.getParameter("vendor_id")));
-        vendorsDAOImpl.delete(vendor);
+        VendorsDAOImpl vendorsDAO = new VendorsDAOImpl();
+        Vendor vendor = vendorsDAO.getById(Long.valueOf(request.getParameter("vendor_id")));
+        vendorsDAO.delete(vendor);
 
         response.sendRedirect("/managers/vendorsList");
     }

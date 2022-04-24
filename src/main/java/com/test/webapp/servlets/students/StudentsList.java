@@ -16,10 +16,10 @@ public class StudentsList extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        StudentsDAOImpl studentsDAOImpl = new StudentsDAOImpl();
-        List<Student> list = studentsDAOImpl.getAll();
+        StudentsDAOImpl studentsDAO = new StudentsDAOImpl();
+        List<Student> students = studentsDAO.getAll();
 
-        request.setAttribute("studentsList", list);
+        request.setAttribute("studentsList", students);
         getServletContext().getRequestDispatcher("/WEB-INF/views/lists/studentsList.jsp").forward(request, response);
     }
 

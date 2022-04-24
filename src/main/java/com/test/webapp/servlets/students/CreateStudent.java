@@ -28,8 +28,8 @@ public class CreateStudent extends HttpServlet {
         student.setPhone(request.getParameter("phone"));
         student.setEmail(request.getParameter("email"));
 
-        StudentsDAOImpl studentsDAOImpl = new StudentsDAOImpl();
-        studentsDAOImpl.create(student);
+        StudentsDAOImpl studentsDAO = new StudentsDAOImpl();
+        studentsDAO.create(student);
 
         response.sendRedirect("/managers/studentsList");
     }

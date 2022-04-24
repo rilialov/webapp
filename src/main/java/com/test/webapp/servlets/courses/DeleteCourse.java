@@ -15,9 +15,9 @@ public class DeleteCourse extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        CoursesDAOImpl coursesDAOImpl = new CoursesDAOImpl();
-        Course course = coursesDAOImpl.getById(Long.valueOf(request.getParameter("course_id")));
-        coursesDAOImpl.delete(course);
+        CoursesDAOImpl coursesDAO = new CoursesDAOImpl();
+        Course course = coursesDAO.getById(Long.valueOf(request.getParameter("course_id")));
+        coursesDAO.delete(course);
 
         response.sendRedirect("/managers/coursesList");
     }

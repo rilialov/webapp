@@ -13,11 +13,11 @@ import java.io.IOException;
 @WebServlet(name = "updateStudent", value = "/managers/updateStudent")
 public class UpdateStudent extends HttpServlet {
     private Student student;
-    private StudentsDAOImpl studentsDAOImpl = new StudentsDAOImpl();
+    private final StudentsDAOImpl studentsDAO = new StudentsDAOImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        student = studentsDAOImpl.getById(Long.valueOf(request.getParameter("student_id")));
+        student = studentsDAO.getById(Long.valueOf(request.getParameter("student_id")));
 
         request.setAttribute("title", "Update");
         request.setAttribute("student", student);
@@ -34,7 +34,7 @@ public class UpdateStudent extends HttpServlet {
         student.setPhone(request.getParameter("phone"));
         student.setEmail(request.getParameter("email"));
 
-        studentsDAOImpl.update(student);
+        studentsDAO.update(student);
 
         response.sendRedirect("/managers/studentsList");
     }

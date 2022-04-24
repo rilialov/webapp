@@ -25,8 +25,8 @@ public class CreateTrainer extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         Trainer trainer = new Trainer(request.getParameter("firstname"), request.getParameter("lastname"));
 
-        TrainersDAOImpl trainersDAOImpl = new TrainersDAOImpl();
-        trainersDAOImpl.create(trainer);
+        TrainersDAOImpl trainersDAO = new TrainersDAOImpl();
+        trainersDAO.create(trainer);
 
         response.sendRedirect("/managers/trainersList");
     }
