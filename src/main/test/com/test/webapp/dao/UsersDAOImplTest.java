@@ -65,7 +65,7 @@ class UsersDAOImplTest {
         usersDAO.update(created);
 
         User updated = usersDAO.getById(created.getId());
-        usersDAO.delete(updated);
+        usersDAO.delete(created);
         Assertions.assertEquals("changed", updated.getLogin());
     }
 

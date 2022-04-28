@@ -30,13 +30,12 @@ public class FormsDAOImpl implements FormsDAO<Form>{
     }
 
     @Override
-    public Form update(Form form) {
+    public void update(Form form) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         session.update(form);
         tx1.commit();
         session.close();
-        return form;
     }
 
     @Override

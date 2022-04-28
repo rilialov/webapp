@@ -31,13 +31,12 @@ public class TrainersDAOImpl implements TrainersDAO<Trainer> {
     }
 
     @Override
-    public Trainer update(Trainer trainer) {
+    public void update(Trainer trainer) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         session.update(trainer);
         tx1.commit();
         session.close();
-        return trainer;
     }
 
     @Override

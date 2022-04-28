@@ -31,13 +31,12 @@ public class StudentsDAOImpl implements StudentsDAO<Student>{
     }
 
     @Override
-    public Student update(Student student) {
+    public void update(Student student) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         session.update(student);
         tx1.commit();
         session.close();
-        return student;
     }
 
     @Override

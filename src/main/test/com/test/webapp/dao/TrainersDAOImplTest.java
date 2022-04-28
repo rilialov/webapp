@@ -49,7 +49,7 @@ class TrainersDAOImplTest {
         trainersDAO.update(created);
 
         Trainer updated = trainersDAO.getById(created.getId());
-        trainersDAO.delete(updated);
+        trainersDAO.delete(created);
         Assertions.assertEquals("Changed Name", updated.getFirstName());
     }
 

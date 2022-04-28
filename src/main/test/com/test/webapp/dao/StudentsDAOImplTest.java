@@ -49,7 +49,7 @@ class StudentsDAOImplTest {
         studentsDAO.update(created);
 
         Student updated = studentsDAO.getById(created.getId());
-        studentsDAO.delete(updated);
+        studentsDAO.delete(created);
         Assertions.assertEquals("Changed Name", updated.getFirstName());
     }
 

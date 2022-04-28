@@ -53,7 +53,7 @@ class CoursesDAOImplTest {
         courseDAO.update(created);
 
         Course updated = courseDAO.getById(created.getId());
-        courseDAO.delete(updated);
+        courseDAO.delete(created);
         Assertions.assertEquals("ChangedCode", updated.getCourseCode());
         Assertions.assertEquals("ChangedName", updated.getCourseName());
     }

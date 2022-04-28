@@ -58,7 +58,7 @@ class EventsDAOImplTest {
         eventsDAO.update(created);
 
         Event updated = eventsDAO.getById(created.getId());
-        eventsDAO.delete(updated);
+        eventsDAO.delete(created);
         Assertions.assertEquals(LocalDate.of(2022, 5, 7), updated.getDate());
     }
 

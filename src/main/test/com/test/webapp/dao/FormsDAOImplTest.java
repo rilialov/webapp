@@ -58,7 +58,7 @@ class FormsDAOImplTest {
         formsDAO.update(created);
 
         Form updated = formsDAO.getById(created.getId());
-        formsDAO.delete(updated);
+        formsDAO.delete(created);
         Assertions.assertEquals(2L, updated.getEvent().getId());
     }
 

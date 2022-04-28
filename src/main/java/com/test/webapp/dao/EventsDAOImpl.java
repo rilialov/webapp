@@ -30,13 +30,13 @@ public class EventsDAOImpl implements EventsDAO<Event> {
     }
 
     @Override
-    public Event update(Event event) {
+    public void update(Event event) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         session.update(event);
         tx1.commit();
         session.close();
-        return event;
+
     }
 
     @Override

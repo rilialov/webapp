@@ -30,13 +30,12 @@ public class CoursesDAOImpl implements CourseDAO<Course> {
     }
 
     @Override
-    public Course update(Course course) {
+    public void update(Course course) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         session.update(course);
         tx1.commit();
         session.close();
-        return course;
     }
 
     @Override

@@ -49,7 +49,8 @@ class VendorsDAOImplTest {
         vendorsDAO.update(created);
 
         Vendor updated = vendorsDAO.getById(created.getId());
-        vendorsDAO.delete(updated);
+
+        vendorsDAO.delete(created);
         Assertions.assertEquals("ChangedVendor", updated.getVendorName());
     }
 

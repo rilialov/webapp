@@ -31,13 +31,12 @@ public class VendorsDAOImpl implements VendorsDAO<Vendor> {
     }
 
     @Override
-    public Vendor update(Vendor vendor) {
+    public void update(Vendor vendor) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         session.update(vendor);
         tx1.commit();
         session.close();
-        return vendor;
     }
 
     @Override
